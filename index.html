@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Horus Student Branch - Application Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"FF Formata"', 'Formata', '"Frutiger LT Arabic"', 'sans-serif'],
+                    },
+                    colors: {
+                        ieee: {
+                            blue: '#00629B',
+                            dark: '#0A192F',
+                            light: '#E2F1F8',
+                            cyan: '#00B5E2'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions for form elements */
+        input[type="radio"]:checked + span, input[type="checkbox"]:checked + div + span {
+            color: #00629B;
+            font-weight: 500;
+        }
+
+        /* Custom Select Dropdown Arrow */
+        .custom-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+            padding-right: 2.5rem;
+        }
+        [dir="rtl"] .custom-select {
+            background-position: left 1rem center;
+            padding-right: 1rem;
+            padding-left: 2.5rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-ieee-dark font-sans text-gray-800 antialiased min-h-screen flex flex-col relative">
+
+    <!-- Full Page Blurred Background -->
+    <div class="fixed inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+        <img src="https://scontent.fcai21-3.fna.fbcdn.net/v/t39.30808-6/490583271_1962402974167559_514628693641795062_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=EZ0rkixzV60Q7kNvwEwuGpq&_nc_oc=Adq7uhaIN7ODAOKBTIZqNgeZ8KSi5eMbCsnn6ktB5NBFbdN7f2evPePvXXVCwcP4YdI&_nc_zt=23&_nc_ht=scontent.fcai21-3.fna&_nc_gid=tVqwXCIpGkTKBlaGWhkwHQ&_nc_ss=7b2a8&oh=00_AQHUrtVr5jCDhtDY6RvMWlTYcx_ialdbyeTnnONV3pBYjg&oe=6A96325B" 
+             alt="IEEE Horus Event Background" class="w-full h-full object-cover object-top blur-md scale-105 opacity-90">
+        <!-- Dark Overlay for Readability -->
+        <div class="absolute inset-0 bg-ieee-dark/75"></div>
+    </div>
+
+    <!-- Simple Header (Main IEEE Blue - Pinned to LTR layout) -->
+    <header dir="ltr" class="bg-ieee-blue py-4 px-6 md:px-10 flex items-center justify-between shadow-md sticky top-0 z-50">
+        <div class="flex items-center">
+            <!-- IEEE Horus Logo SVG (White Fill - Fixed Path) -->
+            <svg viewBox="0 0 3482.97 1348.28" xmlns="http://www.w3.org/2000/svg" class="block h-10 w-auto">
+                  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <path class="cls-1" d="M0,0v1102.75h1070.22V0H0ZM996.03,480.59c-54.71-58.39-108.38-32.13-160.1-2.36-63.68,36.65-130.78,59.04-199.87,70.95-56.31,9.71-113.59,10.49-169.87-5.82-3.08-.89-6.44-1.08-9.61-.77-4,.41-7.94,1.68-16.93,3.72,16.88,25.27,30.3,49.95,47.43,70.15,49.77,58.65,98.69,118.86,152.44,171.96,42.76,42.26,94.16,70.28,149.85,81.97,45.63,9.57,88.28,1.09,121.46-41.83,25.94-33.58,25.26-80.41-.34-110.61-24.75-29.16-63.89-23.15-78.66,12.51-6.51,15.73-8.18,31.23,9.23,45.7,1.73-8.25,3.6-13.88,3.99-19.65,1.28-19.51,9.41-31.27,26.07-31.48,17.06-.23,27.54,11.19,30.55,30.99,4.26,27.94-4.16,50.61-24.06,65.3-22.67,16.74-46.94,16.33-69.68.32-25.84-18.21-35.75-47.66-33.37-82.23,2.93-42.78,22.84-72.51,55.1-89.58,46.88-24.79,100.43-10.55,131.07,33.36,32.23,46.19,34.99,114.89,6.67,166.33-40.62,73.82-132.83,107.28-209.7,80.21-82.35-28.99-150.32-84.35-210.08-155.4-52.68-62.62-103.66-127.26-155.36-191.06-18.48-22.79-36.84-45.71-55.25-68.58-2.5.93-5,1.85-7.52,2.78-8.02,121.46-.16,243.45-2.74,362.61-57.84-101.35-116.46-204.07-172.38-302.01,11.71,3.41,30.14,11.47,49.07,13.76,49.27,5.98,82.72-33.78,75.3-91.47-2.03-15.62-13.5-35.07-25.19-42.38-56.86-35.54-115.55-65.57-184.49-36.19,1.19-27.69,2.21-51.54,3.38-78.84,89.2,34.72,165.29-12,241.95-48.85,159.1-76.47,314.88-67.57,470.34,15.35,49.63,26.46,101.7,46.75,153.46,66.89,17.27,6.72,37.05,4.2,57.83,6.11v98.15ZM984.13,298.82c-72.18,14.92-141.13-2.48-209.74-26.35-56.25-19.57-112.07-41.74-169.2-56.63-72.59-18.92-144.39-3.46-215.16,19.37-74.6,24.08-148.98,49.42-224.21,70.29-28.85,8-59.8,5.14-91.8,7.37v-45.61c37.91-4.35,76.82-3.58,113.43-14.19,59.98-17.37,119.61-38.53,177.36-64.52,120.12-54.06,238.16-54.39,357.98,1.52,58.22,27.18,118.6,48.47,179.01,67.97,30.25,9.78,62.77,9.54,97.08,14.22,3.62,14.72,1.43,23.23-14.75,26.57Z"/>
+        <path class="cls-1" d="M845.96,414.14c-78.87-38.13-153.51-87.18-240.5-107.4,12.67,80.88,9.21,149.15-58.49,191.69,106.48,5.34,205.03-24.87,298.99-84.29Z"/>
+        <path class="cls-1" d="M392,323.63c-51.05,23.49-96.69,44.49-142.31,65.48-.09,3.77-.17,7.53-.26,11.29,58.74,28.5,117.48,56.99,176.22,85.48,2.75-3.96,5.51-7.93,8.26-11.9-44.34-36.31-49.62-88.56-41.9-150.34Z"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M506.41,298.35l-3,9.91-15.03,44.39c3.76.38,8.42,0,12.1.38v.39l-2.18,50.19.38.55c4.81.46,10.82.7,15.71-.16v-.77l-1.96-48.72.3-1.63,13.23-.23c-6.62-17.98-13.01-36.11-19.17-54.3h-.38Z"/>
+        <path class="cls-1" d="M448.86,363.4c-9.46,4.87-23.38,12.27-21.86,25.64,2.02,7.31,9.7,12,15.78,15.05,33.58,15.22,78.15,15.74,113.58,4.35,8.78-3.47,20.51-8.51,22.11-19.57-.09-9.14-9.45-14.87-16.21-18.34v-.44c2.36-.95,5.07-1.83,7.52-2.1v-.26c-11.9-2.17-23.38-5.39-34.85-8.52,2.2,5.21,3.79,10.69,5.66,16.09,3.46-1.15,7-2.01,10.71-2.54,6.08,2.44,14.77,5.92,15.61,13.74.68,7.31-7.09,10.87-11.98,13.83-25.99,9.73-55.28,10.7-82.37,3.3-7.5-2.43-18.31-5.57-19.24-15.38,5.32-12.95,19.07-15.66,30.54-18.78-5.91-3.93-11.9-7.4-17.64-11.75-6.15.35-11.81,3.13-17.38,5.65h0Z"/>
+        <path class="cls-1" d="M498,419.58c-.89,17.65-1.11,33.99-2.38,51.72,6.78.61,14.44,1.23,21.67.15l-2.16-49.34-.37-2.37c-5.51.23-10.71.45-16.75-.16h0Z"/>
+      </g>
+    </g>
+  </g>
+  <g id="Layer_3" data-name="Layer 3">
+    <path class="cls-1" d="M1178.3,3.16v1088.23h2304.67V3.16H1178.3ZM1953.17,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM2605.36,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM3257.56,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04Z"/>
+  </g>
+  <g id="Layer_4" data-name="Layer 4">
+    <path class="cls-1" d="M40.77,1179.04v166.52H0v-166.52h40.77ZM176.37,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM312.24,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM448.1,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM565.31,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77ZM866.1,1260.57c0,54.6-35.7,87.71-88.19,87.71s-84.46-37.31-84.46-84.75c0-49.91,34.37-87.21,87.39-87.21s85.26,38.3,85.26,84.25ZM736.35,1262.79c0,32.61,16.52,55.59,43.7,55.59s43.17-24.21,43.17-56.58c0-29.89-15.46-55.59-43.43-55.59s-43.43,24.22-43.43,56.58ZM886.33,1181.26c13.05-1.98,32.5-3.46,54.09-3.46,26.64,0,45.29,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.7,41.01v.74c12.52,4.7,19.45,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.93-4.7-7.2-18.28-12.52-38.79-4.8-20.75-12.53-26.44-29.04-26.68h-12.26v65.47h-40.23v-164.3ZM926.56,1252.91h15.99c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM1077.07,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.03-13.84,33.03-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1213.21,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1398.09,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1568.86,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.77v-134.9ZM1714.31,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.04-13.84,33.04-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1849.11,1181.26c14.92-2.22,34.37-3.46,54.88-3.46,34.1,0,56.22,5.68,73.54,17.79,18.65,12.85,30.37,33.36,30.37,62.76,0,31.87-12.52,53.86-29.84,67.45-18.92,14.58-47.7,21.5-82.87,21.5-21.05,0-35.97-1.24-46.09-2.47v-163.56ZM1889.88,1317.15c3.46.74,9.06.74,14.12.74,36.77.25,60.75-18.53,60.75-58.31.26-34.59-21.58-52.87-56.49-52.87-9.06,0-14.92.74-18.38,1.48v108.96ZM2134.98,1275.15h-66.08v39.53h73.81v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.08v30.64ZM2164,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM2376.07,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.76v-134.9ZM2528.44,1181.26c10.66-1.98,32.24-3.46,52.49-3.46,24.78,0,39.97,2.22,53.02,9.39,12.53,6.18,21.58,17.54,21.58,32.61s-9.33,28.66-29.57,35.58v.49c20.52,5.19,35.7,19.52,35.7,41.02,0,15.07-7.46,26.93-18.65,35.33-13.06,9.64-34.91,15.08-70.62,15.08-19.98,0-34.9-1.24-43.96-2.47v-163.56ZM2568.68,1245h13.32c21.31,0,32.77-8.15,32.77-20.5s-10.4-19.27-28.77-19.27c-8.8,0-13.86.49-17.32.99v38.79ZM2568.68,1318.88c4,.5,8.79.5,15.72.5,18.39,0,34.63-6.43,34.63-23.97s-16.25-23.47-36.5-23.47h-13.85v46.94ZM2682.95,1181.26c13.06-1.98,32.5-3.46,54.09-3.46,26.64,0,45.3,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.71,41.01v.74c12.53,4.7,19.46,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.94-4.7-7.2-18.28-12.53-38.79-4.79-20.75-12.52-26.44-29.04-26.68h-12.25v65.47h-40.24v-164.3ZM2723.19,1252.91h15.98c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM2878.76,1302.82l-12.78,42.74h-42.11l54.89-166.52h53.29l55.69,166.52h-43.7l-13.86-42.74h-51.42ZM2924.32,1274.65l-11.18-35.33c-3.2-9.88-6.4-22.23-9.06-32.12h-.54c-2.66,9.88-5.32,22.48-8.26,32.12l-10.66,35.33h39.7ZM3005.3,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM3314.61,1340.86c-7.46,3.46-24.25,7.16-46.09,7.16-62.08,0-94.06-35.82-94.06-83.26,0-56.82,43.7-88.45,98.05-88.45,21.05,0,37.03,3.95,44.23,7.41l-8.26,29.89c-8.27-3.21-19.72-6.18-34.1-6.18-32.24,0-57.29,18.03-57.29,55.1,0,33.36,21.32,54.36,57.56,54.36,12.25,0,25.84-2.47,33.84-5.43l6.13,29.4ZM3375.61,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77Z"/>
+  </g>
+  <g id="Layer_5d" data-name="Layer 5d">
+    <g>
+      <g>
+        <path class="cls-1" d="M0,0v1102.75h1070.22V0H0ZM996.03,480.59c-54.71-58.39-108.38-32.13-160.1-2.36-63.68,36.65-130.78,59.04-199.87,70.95-56.31,9.71-113.59,10.49-169.87-5.82-3.08-.89-6.44-1.08-9.61-.77-4,.41-7.94,1.68-16.93,3.72,16.88,25.27,30.3,49.95,47.43,70.15,49.77,58.65,98.69,118.86,152.44,171.96,42.76,42.26,94.16,70.28,149.85,81.97,45.63,9.57,88.28,1.09,121.46-41.83,25.94-33.58,25.26-80.41-.34-110.61-24.75-29.16-63.89-23.15-78.66,12.51-6.51,15.73-8.18,31.23,9.23,45.7,1.73-8.25,3.6-13.88,3.99-19.65,1.28-19.51,9.41-31.27,26.07-31.48,17.06-.23,27.54,11.19,30.55,30.99,4.26,27.94-4.16,50.61-24.06,65.3-22.67,16.74-46.94,16.33-69.68.32-25.84-18.21-35.75-47.66-33.37-82.23,2.93-42.78,22.84-72.51,55.1-89.58,46.88-24.79,100.43-10.55,131.07,33.36,32.23,46.19,34.99,114.89,6.67,166.33-40.62,73.82-132.83,107.28-209.7,80.21-82.35-28.99-150.32-84.35-210.08-155.4-52.68-62.62-103.66-127.26-155.36-191.06-18.48-22.79-36.84-45.71-55.25-68.58-2.5.93-5,1.85-7.52,2.78-8.02,121.46-.16,243.45-2.74,362.61-57.84-101.35-116.46-204.07-172.38-302.01,11.71,3.41,30.14,11.47,49.07,13.76,49.27,5.98,82.72-33.78,75.3-91.47-2.03-15.62-13.5-35.07-25.19-42.38-56.86-35.54-115.55-65.57-184.49-36.19,1.19-27.69,2.21-51.54,3.38-78.84,89.2,34.72,165.29-12,241.95-48.85,159.1-76.47,314.88-67.57,470.34,15.35,49.63,26.46,101.7,46.75,153.46,66.89,17.27,6.72,37.05,4.2,57.83,6.11v98.15ZM984.13,298.82c-72.18,14.92-141.13-2.48-209.74-26.35-56.25-19.57-112.07-41.74-169.2-56.63-72.59-18.92-144.39-3.46-215.16,19.37-74.6,24.08-148.98,49.42-224.21,70.29-28.85,8-59.8,5.14-91.8,7.37v-45.61c37.91-4.35,76.82-3.58,113.43-14.19,59.98-17.37,119.61-38.53,177.36-64.52,120.12-54.06,238.16-54.39,357.98,1.52,58.22,27.18,118.6,48.47,179.01,67.97,30.25,9.78,62.77,9.54,97.08,14.22,3.62,14.72,1.43,23.23-14.75,26.57Z"/>
+        <path class="cls-1" d="M845.96,414.14c-78.87-38.13-153.51-87.18-240.5-107.4,12.67,80.88,9.21,149.15-58.49,191.69,106.48,5.34,205.03-24.87,298.99-84.29Z"/>
+        <path class="cls-1" d="M392,323.63c-51.05,23.49-96.69,44.49-142.31,65.48-.09,3.77-.17,7.53-.26,11.29,58.74,28.5,117.48,56.99,176.22,85.48,2.75-3.96,5.51-7.93,8.26-11.9-44.34-36.31-49.62-88.56-41.9-150.34Z"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M506.41,298.35l-3,9.91-15.03,44.39c3.76.38,8.42,0,12.1.38v.39l-2.18,50.19.38.55c4.81.46,10.82.7,15.71-.16v-.77l-1.96-48.72.3-1.63,13.23-.23c-6.62-17.98-13.01-36.11-19.17-54.3h-.38Z"/>
+        <path class="cls-1" d="M448.86,363.4c-9.46,4.87-23.38,12.27-21.86,25.64,2.02,7.31,9.7,12,15.78,15.05,33.58,15.22,78.15,15.74,113.58,4.35,8.78-3.47,20.51-8.51,22.11-19.57-.09-9.14-9.45-14.87-16.21-18.34v-.44c2.36-.95,5.07-1.83,7.52-2.1v-.26c-11.9-2.17-23.38-5.39-34.85-8.52,2.2,5.21,3.79,10.69,5.66,16.09,3.46-1.15,7-2.01,10.71-2.54,6.08,2.44,14.77,5.92,15.61,13.74.68,7.31-7.09,10.87-11.98,13.83-25.99,9.73-55.28,10.7-82.37,3.3-7.5-2.43-18.31-5.57-19.24-15.38,5.32-12.95,19.07-15.66,30.54-18.78-5.91-3.93-11.9-7.4-17.64-11.75-6.15.35-11.81,3.13-17.38,5.65h0Z"/>
+        <path class="cls-1" d="M498,419.58c-.89,17.65-1.11,33.99-2.38,51.72,6.78.61,14.44,1.23,21.67.15l-2.16-49.34-.37-2.37c-5.51.23-10.71.45-16.75-.16h0Z"/>
+      </g>
+    </g>
+    <path class="cls-1" d="M1178.3,3.16v1088.23h2304.67V3.16H1178.3ZM1953.17,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM2605.36,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM3257.56,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04Z"/>
+    <path class="cls-1" d="M40.77,1179.04v166.52H0v-166.52h40.77ZM176.37,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM312.24,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM448.1,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM565.31,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77ZM866.1,1260.57c0,54.6-35.7,87.71-88.19,87.71s-84.46-37.31-84.46-84.75c0-49.91,34.37-87.21,87.39-87.21s85.26,38.3,85.26,84.25ZM736.35,1262.79c0,32.61,16.52,55.59,43.7,55.59s43.17-24.21,43.17-56.58c0-29.89-15.46-55.59-43.43-55.59s-43.43,24.22-43.43,56.58ZM886.33,1181.26c13.05-1.98,32.5-3.46,54.09-3.46,26.64,0,45.29,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.7,41.01v.74c12.52,4.7,19.45,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.93-4.7-7.2-18.28-12.52-38.79-4.8-20.75-12.53-26.44-29.04-26.68h-12.26v65.47h-40.23v-164.3ZM926.56,1252.91h15.99c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM1077.07,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.03-13.84,33.03-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1213.21,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1398.09,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1568.86,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.77v-134.9ZM1714.31,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.04-13.84,33.04-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1849.11,1181.26c14.92-2.22,34.37-3.46,54.88-3.46,34.1,0,56.22,5.68,73.54,17.79,18.65,12.85,30.37,33.36,30.37,62.76,0,31.87-12.52,53.86-29.84,67.45-18.92,14.58-47.7,21.5-82.87,21.5-21.05,0-35.97-1.24-46.09-2.47v-163.56ZM1889.88,1317.15c3.46.74,9.06.74,14.12.74,36.77.25,60.75-18.53,60.75-58.31.26-34.59-21.58-52.87-56.49-52.87-9.06,0-14.92.74-18.38,1.48v108.96ZM2134.98,1275.15h-66.08v39.53h73.81v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.08v30.64ZM2164,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM2376.07,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.76v-134.9ZM2528.44,1181.26c10.66-1.98,32.24-3.46,52.49-3.46,24.78,0,39.97,2.22,53.02,9.39,12.53,6.18,21.58,17.54,21.58,32.61s-9.33,28.66-29.57,35.58v.49c20.52,5.19,35.7,19.52,35.7,41.02,0,15.07-7.46,26.93-18.65,35.33-13.06,9.64-34.91,15.08-70.62,15.08-19.98,0-34.9-1.24-43.96-2.47v-163.56ZM2568.68,1245h13.32c21.31,0,32.77-8.15,32.77-20.5s-10.4-19.27-28.77-19.27c-8.8,0-13.86.49-17.32.99v38.79ZM2568.68,1318.88c4,.5,8.79.5,15.72.5,18.39,0,34.63-6.43,34.63-23.97s-16.25-23.47-36.5-23.47h-13.85v46.94ZM2682.95,1181.26c13.06-1.98,32.5-3.46,54.09-3.46,26.64,0,45.3,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.71,41.01v.74c12.53,4.7,19.46,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.94-4.7-7.2-18.28-12.53-38.79-4.79-20.75-12.52-26.44-29.04-26.68h-12.25v65.47h-40.24v-164.3ZM2723.19,1252.91h15.98c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM2878.76,1302.82l-12.78,42.74h-42.11l54.89-166.52h53.29l55.69,166.52h-43.7l-13.86-42.74h-51.42ZM2924.32,1274.65l-11.18-35.33c-3.2-9.88-6.4-22.23-9.06-32.12h-.54c-2.66,9.88-5.32,22.48-8.26,32.12l-10.66,35.33h39.7ZM3005.3,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM3314.61,1340.86c-7.46,3.46-24.25,7.16-46.09,7.16-62.08,0-94.06-35.82-94.06-83.26,0-56.82,43.7-88.45,98.05-88.45,21.05,0,37.03,3.95,44.23,7.41l-8.26,29.89c-8.27-3.21-19.72-6.18-34.1-6.18-32.24,0-57.29,18.03-57.29,55.1,0,33.36,21.32,54.36,57.56,54.36,12.25,0,25.84-2.47,33.84-5.43l6.13,29.4ZM3375.61,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77Z"/>
+  </g>
+</svg>
+        </div>
+        <div class="text-white/90 text-sm font-medium hidden sm:block">
+            <span class="lang-en">Season 2026-2027</span>
+            <span class="lang-ar hidden">موسم 2026-2027</span>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex flex-col relative z-10 pb-20">
+        
+        <!-- Content Overlay Container -->
+        <div class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
+            
+            <!-- Hero Titles (Dynamically aligns LTR or RTL based on language) -->
+            <div class="mb-10">
+                <span class="bg-white/10 text-ieee-cyan border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block backdrop-blur-md mb-4 shadow-sm">
+                    <span class="lang-en">Application Form</span>
+                    <span class="lang-ar hidden font-bold">استمارة التقديم</span>
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-3">
+                    <span class="lang-en block">Join IEEE Horus SB</span>
+                    <span class="lang-ar hidden font-bold block">انضم إلى IEEE Horus SB</span>
+                </h2>
+                <p class="text-gray-200 text-lg sm:text-xl max-w-xl">
+                    <span class="lang-en block">Become a part of our community and shape the future.</span>
+                    <span class="lang-ar hidden font-medium block">كن جزءاً من مجتمعنا وشارك في بناء المستقبل.</span>
+                </p>
+            </div>
+
+            <!-- The White Form Card -->
+            <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-10 border border-gray-100">
+                
+                <!-- Single Working Language Toggle -->
+                <div class="flex mb-8 w-full border-b border-gray-100 pb-6" dir="ltr">
+                    <div class="bg-gray-200 rounded-full p-1 inline-flex items-center shadow-inner">
+                        <button type="button" id="btn-en" class="px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer">EN</button>
+                        <button type="button" id="btn-ar" class="px-5 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors cursor-pointer">AR</button>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div id="successMessage" class="hidden flex-col items-center justify-center text-center py-12 animate-[fadeIn_0.5s_ease-out]">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                        <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">
+                        <span class="lang-en">Application Received!</span>
+                        <span class="lang-ar hidden font-bold">تم استلام الطلب!</span>
+                    </h2>
+                    <p class="text-gray-600 max-w-md mx-auto">
+                        <span class="lang-en block">Thank you for applying to IEEE Horus Student Branch. We will review your application and contact you soon via WhatsApp or Email.</span>
+                        <span class="lang-ar hidden block">شكراً لتقديمك في IEEE Horus Student Branch. سنقوم بمراجعة طلبك والتواصل معك قريباً.</span>
+                    </p>
+                    <button onclick="window.location.reload()" class="mt-8 px-8 py-2.5 bg-gray-100 text-gray-800 rounded-full hover:bg-gray-200 transition-colors font-medium">
+                        <span class="lang-en">Submit Another</span>
+                        <span class="lang-ar hidden">تقديم طلب آخر</span>
+                    </button>
+                </div>
+
+                <!-- The Form -->
+                <form id="recruitmentForm" class="space-y-10">
+                    
+                    <!-- Section 1: Personal Info -->
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">1</div>
+                            <h3 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">Personal Information</span>
+                                <span class="lang-ar hidden font-bold">المعلومات الشخصية</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-5 pl-0 md:pl-11">
+                            <!-- Full Name -->
+                            <div>
+                                <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                    <span class="lang-en">Full Name</span>
+                                    <span class="lang-ar hidden">الاسم بالكامل</span> 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="fullName" name="fullName" required data-en-placeholder="Enter your full name" data-ar-placeholder="أدخل اسمك بالكامل" placeholder="Enter your full name" 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <!-- Email -->
+                                <div>
+                                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">Email Address</span>
+                                        <span class="lang-ar hidden">البريد الإلكتروني</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="email" id="email" name="email" required data-en-placeholder="Enter your email" data-ar-placeholder="أدخل بريدك الإلكتروني" placeholder="Enter your email" 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
+                                </div>
+
+                                <!-- WhatsApp -->
+                                <div>
+                                    <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">WhatsApp Number</span>
+                                        <span class="lang-ar hidden">رقم الواتساب</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="tel" id="whatsapp" name="whatsapp" required data-en-placeholder="Active phone number" data-ar-placeholder="رقم هاتف فعال" placeholder="Active phone number" pattern="[0-9+ ]+"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
+                                </div>
+                            </div>
+
+                            <!-- Academic Info -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="faculty" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">Faculty</span>
+                                        <span class="lang-ar hidden">الكلية</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="faculty" name="faculty" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
+                                        <option value="" disabled selected data-en-text="Select your faculty" data-ar-text="اختر كليتك">Select your faculty</option>
+                                        <option value="Medicine" data-en-text="Medicine" data-ar-text="طب بشري">Medicine</option>
+                                        <option value="Dentistry" data-en-text="Dentistry" data-ar-text="طب أسنان">Dentistry</option>
+                                        <option value="Physical Therapy" data-en-text="Physical Therapy" data-ar-text="علاج طبيعي">Physical Therapy</option>
+                                        <option value="Pharmacy" data-en-text="Pharmacy" data-ar-text="صيدلة">Pharmacy</option>
+                                        <option value="Engineering" data-en-text="Engineering" data-ar-text="هندسة">Engineering</option>
+                                        <option value="Artificial Intelligence and Informatics" data-en-text="Artificial Intelligence" data-ar-text="الذكاء الاصطناعي">Artificial Intelligence</option>
+                                        <option value="Fine Arts" data-en-text="Fine Arts" data-ar-text="فنون جميلة">Fine Arts</option>
+                                        <option value="Al-Alsun and Translation" data-en-text="Al-Alsun" data-ar-text="الألسن والترجمة">Al-Alsun</option>
+                                        <option value="Business" data-en-text="Business" data-ar-text="إدارة أعمال">Business</option>
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label for="academicYear" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">Level</span>
+                                        <span class="lang-ar hidden">المستوى الدراسي</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="academicYear" name="academicYear" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
+                                        <option value="" disabled selected data-en-text="Select your level" data-ar-text="اختر المستوى">Select your level</option>
+                                        <option value="Level 0" data-en-text="Level 0" data-ar-text="المستوى 0">Level 0</option>
+                                        <option value="Level 1" data-en-text="Level 1" data-ar-text="المستوى 1">Level 1</option>
+                                        <option value="Level 2" data-en-text="Level 2" data-ar-text="المستوى 2">Level 2</option>
+                                        <option value="Level 3" data-en-text="Level 3" data-ar-text="المستوى 3">Level 3</option>
+                                        <option value="Level 4" data-en-text="Level 4" data-ar-text="المستوى 4">Level 4</option>
+                                        <option value="Level 5" data-en-text="Level 5" data-ar-text="المستوى 5">Level 5</option>
+                                        <option value="Level 6" data-en-text="Level 6" data-ar-text="المستوى 6">Level 6</option>
+                                        <option value="Level 7" data-en-text="Level 7" data-ar-text="المستوى 7">Level 7</option>
+                                        <option value="Level 8" data-en-text="Level 8" data-ar-text="المستوى 8">Level 8</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Experience & Skills -->
+                    <div class="space-y-6 pt-6 border-t border-gray-100">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">2</div>
+                            <h3 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">Experience & Skills</span>
+                                <span class="lang-ar hidden font-bold">الخبرات والمهارات</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-6 pl-0 md:pl-11">
+                            <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
+                                <label class="block text-sm font-semibold text-gray-800 mb-4">
+                                    <span class="lang-en">Do you have previous volunteering experience?</span>
+                                    <span class="lang-ar hidden">هل لديك خبرة سابقة في التطوع؟</span> 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <div class="flex space-x-8 gap-x-8">
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="radio" name="hasExperience" value="Yes" required class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                        <span class="ms-2 font-medium text-gray-700 group-hover:text-ieee-blue transition-colors">
+                                            <span class="lang-en">Yes</span>
+                                            <span class="lang-ar hidden">نعم</span>
+                                        </span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="radio" name="hasExperience" value="No" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                        <span class="ms-2 font-medium text-gray-700 group-hover:text-ieee-blue transition-colors">
+                                            <span class="lang-en">No</span>
+                                            <span class="lang-ar hidden">لا</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Conditional fields -->
+                            <div id="experienceDetails" class="hidden space-y-5 bg-blue-50/70 p-5 rounded-xl border border-blue-100">
+                                <div>
+                                    <label class="block text-sm font-semibold text-gray-800 mb-4">
+                                        <span class="lang-en">Are you currently a member of any other student activity?</span>
+                                        <span class="lang-ar hidden">هل أنت عضو حالي في أي نشاط طلابي آخر؟</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <div class="flex space-x-8 gap-x-8">
+                                        <label class="flex items-center cursor-pointer group">
+                                            <input type="radio" name="otherActivity" value="Yes" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                            <span class="ms-2 text-sm text-gray-700 group-hover:text-ieee-blue transition-colors">
+                                                <span class="lang-en">Yes</span>
+                                                <span class="lang-ar hidden">نعم</span>
+                                            </span>
+                                        </label>
+                                        <label class="flex items-center cursor-pointer group">
+                                            <input type="radio" name="otherActivity" value="No" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                            <span class="ms-2 text-sm text-gray-700 group-hover:text-ieee-blue transition-colors">
+                                                <span class="lang-en">No</span>
+                                                <span class="lang-ar hidden">لا</span>
+                                            </span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="expBrief" class="block text-sm font-semibold text-gray-800 mb-1.5">
+                                        <span class="lang-en">Briefly describe your experience</span>
+                                        <span class="lang-ar hidden">صف خبرتك باختصار</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <textarea id="expBrief" name="expBrief" rows="2" data-en-placeholder="Roles taken and achievements..." data-ar-placeholder="الأدوار التي قمت بها والإنجازات..." placeholder="Roles taken and achievements..." 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm resize-none"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="skills" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">Top 3 Skills</span>
+                                        <span class="lang-ar hidden">أهم 3 مهارات</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" id="skills" name="skills" required data-en-placeholder="E.g., Design, Python, Leadership" data-ar-placeholder="مثال: التصميم، بايثون، القيادة" placeholder="E.g., Design, Python, Leadership" 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
+                                </div>
+                                <div>
+                                    <label for="portfolio" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">Portfolio / LinkedIn Link</span>
+                                        <span class="lang-ar hidden">رابط معرض الأعمال / لينكد إن</span>
+                                    </label>
+                                    <input type="url" id="portfolio" name="portfolio" placeholder="https://..." 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Role & Committee -->
+                    <div class="space-y-6 pt-6 border-t border-gray-100">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">3</div>
+                            <h3 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">Role Selection</span>
+                                <span class="lang-ar hidden font-bold">اختيار الدور</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-6 pl-0 md:pl-11">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-3">
+                                    <span class="lang-en">Tier of position</span>
+                                    <span class="lang-ar hidden">المستوى التنظيمي المطلوب</span> 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-sm font-semibold text-gray-900">
+                                                <span class="lang-en">General Member</span>
+                                                <span class="lang-ar hidden">عضو لجنة عام</span>
+                                            </span>
+                                            <input type="radio" name="roleTier" value="General Committee Member" required class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                        </div>
+                                        <span class="text-xs text-gray-500">
+                                            <span class="lang-en">Execution and technical roles</span>
+                                            <span class="lang-ar hidden">أدوار تنفيذية وتقنية</span>
+                                        </span>
+                                    </label>
+                                    
+                                    <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-sm font-semibold text-gray-900">
+                                                <span class="lang-en">Committee Head</span>
+                                                <span class="lang-ar hidden">رئيس لجنة</span>
+                                            </span>
+                                            <input type="radio" name="roleTier" value="Committee Head" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                        </div>
+                                        <span class="text-xs text-gray-500">
+                                            <span class="lang-en">Leadership and strategy</span>
+                                            <span class="lang-ar hidden">أدوار قيادية واستراتيجية</span>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label for="pref1" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">1st Preference Committee</span>
+                                        <span class="lang-ar hidden">اللجنة - الرغبة الأولى</span> 
+                                        <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="pref1" name="pref1" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
+                                        <option value="" disabled selected data-en-text="Select Committee" data-ar-text="اختر اللجنة">Select Committee</option>
+                                        <option value="Technical" data-en-text="Technical Committee" data-ar-text="لجنة التقنية">Technical Committee</option>
+                                        <option value="Media" data-en-text="Media Committee" data-ar-text="لجنة الميديا">Media Committee</option>
+                                        <option value="PR" data-en-text="Public Relations (PR)" data-ar-text="العلاقات العامة (PR)">Public Relations (PR)</option>
+                                        <option value="Fundraising" data-en-text="Fundraising (FR)" data-ar-text="التمويل (FR)">Fundraising (FR)</option>
+                                        <option value="Logistics" data-en-text="Logistics" data-ar-text="الخدمات اللوجستية">Logistics</option>
+                                        <option value="Membership" data-en-text="Membership" data-ar-text="شؤون الأعضاء">Membership</option>
+                                        <option value="Webmasters" data-en-text="Webmasters" data-ar-text="مطوري المواقع">Webmasters</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label for="pref2" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                        <span class="lang-en">2nd Preference (Optional)</span>
+                                        <span class="lang-ar hidden">اللجنة - الرغبة الثانية (اختياري)</span>
+                                    </label>
+                                    <select id="pref2" name="pref2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
+                                        <option value="None" selected data-en-text="None" data-ar-text="لا يوجد">None</option>
+                                        <option value="Technical" data-en-text="Technical Committee" data-ar-text="لجنة التقنية">Technical Committee</option>
+                                        <option value="Media" data-en-text="Media Committee" data-ar-text="لجنة الميديا">Media Committee</option>
+                                        <option value="PR" data-en-text="Public Relations (PR)" data-ar-text="العلاقات العامة (PR)">Public Relations (PR)</option>
+                                        <option value="Fundraising" data-en-text="Fundraising (FR)" data-ar-text="التمويل (FR)">Fundraising (FR)</option>
+                                        <option value="Logistics" data-en-text="Logistics" data-ar-text="الخدمات اللوجستية">Logistics</option>
+                                        <option value="Membership" data-en-text="Membership" data-ar-text="شؤون الأعضاء">Membership</option>
+                                        <option value="Webmasters" data-en-text="Webmasters" data-ar-text="مطوري المواقع">Webmasters</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Strategic Plan (CONDITIONAL) -->
+                    <div id="section3" class="hidden overflow-hidden rounded-xl border border-ieee-blue/20 bg-blue-50/70 shadow-sm transition-all duration-300 ease-in-out ml-0 md:ml-11">
+                        <div class="bg-ieee-blue/90 px-5 py-3 flex justify-between items-center">
+                            <h4 class="text-white font-semibold flex items-center gap-2 text-sm">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                                <span class="lang-en">Leadership Requirement</span>
+                                <span class="lang-ar hidden font-bold">متطلبات القيادة</span>
+                            </h4>
+                        </div>
+                        <div class="p-5 space-y-4">
+                            <p class="text-sm text-gray-700">
+                                <span class="lang-en">Submit a Strategic Work Plan PDF link addressing your vision, timeline, issue resolution, and delegation structure.</span>
+                                <span class="lang-ar hidden">أرسل رابط PDF لخطة العمل يوضح رؤيتك، الجدول الزمني، حل المشكلات السابقة، وهيكل توزيع المهام.</span>
+                            </p>
+                            <div>
+                                <label for="workPlanLink" class="block text-sm font-semibold text-gray-800 mb-1.5">
+                                    <span class="lang-en">Work Plan Link</span>
+                                    <span class="lang-ar hidden">رابط خطة العمل</span> 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <input type="url" id="workPlanLink" name="workPlanLink" data-en-placeholder="Google Drive/OneDrive link..." data-ar-placeholder="رابط جوجل درايف / ون درايف..." placeholder="Google Drive/OneDrive link..." 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Final Questions -->
+                    <div class="space-y-6 pt-6 border-t border-gray-100">
+                        <div class="flex items-center gap-3 mb-5">
+                            <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">4</div>
+                            <h3 class="text-xl font-bold text-gray-900">
+                                <span class="lang-en">Commitment & Motivation</span>
+                                <span class="lang-ar hidden font-bold">الالتزام والدوافع</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-6 pl-0 md:pl-11">
+                            <div>
+                                <label for="motivation" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                    <span class="lang-en">Why do you want to join/lead us?</span>
+                                    <span class="lang-ar hidden">لماذا تريد الانضمام/القيادة معنا؟</span> 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <textarea id="motivation" name="motivation" required rows="3" data-en-placeholder="Share your motivation and goals..." data-ar-placeholder="شارك دوافعك وأهدافك..." placeholder="Share your motivation and goals..." 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm resize-none"></textarea>
+                            </div>
+
+                            <div>
+                                <label for="howDidYouHear" class="block text-sm font-medium text-gray-700 mb-1.5">
+                                    <span class="lang-en">How did you hear about us?</span>
+                                    <span class="lang-ar hidden">كيف عرفت عنا؟</span> 
+                                    <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="howDidYouHear" name="howDidYouHear" required data-en-placeholder="e.g., Facebook, Friend..." data-ar-placeholder="مثال: فيسبوك، صديق..." placeholder="e.g., Facebook, Friend..." 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
+                            </div>
+
+                            <!-- Agreement Checkbox -->
+                            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                                <label class="flex items-start cursor-pointer group">
+                                    <div class="flex items-center h-5 mt-0.5">
+                                        <input type="checkbox" required class="w-4 h-4 text-ieee-blue border-gray-300 rounded focus:ring-ieee-cyan">
+                                    </div>
+                                    <div class="ms-3 text-sm text-gray-700 group-hover:text-gray-900 transition-colors font-medium">
+                                        <span class="lang-en">I agree that I have entered correct information.</span>
+                                        <span class="lang-ar hidden font-bold">أقر بأنني أدخلت معلومات صحيحة.</span> 
+                                        <span class="text-red-500">*</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="pt-6 pl-0 md:pl-11">
+                        <button type="submit" 
+                            class="w-full py-4 bg-ieee-blue hover:bg-[#004f7c] text-white font-bold rounded-xl transform transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ieee-blue text-lg flex justify-center items-center gap-2 shadow-sm">
+                            <span class="lang-en">Submit Application</span>
+                            <span class="lang-ar hidden font-bold">تأكيد الطلب</span>
+                            <svg class="w-5 h-5 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </button>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ieee-dark pt-12 pb-8 flex flex-col items-center justify-center z-10 w-full mt-0 border-none">
+        
+        <!-- Footer Logo (White fill - Fixed Path) -->
+        <svg viewBox="0 0 3482.97 1348.28" xmlns="http://www.w3.org/2000/svg" class="mb-6 h-12 w-auto opacity-90 hover:opacity-100 transition-opacity">
+                  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <path class="cls-1" d="M0,0v1102.75h1070.22V0H0ZM996.03,480.59c-54.71-58.39-108.38-32.13-160.1-2.36-63.68,36.65-130.78,59.04-199.87,70.95-56.31,9.71-113.59,10.49-169.87-5.82-3.08-.89-6.44-1.08-9.61-.77-4,.41-7.94,1.68-16.93,3.72,16.88,25.27,30.3,49.95,47.43,70.15,49.77,58.65,98.69,118.86,152.44,171.96,42.76,42.26,94.16,70.28,149.85,81.97,45.63,9.57,88.28,1.09,121.46-41.83,25.94-33.58,25.26-80.41-.34-110.61-24.75-29.16-63.89-23.15-78.66,12.51-6.51,15.73-8.18,31.23,9.23,45.7,1.73-8.25,3.6-13.88,3.99-19.65,1.28-19.51,9.41-31.27,26.07-31.48,17.06-.23,27.54,11.19,30.55,30.99,4.26,27.94-4.16,50.61-24.06,65.3-22.67,16.74-46.94,16.33-69.68.32-25.84-18.21-35.75-47.66-33.37-82.23,2.93-42.78,22.84-72.51,55.1-89.58,46.88-24.79,100.43-10.55,131.07,33.36,32.23,46.19,34.99,114.89,6.67,166.33-40.62,73.82-132.83,107.28-209.7,80.21-82.35-28.99-150.32-84.35-210.08-155.4-52.68-62.62-103.66-127.26-155.36-191.06-18.48-22.79-36.84-45.71-55.25-68.58-2.5.93-5,1.85-7.52,2.78-8.02,121.46-.16,243.45-2.74,362.61-57.84-101.35-116.46-204.07-172.38-302.01,11.71,3.41,30.14,11.47,49.07,13.76,49.27,5.98,82.72-33.78,75.3-91.47-2.03-15.62-13.5-35.07-25.19-42.38-56.86-35.54-115.55-65.57-184.49-36.19,1.19-27.69,2.21-51.54,3.38-78.84,89.2,34.72,165.29-12,241.95-48.85,159.1-76.47,314.88-67.57,470.34,15.35,49.63,26.46,101.7,46.75,153.46,66.89,17.27,6.72,37.05,4.2,57.83,6.11v98.15ZM984.13,298.82c-72.18,14.92-141.13-2.48-209.74-26.35-56.25-19.57-112.07-41.74-169.2-56.63-72.59-18.92-144.39-3.46-215.16,19.37-74.6,24.08-148.98,49.42-224.21,70.29-28.85,8-59.8,5.14-91.8,7.37v-45.61c37.91-4.35,76.82-3.58,113.43-14.19,59.98-17.37,119.61-38.53,177.36-64.52,120.12-54.06,238.16-54.39,357.98,1.52,58.22,27.18,118.6,48.47,179.01,67.97,30.25,9.78,62.77,9.54,97.08,14.22,3.62,14.72,1.43,23.23-14.75,26.57Z"/>
+        <path class="cls-1" d="M845.96,414.14c-78.87-38.13-153.51-87.18-240.5-107.4,12.67,80.88,9.21,149.15-58.49,191.69,106.48,5.34,205.03-24.87,298.99-84.29Z"/>
+        <path class="cls-1" d="M392,323.63c-51.05,23.49-96.69,44.49-142.31,65.48-.09,3.77-.17,7.53-.26,11.29,58.74,28.5,117.48,56.99,176.22,85.48,2.75-3.96,5.51-7.93,8.26-11.9-44.34-36.31-49.62-88.56-41.9-150.34Z"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M506.41,298.35l-3,9.91-15.03,44.39c3.76.38,8.42,0,12.1.38v.39l-2.18,50.19.38.55c4.81.46,10.82.7,15.71-.16v-.77l-1.96-48.72.3-1.63,13.23-.23c-6.62-17.98-13.01-36.11-19.17-54.3h-.38Z"/>
+        <path class="cls-1" d="M448.86,363.4c-9.46,4.87-23.38,12.27-21.86,25.64,2.02,7.31,9.7,12,15.78,15.05,33.58,15.22,78.15,15.74,113.58,4.35,8.78-3.47,20.51-8.51,22.11-19.57-.09-9.14-9.45-14.87-16.21-18.34v-.44c2.36-.95,5.07-1.83,7.52-2.1v-.26c-11.9-2.17-23.38-5.39-34.85-8.52,2.2,5.21,3.79,10.69,5.66,16.09,3.46-1.15,7-2.01,10.71-2.54,6.08,2.44,14.77,5.92,15.61,13.74.68,7.31-7.09,10.87-11.98,13.83-25.99,9.73-55.28,10.7-82.37,3.3-7.5-2.43-18.31-5.57-19.24-15.38,5.32-12.95,19.07-15.66,30.54-18.78-5.91-3.93-11.9-7.4-17.64-11.75-6.15.35-11.81,3.13-17.38,5.65h0Z"/>
+        <path class="cls-1" d="M498,419.58c-.89,17.65-1.11,33.99-2.38,51.72,6.78.61,14.44,1.23,21.67.15l-2.16-49.34-.37-2.37c-5.51.23-10.71.45-16.75-.16h0Z"/>
+      </g>
+    </g>
+  </g>
+  <g id="Layer_3" data-name="Layer 3">
+    <path class="cls-1" d="M1178.3,3.16v1088.23h2304.67V3.16H1178.3ZM1953.17,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM2605.36,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM3257.56,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04Z"/>
+  </g>
+  <g id="Layer_4" data-name="Layer 4">
+    <path class="cls-1" d="M40.77,1179.04v166.52H0v-166.52h40.77ZM176.37,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM312.24,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM448.1,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM565.31,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77ZM866.1,1260.57c0,54.6-35.7,87.71-88.19,87.71s-84.46-37.31-84.46-84.75c0-49.91,34.37-87.21,87.39-87.21s85.26,38.3,85.26,84.25ZM736.35,1262.79c0,32.61,16.52,55.59,43.7,55.59s43.17-24.21,43.17-56.58c0-29.89-15.46-55.59-43.43-55.59s-43.43,24.22-43.43,56.58ZM886.33,1181.26c13.05-1.98,32.5-3.46,54.09-3.46,26.64,0,45.29,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.7,41.01v.74c12.52,4.7,19.45,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.93-4.7-7.2-18.28-12.52-38.79-4.8-20.75-12.53-26.44-29.04-26.68h-12.26v65.47h-40.23v-164.3ZM926.56,1252.91h15.99c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM1077.07,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.03-13.84,33.03-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1213.21,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1398.09,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1568.86,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.77v-134.9ZM1714.31,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.04-13.84,33.04-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1849.11,1181.26c14.92-2.22,34.37-3.46,54.88-3.46,34.1,0,56.22,5.68,73.54,17.79,18.65,12.85,30.37,33.36,30.37,62.76,0,31.87-12.52,53.86-29.84,67.45-18.92,14.58-47.7,21.5-82.87,21.5-21.05,0-35.97-1.24-46.09-2.47v-163.56ZM1889.88,1317.15c3.46.74,9.06.74,14.12.74,36.77.25,60.75-18.53,60.75-58.31.26-34.59-21.58-52.87-56.49-52.87-9.06,0-14.92.74-18.38,1.48v108.96ZM2134.98,1275.15h-66.08v39.53h73.81v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.08v30.64ZM2164,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM2376.07,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.76v-134.9ZM2528.44,1181.26c10.66-1.98,32.24-3.46,52.49-3.46,24.78,0,39.97,2.22,53.02,9.39,12.53,6.18,21.58,17.54,21.58,32.61s-9.33,28.66-29.57,35.58v.49c20.52,5.19,35.7,19.52,35.7,41.02,0,15.07-7.46,26.93-18.65,35.33-13.06,9.64-34.91,15.08-70.62,15.08-19.98,0-34.9-1.24-43.96-2.47v-163.56ZM2568.68,1245h13.32c21.31,0,32.77-8.15,32.77-20.5s-10.4-19.27-28.77-19.27c-8.8,0-13.86.49-17.32.99v38.79ZM2568.68,1318.88c4,.5,8.79.5,15.72.5,18.39,0,34.63-6.43,34.63-23.97s-16.25-23.47-36.5-23.47h-13.85v46.94ZM2682.95,1181.26c13.06-1.98,32.5-3.46,54.09-3.46,26.64,0,45.3,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.71,41.01v.74c12.53,4.7,19.46,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.94-4.7-7.2-18.28-12.53-38.79-4.79-20.75-12.52-26.44-29.04-26.68h-12.25v65.47h-40.24v-164.3ZM2723.19,1252.91h15.98c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM2878.76,1302.82l-12.78,42.74h-42.11l54.89-166.52h53.29l55.69,166.52h-43.7l-13.86-42.74h-51.42ZM2924.32,1274.65l-11.18-35.33c-3.2-9.88-6.4-22.23-9.06-32.12h-.54c-2.66,9.88-5.32,22.48-8.26,32.12l-10.66,35.33h39.7ZM3005.3,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM3314.61,1340.86c-7.46,3.46-24.25,7.16-46.09,7.16-62.08,0-94.06-35.82-94.06-83.26,0-56.82,43.7-88.45,98.05-88.45,21.05,0,37.03,3.95,44.23,7.41l-8.26,29.89c-8.27-3.21-19.72-6.18-34.1-6.18-32.24,0-57.29,18.03-57.29,55.1,0,33.36,21.32,54.36,57.56,54.36,12.25,0,25.84-2.47,33.84-5.43l6.13,29.4ZM3375.61,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77Z"/>
+  </g>
+  <g id="Layer_5d" data-name="Layer 5d">
+    <g>
+      <g>
+        <path class="cls-1" d="M0,0v1102.75h1070.22V0H0ZM996.03,480.59c-54.71-58.39-108.38-32.13-160.1-2.36-63.68,36.65-130.78,59.04-199.87,70.95-56.31,9.71-113.59,10.49-169.87-5.82-3.08-.89-6.44-1.08-9.61-.77-4,.41-7.94,1.68-16.93,3.72,16.88,25.27,30.3,49.95,47.43,70.15,49.77,58.65,98.69,118.86,152.44,171.96,42.76,42.26,94.16,70.28,149.85,81.97,45.63,9.57,88.28,1.09,121.46-41.83,25.94-33.58,25.26-80.41-.34-110.61-24.75-29.16-63.89-23.15-78.66,12.51-6.51,15.73-8.18,31.23,9.23,45.7,1.73-8.25,3.6-13.88,3.99-19.65,1.28-19.51,9.41-31.27,26.07-31.48,17.06-.23,27.54,11.19,30.55,30.99,4.26,27.94-4.16,50.61-24.06,65.3-22.67,16.74-46.94,16.33-69.68.32-25.84-18.21-35.75-47.66-33.37-82.23,2.93-42.78,22.84-72.51,55.1-89.58,46.88-24.79,100.43-10.55,131.07,33.36,32.23,46.19,34.99,114.89,6.67,166.33-40.62,73.82-132.83,107.28-209.7,80.21-82.35-28.99-150.32-84.35-210.08-155.4-52.68-62.62-103.66-127.26-155.36-191.06-18.48-22.79-36.84-45.71-55.25-68.58-2.5.93-5,1.85-7.52,2.78-8.02,121.46-.16,243.45-2.74,362.61-57.84-101.35-116.46-204.07-172.38-302.01,11.71,3.41,30.14,11.47,49.07,13.76,49.27,5.98,82.72-33.78,75.3-91.47-2.03-15.62-13.5-35.07-25.19-42.38-56.86-35.54-115.55-65.57-184.49-36.19,1.19-27.69,2.21-51.54,3.38-78.84,89.2,34.72,165.29-12,241.95-48.85,159.1-76.47,314.88-67.57,470.34,15.35,49.63,26.46,101.7,46.75,153.46,66.89,17.27,6.72,37.05,4.2,57.83,6.11v98.15ZM984.13,298.82c-72.18,14.92-141.13-2.48-209.74-26.35-56.25-19.57-112.07-41.74-169.2-56.63-72.59-18.92-144.39-3.46-215.16,19.37-74.6,24.08-148.98,49.42-224.21,70.29-28.85,8-59.8,5.14-91.8,7.37v-45.61c37.91-4.35,76.82-3.58,113.43-14.19,59.98-17.37,119.61-38.53,177.36-64.52,120.12-54.06,238.16-54.39,357.98,1.52,58.22,27.18,118.6,48.47,179.01,67.97,30.25,9.78,62.77,9.54,97.08,14.22,3.62,14.72,1.43,23.23-14.75,26.57Z"/>
+        <path class="cls-1" d="M845.96,414.14c-78.87-38.13-153.51-87.18-240.5-107.4,12.67,80.88,9.21,149.15-58.49,191.69,106.48,5.34,205.03-24.87,298.99-84.29Z"/>
+        <path class="cls-1" d="M392,323.63c-51.05,23.49-96.69,44.49-142.31,65.48-.09,3.77-.17,7.53-.26,11.29,58.74,28.5,117.48,56.99,176.22,85.48,2.75-3.96,5.51-7.93,8.26-11.9-44.34-36.31-49.62-88.56-41.9-150.34Z"/>
+      </g>
+      <g>
+        <path class="cls-1" d="M506.41,298.35l-3,9.91-15.03,44.39c3.76.38,8.42,0,12.1.38v.39l-2.18,50.19.38.55c4.81.46,10.82.7,15.71-.16v-.77l-1.96-48.72.3-1.63,13.23-.23c-6.62-17.98-13.01-36.11-19.17-54.3h-.38Z"/>
+        <path class="cls-1" d="M448.86,363.4c-9.46,4.87-23.38,12.27-21.86,25.64,2.02,7.31,9.7,12,15.78,15.05,33.58,15.22,78.15,15.74,113.58,4.35,8.78-3.47,20.51-8.51,22.11-19.57-.09-9.14-9.45-14.87-16.21-18.34v-.44c2.36-.95,5.07-1.83,7.52-2.1v-.26c-11.9-2.17-23.38-5.39-34.85-8.52,2.2,5.21,3.79,10.69,5.66,16.09,3.46-1.15,7-2.01,10.71-2.54,6.08,2.44,14.77,5.92,15.61,13.74.68,7.31-7.09,10.87-11.98,13.83-25.99,9.73-55.28,10.7-82.37,3.3-7.5-2.43-18.31-5.57-19.24-15.38,5.32-12.95,19.07-15.66,30.54-18.78-5.91-3.93-11.9-7.4-17.64-11.75-6.15.35-11.81,3.13-17.38,5.65h0Z"/>
+        <path class="cls-1" d="M498,419.58c-.89,17.65-1.11,33.99-2.38,51.72,6.78.61,14.44,1.23,21.67.15l-2.16-49.34-.37-2.37c-5.51.23-10.71.45-16.75-.16h0Z"/>
+      </g>
+    </g>
+    <path class="cls-1" d="M1178.3,3.16v1088.23h2304.67V3.16H1178.3ZM1953.17,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM2605.36,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04ZM3257.56,946.92h-549.42V147.61h530.98v148.04h-336.11v166.51h317.16v146.63h-317.16v190.09h354.55v148.04Z"/>
+    <path class="cls-1" d="M40.77,1179.04v166.52H0v-166.52h40.77ZM176.37,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM312.24,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM448.1,1275.15h-66.07v39.53h73.8v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.07v30.64ZM565.31,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77ZM866.1,1260.57c0,54.6-35.7,87.71-88.19,87.71s-84.46-37.31-84.46-84.75c0-49.91,34.37-87.21,87.39-87.21s85.26,38.3,85.26,84.25ZM736.35,1262.79c0,32.61,16.52,55.59,43.7,55.59s43.17-24.21,43.17-56.58c0-29.89-15.46-55.59-43.43-55.59s-43.43,24.22-43.43,56.58ZM886.33,1181.26c13.05-1.98,32.5-3.46,54.09-3.46,26.64,0,45.29,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.7,41.01v.74c12.52,4.7,19.45,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.93-4.7-7.2-18.28-12.52-38.79-4.8-20.75-12.53-26.44-29.04-26.68h-12.26v65.47h-40.23v-164.3ZM926.56,1252.91h15.99c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM1077.07,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.03-13.84,33.03-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1213.21,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1398.09,1306.77c10.92,5.19,27.71,10.37,45.03,10.37,18.65,0,28.51-7.16,28.51-18.03s-8.53-16.31-30.11-23.47c-29.84-9.63-49.29-24.95-49.29-49.16,0-28.41,25.58-50.16,67.94-50.16,20.25,0,35.18,3.95,45.83,8.4l-9.06,30.39c-7.19-3.21-19.98-7.91-37.56-7.91s-26.11,7.41-26.11,16.06c0,10.63,10.13,15.32,33.3,23.47,31.71,10.87,46.63,26.19,46.63,49.66,0,27.92-23.18,51.64-72.47,51.64-20.52,0-40.77-4.94-50.89-10.13l8.26-31.13ZM1568.86,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.77v-134.9ZM1714.31,1179.04v95.86c0,28.67,11.73,43.24,32.51,43.24s33.04-13.84,33.04-43.24v-95.86h40.5v93.39c0,51.39-27.97,75.85-74.87,75.85s-71.94-23.23-71.94-76.34v-92.9h40.77ZM1849.11,1181.26c14.92-2.22,34.37-3.46,54.88-3.46,34.1,0,56.22,5.68,73.54,17.79,18.65,12.85,30.37,33.36,30.37,62.76,0,31.87-12.52,53.86-29.84,67.45-18.92,14.58-47.7,21.5-82.87,21.5-21.05,0-35.97-1.24-46.09-2.47v-163.56ZM1889.88,1317.15c3.46.74,9.06.74,14.12.74,36.77.25,60.75-18.53,60.75-58.31.26-34.59-21.58-52.87-56.49-52.87-9.06,0-14.92.74-18.38,1.48v108.96ZM2134.98,1275.15h-66.08v39.53h73.81v30.88h-114.57v-166.52h110.84v30.88h-70.07v34.59h66.08v30.64ZM2164,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM2376.07,1210.66h-48.23v-31.62h138.02v31.62h-49.03v134.9h-40.76v-134.9ZM2528.44,1181.26c10.66-1.98,32.24-3.46,52.49-3.46,24.78,0,39.97,2.22,53.02,9.39,12.53,6.18,21.58,17.54,21.58,32.61s-9.33,28.66-29.57,35.58v.49c20.52,5.19,35.7,19.52,35.7,41.02,0,15.07-7.46,26.93-18.65,35.33-13.06,9.64-34.91,15.08-70.62,15.08-19.98,0-34.9-1.24-43.96-2.47v-163.56ZM2568.68,1245h13.32c21.31,0,32.77-8.15,32.77-20.5s-10.4-19.27-28.77-19.27c-8.8,0-13.86.49-17.32.99v38.79ZM2568.68,1318.88c4,.5,8.79.5,15.72.5,18.39,0,34.63-6.43,34.63-23.97s-16.25-23.47-36.5-23.47h-13.85v46.94ZM2682.95,1181.26c13.06-1.98,32.5-3.46,54.09-3.46,26.64,0,45.3,3.71,58.08,13.1,10.66,7.91,16.52,19.51,16.52,34.84,0,21.25-16.25,35.82-31.71,41.01v.74c12.53,4.7,19.46,15.81,23.98,31.13,5.6,18.78,11.19,40.52,14.66,46.95h-41.57c-2.94-4.7-7.2-18.28-12.53-38.79-4.79-20.75-12.52-26.44-29.04-26.68h-12.25v65.47h-40.24v-164.3ZM2723.19,1252.91h15.98c20.25,0,32.24-9.39,32.24-23.96,0-15.32-11.19-22.98-29.84-23.23-9.86,0-15.45.74-18.38,1.24v45.95ZM2878.76,1302.82l-12.78,42.74h-42.11l54.89-166.52h53.29l55.69,166.52h-43.7l-13.86-42.74h-51.42ZM2924.32,1274.65l-11.18-35.33c-3.2-9.88-6.4-22.23-9.06-32.12h-.54c-2.66,9.88-5.32,22.48-8.26,32.12l-10.66,35.33h39.7ZM3005.3,1345.56v-166.52h47.43l37.31,61.02c10.66,17.54,21.31,38.3,29.3,57.07h.81c-2.67-21.99-3.47-44.47-3.47-69.42v-48.67h37.31v166.52h-42.64l-38.37-64.24c-10.66-17.79-22.38-39.29-31.17-58.8l-.81.25c1.07,21.99,1.6,45.46,1.6,72.64v50.16h-37.31ZM3314.61,1340.86c-7.46,3.46-24.25,7.16-46.09,7.16-62.08,0-94.06-35.82-94.06-83.26,0-56.82,43.7-88.45,98.05-88.45,21.05,0,37.03,3.95,44.23,7.41l-8.26,29.89c-8.27-3.21-19.72-6.18-34.1-6.18-32.24,0-57.29,18.03-57.29,55.1,0,33.36,21.32,54.36,57.56,54.36,12.25,0,25.84-2.47,33.84-5.43l6.13,29.4ZM3375.61,1179.04v63.99h66.87v-63.99h40.5v166.52h-40.5v-69.67h-66.87v69.67h-40.77v-166.52h40.77Z"/>
+  </g>
+</svg>
+
+        <!-- Social Media Links -->
+        <div class="flex space-x-5 gap-x-5 mb-4">
+            <!-- Facebook -->
+            <a href="https://www.facebook.com/IEEEHUE" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="Facebook">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/ieeehue/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="Instagram">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/company/ieeehue/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@IEEEHUE" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="YouTube">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill-rule="evenodd" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" clip-rule="evenodd" />
+                </svg>
+            </a>
+        </div>
+
+        <p class="text-gray-500 text-xs mt-2">© 2026 IEEE Horus Student Branch. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            /* --- Language Switch Logic --- */
+            const btnEn = document.getElementById('btn-en');
+            const btnAr = document.getElementById('btn-ar');
+            
+            function setLanguage(lang) {
+                // Update Layout Direction
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                
+                // Update Toggle Button Styles
+                if(lang === 'en') {
+                    btnEn.className = "px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer";
+                    btnAr.className = "px-5 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors cursor-pointer";
+                } else {
+                    btnAr.className = "px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer";
+                    btnEn.className = "px-5 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors cursor-pointer";
+                }
+
+                // Toggle Spans visibility securely by manipulating 'hidden' class
+                document.querySelectorAll('.lang-en').forEach(el => {
+                    if(lang === 'en') el.classList.remove('hidden');
+                    else el.classList.add('hidden');
+                });
+                document.querySelectorAll('.lang-ar').forEach(el => {
+                    if(lang === 'ar') el.classList.remove('hidden');
+                    else el.classList.add('hidden');
+                });
+
+                // Toggle Input Placeholders
+                document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+                    el.placeholder = el.getAttribute(`data-${lang}-placeholder`);
+                });
+
+                // Toggle Select Options
+                document.querySelectorAll('option[data-en-text]').forEach(el => {
+                    el.textContent = el.getAttribute(`data-${lang}-text`);
+                });
+            }
+
+            // Event Listeners for Lang Toggle
+            btnEn.addEventListener('click', () => setLanguage('en'));
+            btnAr.addEventListener('click', () => setLanguage('ar'));
+            
+            // Initialize Default Language to Arabic
+            setLanguage('ar');
+            
+            /* --- Experience Details Toggle --- */
+            const expRadios = document.querySelectorAll('input[name="hasExperience"]');
+            const expDetails = document.getElementById('experienceDetails');
+            const otherActivityRadios = document.querySelectorAll('input[name="otherActivity"]');
+            const expBrief = document.getElementById('expBrief');
+
+            expRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'Yes') {
+                        expDetails.classList.remove('hidden');
+                        expDetails.classList.add('animate-[fadeIn_0.3s_ease-out]');
+                        otherActivityRadios.forEach(r => r.required = true);
+                        expBrief.required = true;
+                    } else {
+                        expDetails.classList.add('hidden');
+                        expDetails.classList.remove('animate-[fadeIn_0.3s_ease-out]');
+                        otherActivityRadios.forEach(r => {
+                            r.required = false;
+                            r.checked = false;
+                        });
+                        expBrief.required = false;
+                        expBrief.value = '';
+                    }
+                });
+            });
+
+            /* --- Role Tier -> Section 3 (Strategic Plan) Toggle --- */
+            const roleTierRadios = document.querySelectorAll('input[name="roleTier"]');
+            const section3 = document.getElementById('section3');
+            const workPlanLinkInput = document.getElementById('workPlanLink');
+
+            roleTierRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    const isLeadership = e.target.value === 'Committee Head';
+                    if (isLeadership) {
+                        section3.classList.remove('hidden');
+                        setTimeout(() => section3.classList.add('opacity-100'), 10);
+                        workPlanLinkInput.required = true;
+                    } else {
+                        section3.classList.add('hidden');
+                        workPlanLinkInput.required = false;
+                        workPlanLinkInput.value = '';
+                    }
+                });
+            });
+
+            /* --- Form Submission Handling --- */
+            const form = document.getElementById('recruitmentForm');
+            const successMessage = document.getElementById('successMessage');
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault(); 
+                
+                const btn = form.querySelector('button[type="submit"]');
+                const isAr = document.documentElement.dir === 'rtl';
+                const originalBtnContent = btn.innerHTML;
+                
+                // Show loading state
+                btn.innerHTML = `<svg class="animate-spin h-5 w-5 me-3 text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 
+                                ${isAr ? 'جاري الإرسال...' : 'Submitting...'}`;
+                btn.disabled = true;
+
+                // 1. Package data as URLSearchParams to bypass strict Google CORS preflight
+                const formData = new FormData(form);
+                const urlEncodedData = new URLSearchParams();
+                for (const pair of formData.entries()) {
+                    urlEncodedData.append(pair[0], pair[1]);
+                }
+
+                // 2. Send the request
+                const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbytZlE4ypmQhe9pSDpBKnQIRPOb81hcT_I4HXBp8J7vaHtv_-b5RZk3EjvGcOZbDqoPGA/exec';
+
+                fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    body: urlEncodedData,
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    }
+                })
+                .then(response => response.json()) // Now it can read your script's response!
+                .then(data => {
+                    if (data.result === "success") {
+                        form.classList.add('hidden');
+                        successMessage.classList.remove('hidden');
+                        window.scrollTo({ top: 300, behavior: 'smooth' });
+                    } else {
+                        alert(isAr ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.');
+                        btn.innerHTML = originalBtnContent;
+                        btn.disabled = false;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert(isAr ? 'حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.' : 'Connection error. Please try again.');
+                    btn.innerHTML = originalBtnContent;
+                    btn.disabled = false;
+                });
+            });
+    </script>
+</body>
+</html>
