@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IEEE Horus Student Branch - Board Application</title>
+    
+    <!-- 1. استدعاء خط Tajawal من Google Fonts ليعمل على الموبايل والكمبيوتر -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Frutiger LT Arabic"', '"FF Formata"', 'Formata', 'sans-serif'],
+                        // 2. إضافة خط Tajawal كبديل أساسي في حالة عدم وجود الخطوط الأخرى على الموبايل
+                        sans: ['"Frutiger LT Arabic"', 'Tajawal', '"FF Formata"', 'Formata', 'sans-serif'],
                     },
                     colors: {
                         ieee: {
@@ -25,13 +32,16 @@
         }
     </script>
     <style>
-        /* Smooth transitions for form elements */
+        /* إضافة بسيطة لضمان تطبيق الخط في كل المتصفحات */
+        body {
+            font-family: 'Frutiger LT Arabic', 'Tajawal', 'FF Formata', 'Formata', sans-serif;
+        }
+
         input[type="radio"]:checked + span, input[type="checkbox"]:checked + div + span {
             color: #00629B;
             font-weight: 700;
         }
 
-        /* Custom Select Dropdown Arrow - RTL Adjusted */
         .custom-select {
             -webkit-appearance: none;
             -moz-appearance: none;
