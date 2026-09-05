@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Horus Student Branch - Last Call Event</title>
+    <!-- Tailwind CSS for modern responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ieeeBlue: '#00629B',
+                        ieeeDark: '#011627',
+                        ieeeAccent: '#00B4D8'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap');
+        body {
+            font-family: 'Cairo', sans-serif;
+        }
+        .step-transition {
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header / Banner -->
+    <header class="bg-ieeeDark text-white shadow-lg border-b-4 border-ieeeAccent">
+        <div class="max-w-4xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-ieeeBlue p-3 rounded-xl text-white font-black text-2xl shadow">IEEE</div>
+                <div>
+                    <h1 class="text-2xl font-bold tracking-wide">IEEE Horus Student Branch</h1>
+                    <p class="text-ieeeAccent text-sm font-medium">Last Call Event - نموذج التسجيل والطلب</p>
+                </div>
+            </div>
+            <div class="bg-slate-800/80 px-4 py-2 rounded-lg border border-slate-700 text-xs text-slate-300">
+                مخصص للأعضاء الحاليين والسابقين فقط
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Form Container -->
+    <main class="max-w-4xl w-full mx-auto p-4 md:p-6 my-8 flex-grow">
+        <form id="lastCallForm" class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+            
+            <!-- STEP 0: Introduction & Instructions -->
+            <section id="section-0" class="form-section p-6 md:p-8 space-y-6">
+                <div class="border-b pb-4">
+                    <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">مقدمة وتعليمات المشاركة</span>
+                    <h2 class="text-2xl font-black text-ieeeDark mt-2">آخر نداء — Last Call Event</h2>
+                </div>
+
+                <div class="bg-amber-50 border-r-4 border-amber-400 p-4 rounded-l-xl text-sm text-amber-900 space-y-2">
+                    <p class="font-bold flex items-center gap-2">⚠️ تنبيهات هامة للمشاركين:</p>
+                    <ul class="list-disc list-inside space-y-1 text-amber-800">
+                        <li>هذا النموذج مخصص لأعضاء IEEE Horus Student Branch الحاليين والسابقين فقط، ويُرجى عدم مشاركة رابط النموذج أو بياناته خارج نطاق أعضاء الفريق.</li>
+                        <li>يُسمح لكل عضو باصطحاب مرافق واحد فقط من خارج الفريق، وفي حالة الرغبة في اصطحاب مرافق، يرجى تسجيل بياناته كاملة في القسم المخصص لذلك داخل النموذج.</li>
+                        <li>يرجى التأكد من صحة جميع البيانات المُدخلة قبل إرسال النموذج، وخاصة رقم الهاتف والبريد الإلكتروني، والتأكد من أن البريد الإلكتروني المستخدم فعال ويمكن الوصول إليه.</li>
+                        <li>يرجى قراءة جميع التعليمات الخاصة بالمواصلات والوجبات بعناية قبل اختيار الخيارات وإرسال الطلب النهائي.</li>
+                    </ul>
+                </div>
+
+                <div class="flex justify-end pt-4">
+                    <button type="button" onclick="nextStep(1)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition flex items-center gap-2">
+                        <span>التالي: البيانات الشخصية</span>
+                        <svg class="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </div>
+            </section>
+
+            <!-- STEP 1: Personal Data -->
+            <section id="section-1" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الأول</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">البيانات الشخصية</h2>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">1 / 9</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">الاسم بالكامل <span class="text-red-500">*</span></label>
+                        <input type="text" id="fullName" required placeholder="اكتب اسمك بالكامل" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">رقم الهاتف <span class="text-red-500">*</span></label>
+                        <input type="tel" id="phone" required placeholder="أدخل رقم الهاتف المستخدم للتواصل معك" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">البريد الإلكتروني <span class="text-red-500">*</span></label>
+                        <input type="email" id="email" required placeholder="أدخل بريدًا إلكترونيًا فعالًا" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">الكلية <span class="text-red-500">*</span></label>
+                        <input type="text" id="college" required placeholder="اسم الكلية" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">الحالة الأكاديمية <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6 mt-3">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="academicStatus" value="طالب" checked class="accent-ieeeBlue"> طالب</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="academicStatus" value="خريج" class="accent-ieeeBlue"> خريج</label>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">الرقم الجامعي <span class="text-red-500">*</span></label>
+                        <input type="text" id="universityId" required placeholder="يرجى إدخال الرقم الجامعي" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
+                        <span class="text-xs text-slate-400 mt-1 block">سواء كنت طالبًا حاليًا أو خريجًا.</span>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-bold text-slate-700 mb-1">المستوى الأكاديمي <span class="text-red-500">*</span></label>
+                        <select id="academicLevel" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none bg-white">
+                            <option value="Level 0">Level 0</option>
+                            <option value="Level 1">Level 1</option>
+                            <option value="Level 2">Level 2</option>
+                            <option value="Level 3">Level 3</option>
+                            <option value="Level 4">Level 4</option>
+                            <option value="خريج">خريج</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(0)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="validateAndNext(1, 2)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: بيانات العضوية</button>
+                </div>
+            </section>
+
+            <!-- STEP 2: Membership & Branch Data -->
+            <section id="section-2" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الثاني</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">بيانات العضوية والفرع</h2>
+                        <p class="text-xs text-slate-500 mt-1">يرجى إدخال بياناتك المتعلقة بعضويتك ومشاركتك في IEEE Horus Student Branch.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">2 / 9</span>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">هل أنت عضو حالي أم سابق في IEEE Horus Student Branch؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="membershipType" value="عضو حالي" checked onchange="updatePositionLabels()" class="accent-ieeeBlue"> عضو حالي</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="membershipType" value="عضو سابق" onchange="updatePositionLabels()" class="accent-ieeeBlue"> عضو سابق</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="positionLabel" class="block text-sm font-bold text-slate-700 mb-1">ما هو منصبك الحالي في الفرع؟ <span class="text-red-500">*</span></label>
+                        <select id="branchPosition" onchange="checkOtherPosition()" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none bg-white mb-3">
+                            <option value="عضو">عضو</option>
+                            <option value="مسؤول لجنة">مسؤول لجنة</option>
+                            <option value="رئيس لجنة">رئيس لجنة</option>
+                            <option value="أخرى">منصب آخر / أخرى</option>
+                        </select>
+                        <input type="text" id="otherPositionInput" placeholder="يرجى توضيح المنصب..." class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none hidden">
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(1)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="nextStep(3)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: بيانات المرافق</button>
+                </div>
+            </section>
+
+            <!-- STEP 3: Companion Data -->
+            <section id="section-3" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الثالث</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">بيانات المرافق</h2>
+                        <p class="text-xs text-slate-500 mt-1">يُسمح لكل عضو باصطحاب مرافق واحد فقط من خارج فريق IEEE Horus Student Branch. في حالة عدم وجود مرافق، يمكنك تخطي هذا القسم.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">3 / 9</span>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">هل ترغب في اصطحاب مرافق؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="hasCompanion" value="نعم" onchange="toggleCompanionSection(true)" class="accent-ieeeBlue"> نعم</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="hasCompanion" value="لا" checked onchange="toggleCompanionSection(false)" class="accent-ieeeBlue"> لا</label>
+                        </div>
+                    </div>
+
+                    <div id="companionFields" class="bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4 hidden">
+                        <h3 class="font-bold text-ieeeBlue text-lg">تفاصيل المرافق</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">الاسم بالكامل باللغة العربية</label>
+                                <input type="text" id="compName" placeholder="الاسم بالكامل" class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">رقم الهاتف</label>
+                                <input type="tel" id="compPhone" placeholder="رقم الهاتف" class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">البريد الإلكتروني</label>
+                                <input type="email" id="compEmail" placeholder="البريد الإلكتروني" class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">الكلية</label>
+                                <input type="text" id="compCollege" placeholder="الكلية" class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">الرقم الجامعي</label>
+                                <input type="text" id="compUnivId" placeholder="الرقم الجامعي" class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 mb-1">المستوى الأكاديمي</label>
+                                <select id="compLevel" class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                                    <option value="Level 0">Level 0</option>
+                                    <option value="Level 1">Level 1</option>
+                                    <option value="Level 2">Level 2</option>
+                                    <option value="Level 3">Level 3</option>
+                                    <option value="Level 4">Level 4</option>
+                                    <option value="خريج">خريج</option>
+                                    <option value="غير ذلك">غير ذلك</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(2)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="nextStep(4)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: المواصلات</button>
+                </div>
+            </section>
+
+            <!-- STEP 4: Transportation -->
+            <section id="section-4" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الرابع</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">المواصلات</h2>
+                        <p class="text-xs text-slate-500 mt-1">يرجى تحديد احتياجاتك من المواصلات بدقة، حيث سيتم الاعتماد على هذه البيانات في تنظيم أعداد الحافلات.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">4 / 9</span>
+                </div>
+
+                <div class="bg-blue-50 border-r-4 border-ieeeBlue p-4 rounded-l-xl text-sm text-blue-900">
+                    <p class="font-bold">⏰ تنبيه مهم:</p>
+                    <p>موعد تحرك الحافلات هو الساعة 8:00 مساءً. يرجى التأكد من اختيار وسائل المواصلات التي تحتاج إليها فقط.</p>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">هل تحتاج إلى حافلة إلى الموقف الغربي؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="busWestern" value="نعم" checked class="accent-ieeeBlue"> نعم</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="busWestern" value="لا" class="accent-ieeeBlue"> لا</label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-2">هل تحتاج إلى حافلة من دمياط الجديدة إلى المنصورة (فندق رمادا)؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="busDamietta" value="نعم" checked class="accent-ieeeBlue"> نعم</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="busDamietta" value="لا" class="accent-ieeeBlue"> لا</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(3)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="nextStep(5)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: وجبة الغداء</button>
+                </div>
+            </section>
+
+            <!-- STEP 5: Lunch Choice -->
+            <section id="section-5" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الخامس</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">وجبة الغداء</h2>
+                        <p class="text-xs text-slate-500 mt-1">يمكنك تخطي هذا القسم وإحضار طعامك بنفسك.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">5 / 9</span>
+                </div>
+
+                <div class="bg-amber-50 border-r-4 border-amber-400 p-4 rounded-l-xl text-sm text-amber-900">
+                    <p class="font-bold">⏰ تنبيه:</p>
+                    <p>يرجى مراعاة موعد الأجندة، حيث يبدأ وقت تناول الطعام في تمام الساعة 3:00 مساءً ويستمر لمدة ساعة واحدة فقط، لضمان سير فعاليات اليوم.</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">هل تود طلب وجبة غداء؟ <span class="text-red-500">*</span></label>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex items-center gap-2 cursor-pointer p-3 border rounded-xl hover:bg-slate-50">
+                            <input type="radio" name="wantLunch" value="نعم" checked onchange="toggleLunchFlow(true)" class="accent-ieeeBlue"> 
+                            <span>نعم، أريد طلب وجبة غداء</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer p-3 border rounded-xl hover:bg-slate-50">
+                            <input type="radio" name="wantLunch" value="لا" onchange="toggleLunchFlow(false)" class="accent-ieeeBlue"> 
+                            <span>لا، سأحضر طعامي بنفسي</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(4)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="proceedFromLunch()" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي</button>
+                </div>
+            </section>
+
+            <!-- STEP 6: Lunch Details (Bab El-Hara) -->
+            <section id="section-6" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم السادس</span>
+                        <div class="flex items-center gap-3 mt-2">
+                            <img src="https://d1l6fcuu6fcorr.cloudfront.net/photos/restaurants/logo_urls/5346/original/Icon_300x_auto_none_q80_webp" alt="باب الحارة" class="w-12 h-12 rounded-full object-cover border border-slate-200 shadow-sm">
+                            <h2 class="text-2xl font-black text-ieeeDark">تفاصيل وجبة الغداء (مطعم باب الحارة)</h2>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">يرجى كتابة بيانات الوجبة بدقة كما هي موجودة في الموقع الخاص بالمطعم لتجنب أي أخطاء. (في حالة وجود مرافق، يرجى إدخال طلب وجبته أيضًا).</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">6 / 9</span>
+                </div>
+
+                <!-- Dynamic Lunch Items Container -->
+                <div id="lunchItemsContainer" class="space-y-6">
+                    <!-- Item 1 injected by template -->
+                </div>
+
+                <div>
+                    <button type="button" id="addLunchBtn" onclick="addLunchItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 font-bold px-4 py-2.5 rounded-xl transition text-sm flex items-center gap-2">
+                        <span>+ إضافة صنف آخر (حد أقصى 4 أصناف)</span>
+                    </button>
+                </div>
+
+                <!-- Lunch Total Calculation Box -->
+                <div class="bg-slate-100 p-6 rounded-2xl border border-slate-300 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-lg text-slate-700">إجمالي قيمة وجبات الغداء:</span>
+                        <div class="text-2xl font-black text-ieeeBlue"><span id="lunchTotalDisplay">0</span> جنيه</div>
+                    </div>
+                    <div class="border-t pt-4">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">هل المبلغ الإجمالي الموضح أعلاه سليم؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="lunchAmountCheck" value="نعم" checked class="accent-ieeeBlue"> نعم، المبلغ الإجمالي سليم</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="lunchAmountCheck" value="لا" class="accent-ieeeBlue"> لا، يوجد خطأ</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(5)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="validateLunchAndNext()" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: وجبة التحلية</button>
+                </div>
+            </section>
+
+            <!-- STEP 7: Dessert Choice -->
+            <section id="section-7" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم السابع</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">وجبة التحلية</h2>
+                        <p class="text-xs text-slate-500 mt-1">يمكنك تخطي هذا القسم في حالة عدم الرغبة في طلب وجبة تحلية.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">7 / 9</span>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-slate-700 mb-2">هل تود طلب وجبة تحلية؟ <span class="text-red-500">*</span></label>
+                    <div class="flex flex-col gap-3">
+                        <label class="flex items-center gap-2 cursor-pointer p-3 border rounded-xl hover:bg-slate-50">
+                            <input type="radio" name="wantDessert" value="نعم" checked onchange="toggleDessertFlow(true)" class="accent-ieeeBlue"> 
+                            <span>نعم، أريد طلب وجبة تحلية</span>
+                        </label>
+                        <label class="flex items-center gap-2 cursor-pointer p-3 border rounded-xl hover:bg-slate-50">
+                            <input type="radio" name="wantDessert" value="لا" onchange="toggleDessertFlow(false)" class="accent-ieeeBlue"> 
+                            <span>لا، لا أريد طلب وجبة تحلية</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="backFromDessert()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="proceedFromDessert()" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي</button>
+                </div>
+            </section>
+
+            <!-- STEP 8: Dessert Details (El-Gamal Corner) -->
+            <section id="section-8" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الثامن</span>
+                        <div class="flex items-center gap-3 mt-2">
+                            <img src="https://cdn.algamal.shop/wp-content/uploads/2024/08/logo.png" alt="الجمل ركن النيل" class="w-12 h-12 rounded-full object-cover border border-slate-200 shadow-sm bg-amber-50">
+                            <h2 class="text-2xl font-black text-ieeeDark">تفاصيل وجبة التحلية (الجمل ركن النيل)</h2>
+                        </div>
+                        <p class="text-xs text-slate-500 mt-1">في حالة وجود مرافق، يرجى إدخال طلب التحلية الخاص به أيضًا ضمن الأصناف المطلوبة.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">8 / 9</span>
+                </div>
+
+                <!-- Dynamic Dessert Items Container -->
+                <div id="dessertItemsContainer" class="space-y-6">
+                    <!-- Item 1 injected by template -->
+                </div>
+
+                <div>
+                    <button type="button" id="addDessertBtn" onclick="addDessertItem()" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-300 font-bold px-4 py-2.5 rounded-xl transition text-sm flex items-center gap-2">
+                        <span>+ إضافة صنف آخر (حد أقصى 4 أصناف)</span>
+                    </button>
+                </div>
+
+                <!-- Dessert Total Calculation Box -->
+                <div class="bg-slate-100 p-6 rounded-2xl border border-slate-300 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="font-bold text-lg text-slate-700">إجمالي قيمة وجبات التحلية:</span>
+                        <div class="text-2xl font-black text-ieeeBlue"><span id="dessertTotalDisplay">0</span> جنيه</div>
+                    </div>
+                    <div class="border-t pt-4">
+                        <label class="block text-sm font-bold text-slate-700 mb-2">هل المبلغ الإجمالي الموضح أعلاه سليم؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="dessertAmountCheck" value="نعم" checked class="accent-ieeeBlue"> نعم، المبلغ الإجمالي سليم</label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="dessertAmountCheck" value="لا" class="accent-ieeeBlue"> لا، يوجد خطأ</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="prevStep(7)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="button" onclick="validateDessertAndNext()" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: المراجعة النهائية</button>
+                </div>
+            </section>
+
+            <!-- STEP 9: Final Review & Submission -->
+            <section id="section-9" class="form-section p-6 md:p-8 space-y-6 hidden">
+                <div class="border-b pb-4 flex justify-between items-center">
+                    <div>
+                        <span class="text-xs font-bold text-ieeeBlue bg-blue-50 px-3 py-1 rounded-full">القسم الأخير</span>
+                        <h2 class="text-2xl font-black text-ieeeDark mt-2">مراجعة البيانات والدفع وإرسال النموذج</h2>
+                        <p class="text-xs text-slate-500 mt-1">يرجى مراجعة كافة التفاصيل أدناه، اختيار طريقة الدفع، إرفاق إيصال التحويل، ثم التأكيد النهائي.</p>
+                    </div>
+                    <span class="text-xs text-slate-400 font-bold">9 / 9</span>
+                </div>
+
+                <div id="reviewContent" class="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-6 text-sm">
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Payment Section -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 space-y-6">
+                    <h3 class="font-bold text-lg text-ieeeBlue border-b pb-2">طريقة الدفع وإيصال التحويل</h3>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-3">اختر طريقة الدفع <span class="text-red-500">*</span></label>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <label class="flex items-center gap-3 p-4 border-2 rounded-xl cursor-pointer hover:bg-slate-50 transition border-slate-200 has-[:checked]:border-ieeeBlue has-[:checked]:bg-blue-50/30">
+                                <input type="radio" name="paymentMethod" value="instapay" checked onchange="togglePaymentMethod()" class="accent-ieeeBlue">
+                                <span class="font-bold text-slate-800">InstaPay (إنستاباي)</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-4 border-2 rounded-xl cursor-pointer hover:bg-slate-50 transition border-slate-200 has-[:checked]:border-ieeeBlue has-[:checked]:bg-blue-50/30">
+                                <input type="radio" name="paymentMethod" value="vodafone" onchange="togglePaymentMethod()" class="accent-ieeeBlue">
+                                <span class="font-bold text-slate-800">فودافون كاش (+1% رسوم تحويل)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- InstaPay Details Box -->
+                    <div id="instapayBox" class="bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-4 text-center">
+                        <p class="text-slate-700 text-sm font-medium">للتحويل باستخدام تطبيق إنستاباي، يرجى الضغط على الزر أدناه:</p>
+                        <div class="flex justify-center">
+                            <a href="https://ipn.eg/S/ahmeddiaa086/instapay/6esUtx" target="_blank" class="text-white font-bold px-8 py-3.5 rounded-xl shadow-md hover:opacity-90 transition flex items-center gap-3 text-base" style="background-color: rgb(81,39,114);">
+                                <img src="https://ipn.eg/img/Logo.png" alt="InstaPay" class="h-6 w-auto">
+                                <span>الدفع عبر InstaPay</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Vodafone Cash Details Box -->
+                    <div id="vodafoneBox" class="bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-3 hidden">
+                        <div class="bg-amber-50 border-r-4 border-amber-400 p-3 rounded-l-xl text-xs text-amber-900 mb-2">
+                            ⚠️ تنبيه: تم إضافة نسبة 1% رسوم خدمة تحويل فودافون كاش إلى إجمالي المبلغ وتم تقريبه لأقرب رقم صحيح.
+                        </div>
+                        <p class="text-slate-700 text-sm">يرجى التحويل إلى الرقم التالي:</p>
+                        <div class="bg-white p-3 rounded-lg border font-mono font-bold text-lg text-ieeeBlue inline-block px-6">
+                            01000665671
+                        </div>
+                        <p class="text-xs text-slate-500">اسم المحفظة المسجل: <strong>Yasmin Alaa</strong></p>
+                    </div>
+
+                    <!-- Transfer Receipt Upload -->
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 mb-1">رفع صورة إيصال التحويل <span class="text-red-500">*</span></label>
+                        <input type="file" id="transferReceipt" accept="image/*" required class="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-sm file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-blue-50 file:text-ieeeBlue hover:file:bg-blue-100">
+                        <span class="text-xs text-slate-400 mt-1 block">يرجى رفع لقطة شاشة أو صورة واضحة لإيصال التحويل الناجح.</span>
+                    </div>
+                </div>
+
+                <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl">
+                    <label class="flex items-start gap-3 cursor-pointer">
+                        <input type="checkbox" id="finalConfirmation" required class="mt-1 accent-ieeeBlue w-5 h-5 rounded">
+                        <span class="text-sm font-semibold text-slate-800">
+                            أقر بأنني قمت بمراجعة جميع البيانات المدخلة وتأكيد عملية التحويل وإرفاق الإيصال الصحيح، وأتحمل مسؤولية صحة البيانات التي قمت بإدخالها.
+                        </span>
+                    </label>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t">
+                    <button type="button" onclick="backFromReview()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
+                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-10 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
+                        <span>إرسال النموذج</span>
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </button>
+                </div>
+            </section>
+
+        </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-ieeeDark text-slate-400 text-center py-6 text-xs border-t border-slate-800">
+        <p>© 2026 IEEE Horus Student Branch. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl font-black">✓</div>
+            <h3 class="text-2xl font-black text-slate-800">تم إرسال النموذج بنجاح!</h3>
+            <p class="text-slate-600 text-sm">شكرًا لك لتسجيلك في فعالية Last Call. سيتم التواصل معك قريبًا عبر بريدك الإلكتروني ورقم الهاتف المسجل.</p>
+            <button onclick="location.reload()" class="w-full bg-ieeeBlue text-white font-bold py-3 rounded-xl hover:bg-blue-700 transition">إغلاق وتسجيل استجابة جديدة</button>
+        </div>
+    </div>
+
+    <!-- Alert Modal for Validations -->
+    <div id="alertModal" class="fixed inset-0 bg-black/50 z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-xl max-w-sm w-full p-6 text-center space-y-4 shadow-xl">
+            <div class="text-amber-500 text-3xl font-bold">⚠️ تنبيه</div>
+            <p id="alertMessage" class="text-slate-700 text-sm font-medium"></p>
+            <button onclick="closeAlert()" class="w-full bg-slate-800 text-white font-bold py-2.5 rounded-lg hover:bg-slate-700">موافق</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let currentStepNum = 0;
+        let lunchItemsCount = 1;
+        let dessertItemsCount = 1;
+
+        // Step Navigation Controller
+        function showStep(stepIndex) {
+            document.querySelectorAll('.form-section').forEach(sec => sec.classList.add('hidden'));
+            document.getElementById(`section-${stepIndex}`).classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            currentStepNum = stepIndex;
+        }
+
+        function nextStep(step) {
+            showStep(step);
+        }
+
+        function prevStep(step) {
+            showStep(step);
+        }
+
+        function showAlert(msg) {
+            document.getElementById('alertMessage').innerText = msg;
+            document.getElementById('alertModal').classList.remove('hidden');
+        }
+
+        function closeAlert() {
+            document.getElementById('alertModal').classList.add('hidden');
+        }
+
+        // Section 1 validation check
+        function validateAndNext(current, next) {
+            const name = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const college = document.getElementById('college').value.trim();
+            const univId = document.getElementById('universityId').value.trim();
+
+            if (!name || !phone || !email || !college || !univId) {
+                showAlert('يرجى ملء جميع الحقول الإجبارية في البيانات الشخصية.');
+                return;
+            }
+            // Basic email validation
+            if (!email.includes('@') || !email.includes('.')) {
+                showAlert('يرجى إدخال بريد إلكتروني صحيح.');
+                return;
+            }
+            nextStep(next);
+        }
+
+        // Section 2 Dynamic Positions
+        function updatePositionLabels() {
+            const type = document.querySelector('input[name="membershipType"]:checked').value;
+            const label = document.getElementById('positionLabel');
+            if (type === 'عضو حالي') {
+                label.innerHTML = 'ما هو منصبك الحالي في الفرع? <span class="text-red-500">*</span>';
+            } else {
+                label.innerHTML = 'ما هو آخر منصب شغلته في الفرع? <span class="text-red-500">*</span>';
+            }
+        }
+
+        function checkOtherPosition() {
+            const pos = document.getElementById('branchPosition').value;
+            const otherInput = document.getElementById('otherPositionInput');
+            if (pos === 'أخرى') {
+                otherInput.classList.remove('hidden');
+                otherInput.required = true;
+            } else {
+                otherInput.classList.add('hidden');
+                otherInput.required = false;
+                otherInput.value = '';
+            }
+        }
+
+        // Section 3 Companion Toggle
+        function toggleCompanionSection(show) {
+            const compSec = document.getElementById('companionFields');
+            if (show) {
+                compSec.classList.remove('hidden');
+            } else {
+                compSec.classList.add('hidden');
+            }
+        }
+
+        // Section 5 Lunch Flow
+        function toggleLunchFlow(want) {
+            // stored state logic if needed
+        }
+
+        function proceedFromLunch() {
+            const wantLunch = document.querySelector('input[name="wantLunch"]:checked').value;
+            if (wantLunch === 'نعم') {
+                if (document.getElementById('lunchItemsContainer').children.length === 0) {
+                    initLunchItems();
+                }
+                nextStep(6);
+            } else {
+                nextStep(7); // Skip lunch details, go to dessert choice
+            }
+        }
+
+        // Dynamic Lunch Items Manager
+        function initLunchItems() {
+            lunchItemsCount = 1;
+            document.getElementById('lunchItemsContainer').innerHTML = getLunchItemHTML(1);
+            calculateLunchTotal();
+        }
+
+        function getLunchItemHTML(index) {
+            return `
+                <div class="lunch-item-card bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4 relative" data-index="${index}">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <h4 class="font-bold text-ieeeBlue">الصنف رقم ${index}</h4>
+                        ${index > 1 ? `<button type="button" onclick="removeLunchItem(${index})" class="text-red-500 hover:text-red-700 text-xs font-bold">حذف الصنف</button>` : ''}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">اسم الوجبة <span class="text-red-500">*</span></label>
+                            <input type="text" required placeholder="مثال: سندوتش الشاورما صاج" class="lunch-name w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">الحجم <span class="text-red-500">*</span></label>
+                            <input type="text" required placeholder="مثال: وسط" class="lunch-size w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">الاختيار <span class="text-red-500">*</span></label>
+                            <div class="flex gap-6 pt-1">
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="lunchChoice_${index}" value="حار" checked class="accent-ieeeBlue"> حار</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="lunchChoice_${index}" value="بارد" class="accent-ieeeBlue"> بارد</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">سعر الوجبة (جنيه) <span class="text-red-500">*</span></label>
+                            <input type="number" min="0" value="0" required oninput="calculateLunchTotal()" class="lunch-price w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addLunchItem() {
+            if (lunchItemsCount >= 4) {
+                showAlert('الحد الأقصى هو 4 أصناف فقط.');
+                return;
+            }
+            lunchItemsCount++;
+            const container = document.getElementById('lunchItemsContainer');
+            container.insertAdjacentHTML('beforeend', getLunchItemHTML(lunchItemsCount));
+            if (lunchItemsCount >= 4) {
+                document.getElementById('addLunchBtn').classList.add('hidden');
+            }
+            calculateLunchTotal();
+        }
+
+        function removeLunchItem(index) {
+            const card = document.querySelector(`.lunch-item-card[data-index="${index}"]`);
+            if (card) card.remove();
+            lunchItemsCount--;
+            document.getElementById('addLunchBtn').classList.remove('hidden');
+            calculateLunchTotal();
+        }
+
+        function calculateLunchTotal() {
+            const prices = document.querySelectorAll('.lunch-price');
+            let total = 0;
+            prices.forEach(p => {
+                const val = parseFloat(p.value) || 0;
+                total += val;
+            });
+            document.getElementById('lunchTotalDisplay').innerText = total;
+        }
+
+        function validateLunchAndNext() {
+            const check = document.querySelector('input[name="lunchAmountCheck"]:checked').value;
+            if (check === 'لا') {
+                showAlert('يرجى مراجعة بيانات وأسعار الوجبات المدخلة والتأكد من إدخال الأسعار كما هي موضحة في موقع المطعم.');
+                return;
+            }
+            nextStep(7);
+        }
+
+        // Section 7 Dessert Flow
+        function toggleDessertFlow(want) {
+            // stored state logic if needed
+        }
+
+        function backFromDessert() {
+            const wantLunch = document.querySelector('input[name="wantLunch"]:checked').value;
+            if (wantLunch === 'نعم') {
+                prevStep(6);
+            } else {
+                prevStep(5);
+            }
+        }
+
+        function proceedFromDessert() {
+            const wantDessert = document.querySelector('input[name="wantDessert"]:checked').value;
+            if (wantDessert === 'نعم') {
+                if (document.getElementById('dessertItemsContainer').children.length === 0) {
+                    initDessertItems();
+                }
+                nextStep(8);
+            } else {
+                buildReviewScreen();
+                nextStep(9);
+            }
+        }
+
+        // Dynamic Dessert Items Manager
+        function initDessertItems() {
+            dessertItemsCount = 1;
+            document.getElementById('dessertItemsContainer').innerHTML = getDessertItemHTML(1);
+            calculateDessertTotal();
+        }
+
+        function getDessertItemHTML(index) {
+            return `
+                <div class="dessert-item-card bg-slate-50 p-6 rounded-2xl border border-slate-200 space-y-4 relative" data-index="${index}">
+                    <div class="flex justify-between items-center border-b pb-2">
+                        <h4 class="font-bold text-ieeeBlue">صنف التحلية رقم ${index}</h4>
+                        ${index > 1 ? `<button type="button" onclick="removeDessertItem(${index})" class="text-red-500 hover:text-red-700 text-xs font-bold">حذف الصنف</button>` : ''}
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">اسم وجبة التحلية <span class="text-red-500">*</span></label>
+                            <input type="text" required placeholder="اسم الوجبة من قائمة الجمل" class="dessert-name w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">الحجم <span class="text-red-500">*</span></label>
+                            <input type="text" required placeholder="مثال: وسط" class="dessert-size w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-2">الاختيار <span class="text-red-500">*</span></label>
+                            <div class="flex gap-6 pt-1">
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="dessertChoice_${index}" value="حار" checked class="accent-ieeeBlue"> حار</label>
+                                <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="dessertChoice_${index}" value="بارد" class="accent-ieeeBlue"> بارد</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">سعر الوجبة (جنيه) <span class="text-red-500">*</span></label>
+                            <input type="number" min="0" value="0" required oninput="calculateDessertTotal()" class="dessert-price w-full border border-slate-300 rounded-xl px-4 py-3 bg-white">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function addDessertItem() {
+            if (dessertItemsCount >= 4) {
+                showAlert('الحد الأقصى هو 4 أصناف فقط.');
+                return;
+            }
+            dessertItemsCount++;
+            const container = document.getElementById('dessertItemsContainer');
+            container.insertAdjacentHTML('beforeend', getDessertItemHTML(dessertItemsCount));
+            if (dessertItemsCount >= 4) {
+                document.getElementById('addDessertBtn').classList.add('hidden');
+            }
+            calculateDessertTotal();
+        }
+
+        function removeDessertItem(index) {
+            const card = document.querySelector(`.dessert-item-card[data-index="${index}"]`);
+            if (card) card.remove();
+            dessertItemsCount--;
+            document.getElementById('addDessertBtn').classList.remove('hidden');
+            calculateDessertTotal();
+        }
+
+        function calculateDessertTotal() {
+            const prices = document.querySelectorAll('.dessert-price');
+            let total = 0;
+            prices.forEach(p => {
+                const val = parseFloat(p.value) || 0;
+                total += val;
+            });
+            document.getElementById('dessertTotalDisplay').innerText = total;
+        }
+
+        function validateDessertAndNext() {
+            const check = document.querySelector('input[name="dessertAmountCheck"]:checked').value;
+            if (check === 'لا') {
+                showAlert('يرجى مراجعة الأسعار والتأكد من إدخالها كما هي موضحة في قائمة الجمل.');
+                return;
+            }
+            buildReviewScreen();
+            nextStep(9);
+        }
+
+        function backFromReview() {
+            const wantDessert = document.querySelector('input[name="wantDessert"]:checked').value;
+            if (wantDessert === 'نعم') {
+                prevStep(8);
+            } else {
+                prevStep(7);
+            }
+        }
+
+        function togglePaymentMethod() {
+            const method = document.querySelector('input[name="paymentMethod"]:checked').value;
+            const instapayBox = document.getElementById('instapayBox');
+            const vodafoneBox = document.getElementById('vodafoneBox');
+            if (method === 'instapay') {
+                instapayBox.classList.remove('hidden');
+                vodafoneBox.classList.add('hidden');
+            } else {
+                instapayBox.classList.add('hidden');
+                vodafoneBox.classList.remove('hidden');
+            }
+            buildReviewScreen(); // re-render to update total if vodafone fee applies
+        }
+
+        // Build Review Screen Summary
+        function buildReviewScreen() {
+            const name = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const college = document.getElementById('college').value;
+            const academicStatus = document.querySelector('input[name="academicStatus"]:checked').value;
+            const academicLevel = document.getElementById('academicLevel').value;
+
+            const membershipType = document.querySelector('input[name="membershipType"]:checked').value;
+            let position = document.getElementById('branchPosition').value;
+            if (position === 'أخرى') position = document.getElementById('otherPositionInput').value;
+
+            const hasCompanion = document.querySelector('input[name="hasCompanion"]:checked').value;
+            const compName = document.getElementById('compName')?.value || '';
+
+            const busWestern = document.querySelector('input[name="busWestern"]:checked').value;
+            const busDamietta = document.querySelector('input[name="busDamietta"]:checked').value;
+
+            const wantLunch = document.querySelector('input[name="wantLunch"]:checked').value;
+            let lunchCount = 0;
+            let lunchTotal = 0;
+            if (wantLunch === 'نعم') {
+                lunchCount = document.querySelectorAll('.lunch-item-card').length;
+                lunchTotal = parseFloat(document.getElementById('lunchTotalDisplay').innerText) || 0;
+            }
+
+            const wantDessert = document.querySelector('input[name="wantDessert"]:checked').value;
+            let dessertCount = 0;
+            let dessertTotal = 0;
+            if (wantDessert === 'نعم') {
+                dessertCount = document.querySelectorAll('.dessert-item-card').length;
+                dessertTotal = parseFloat(document.getElementById('dessertTotalDisplay').innerText) || 0;
+            }
+
+            let grandTotal = lunchTotal + dessertTotal;
+            const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked')?.value || 'instapay';
+            
+            let paymentNote = 'Instapay';
+            if (paymentMethod === 'vodafone') {
+                // Add 1% and round to nearest integer
+                grandTotal = Math.round(grandTotal * 1.01);
+                paymentNote = 'فودافون كاش (شامل 1% رسوم)';
+            }
+
+            let html = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-ieeeBlue border-b pb-1">البيانات الشخصية</h4>
+                        <p><strong>الاسم:</strong> ${name}</p>
+                        <p><strong>الهاتف:</strong> ${phone}</p>
+                        <p><strong>البريد:</strong> ${email}</p>
+                        <p><strong>الكلية:</strong> ${college}</p>
+                        <p><strong>الحالة الأكاديمية:</strong> ${academicStatus} (${academicLevel})</p>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-ieeeBlue border-b pb-1">بيانات العضوية والمرافق</h4>
+                        <p><strong>العضوية:</strong> ${membershipType}</p>
+                        <p><strong>المنصب:</strong> ${position}</p>
+                        <p><strong>يوجد مرافق:</strong> ${hasCompanion}</p>
+                        ${hasCompanion === 'نعم' ? `<p><strong>اسم المرافق:</strong> ${compName}</p>` : ''}
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 space-y-2">
+                        <h4 class="font-bold text-ieeeBlue border-b pb-1">المواصلات والوجبات</h4>
+                        <p><strong>حافلة الموقف الغربي:</strong> ${busWestern}</p>
+                        <p><strong>حافلة دمياط الجديدة ← المنصورة:</strong> ${busDamietta}</p>
+                        <p><strong>طلب غداء:</strong> ${wantLunch} ${wantLunch === 'نعم' ? `(${lunchCount} أصناف - ${lunchTotal} جنيه)` : ''}</p>
+                        <p><strong>طلب تحلية:</strong> ${wantDessert} ${wantDessert === 'نعم' ? `(${dessertCount} أصناف - ${dessertTotal} جنيه)` : ''}</p>
+                    </div>
+
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 flex flex-col justify-between">
+                        <h4 class="font-bold text-ieeeBlue border-b border-blue-200 pb-1">الإجمالي النهائي والدفع</h4>
+                        <div class="text-3xl font-black text-ieeeDark my-auto text-center py-2">${grandTotal} جنيه</div>
+                        <p class="text-xs text-slate-600 text-center">طريقة الدفع: <strong>${paymentNote}</strong></p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('reviewContent').innerHTML = html;
+        }
+
+        // Form Submit Handler
+        document.getElementById('lastCallForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const confirmed = document.getElementById('finalConfirmation').checked;
+            const receipt = document.getElementById('transferReceipt').files[0];
+            if (!confirmed) {
+                showAlert('يرجى الموافقة على الإقرار بصحة البيانات وتحويل المبلغ قبل إرسال النموذج.');
+                return;
+            }
+            if (!receipt) {
+                showAlert('يرجى رفع صورة إيصال التحويل لإتمام إرسال النموذج.');
+                return;
+            }
+            document.getElementById('successModal').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>

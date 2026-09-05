@@ -54,20 +54,12 @@
         }
     </style>
 </head>
-<body class="bg-ieee-dark font-sans text-gray-800 antialiased min-h-screen flex flex-col relative">
-
-    <!-- Full Page Blurred Background -->
-    <div class="fixed inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
-        <img src="https://scontent.fcai21-3.fna.fbcdn.net/v/t39.30808-6/490583271_1962402974167559_514628693641795062_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=EZ0rkixzV60Q7kNvwEwuGpq&_nc_oc=Adq7uhaIN7ODAOKBTIZqNgeZ8KSi5eMbCsnn6ktB5NBFbdN7f2evPePvXXVCwcP4YdI&_nc_zt=23&_nc_ht=scontent.fcai21-3.fna&_nc_gid=tVqwXCIpGkTKBlaGWhkwHQ&_nc_ss=7b2a8&oh=00_AQHUrtVr5jCDhtDY6RvMWlTYcx_ialdbyeTnnONV3pBYjg&oe=6A96325B" 
-             alt="IEEE Horus Event Background" class="w-full h-full object-cover object-top blur-md scale-105 opacity-90">
-        <!-- Dark Overlay for Readability -->
-        <div class="absolute inset-0 bg-ieee-dark/75"></div>
-    </div>
+<body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen flex flex-col relative" dir="rtl">
 
     <!-- Simple Header (Main IEEE Blue - Pinned to LTR layout) -->
     <header dir="ltr" class="bg-ieee-blue py-4 px-6 md:px-10 flex items-center justify-between shadow-md sticky top-0 z-50">
         <div class="flex items-center">
-            <!-- IEEE Horus Logo SVG (White Fill - Fixed Path) -->
+            <!-- IEEE Horus Logo SVG (White Fill) -->
             <svg viewBox="0 0 3482.97 1348.28" xmlns="http://www.w3.org/2000/svg" class="block h-10 w-auto">
                   <defs>
     <style>
@@ -115,30 +107,38 @@
 </svg>
         </div>
         <div class="text-white/90 text-sm font-medium hidden sm:block">
-            <span class="lang-en">Season 2026-2027</span>
-            <span class="lang-ar hidden">موسم 2026-2027</span>
+            <span class="lang-en hidden">Season 2026-2027</span>
+            <span class="lang-ar">موسم 2026-2027</span>
         </div>
     </header>
 
     <!-- Main Content Area -->
     <main class="flex-grow flex flex-col relative z-10 pb-20">
         
+        <!-- Background Hero Banner Image -->
+        <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+            <img src="https://scontent.fcai21-3.fna.fbcdn.net/v/t39.30808-6/490583271_1962402974167559_514628693641795062_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=EZ0rkixzV60Q7kNvwEwuGpq&_nc_oc=Adq7uhaIN7ODAOKBTIZqNgeZ8KSi5eMbCsnn6ktB5NBFbdN7f2evPePvXXVCwcP4YdI&_nc_zt=23&_nc_ht=scontent.fcai21-3.fna&_nc_gid=tVqwXCIpGkTKBlaGWhkwHQ&_nc_ss=7b2a8&oh=00_AQHUrtVr5jCDhtDY6RvMWlTYcx_ialdbyeTnnONV3pBYjg&oe=6A96325B" 
+                 alt="IEEE Horus Event" class="w-full h-full object-cover object-top blur-md scale-105">
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 bg-ieee-dark/70"></div>
+        </div>
+
         <!-- Content Overlay Container -->
         <div class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
             
             <!-- Hero Titles (Dynamically aligns LTR or RTL based on language) -->
-            <div class="mb-10">
+            <div class="mb-10 text-left rtl:text-right">
                 <span class="bg-white/10 text-ieee-cyan border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block backdrop-blur-md mb-4 shadow-sm">
-                    <span class="lang-en">Application Form</span>
-                    <span class="lang-ar hidden font-bold">استمارة التقديم</span>
+                    <span class="lang-en hidden">Application Form</span>
+                    <span class="lang-ar font-bold">استمارة التقديم</span>
                 </span>
                 <h2 class="text-4xl sm:text-5xl font-bold text-white mb-3">
-                    <span class="lang-en block">Join IEEE Horus SB</span>
-                    <span class="lang-ar hidden font-bold block">انضم إلى IEEE Horus SB</span>
+                    <span class="lang-en hidden block">Join IEEE Horus SB</span>
+                    <span class="lang-ar font-bold block">انضم إلى IEEE Horus SB</span>
                 </h2>
                 <p class="text-gray-200 text-lg sm:text-xl max-w-xl">
-                    <span class="lang-en block">Become a part of our community and shape the future.</span>
-                    <span class="lang-ar hidden font-medium block">كن جزءاً من مجتمعنا وشارك في بناء المستقبل.</span>
+                    <span class="lang-en hidden block">Become a part of our community and shape the future.</span>
+                    <span class="lang-ar font-medium block">كن جزءاً من مجتمعنا وشارك في بناء المستقبل.</span>
                 </p>
             </div>
 
@@ -148,8 +148,8 @@
                 <!-- Single Working Language Toggle -->
                 <div class="flex mb-8 w-full border-b border-gray-100 pb-6" dir="ltr">
                     <div class="bg-gray-200 rounded-full p-1 inline-flex items-center shadow-inner">
-                        <button type="button" id="btn-en" class="px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer">EN</button>
-                        <button type="button" id="btn-ar" class="px-5 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors cursor-pointer">AR</button>
+                        <button type="button" id="btn-en" class="px-5 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors cursor-pointer">EN</button>
+                        <button type="button" id="btn-ar" class="px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer">AR</button>
                     </div>
                 </div>
 
@@ -159,16 +159,16 @@
                         <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     </div>
                     <h2 class="text-3xl font-bold text-gray-900 mb-2">
-                        <span class="lang-en">Application Received!</span>
-                        <span class="lang-ar hidden font-bold">تم استلام الطلب!</span>
+                        <span class="lang-en hidden">Application Received!</span>
+                        <span class="lang-ar font-bold">تم استلام الطلب!</span>
                     </h2>
                     <p class="text-gray-600 max-w-md mx-auto">
-                        <span class="lang-en block">Thank you for applying to IEEE Horus Student Branch. We will review your application and contact you soon via WhatsApp or Email.</span>
-                        <span class="lang-ar hidden block">شكراً لتقديمك في IEEE Horus Student Branch. سنقوم بمراجعة طلبك والتواصل معك قريباً.</span>
+                        <span class="lang-en hidden block">Thank you for applying to IEEE Horus Student Branch. We will review your application and contact you soon via WhatsApp or Email.</span>
+                        <span class="lang-ar block">شكراً لتقديمك في IEEE Horus Student Branch. سنقوم بمراجعة طلبك والتواصل معك قريباً عبر الواتساب أو البريد الإلكتروني.</span>
                     </p>
                     <button onclick="window.location.reload()" class="mt-8 px-8 py-2.5 bg-gray-100 text-gray-800 rounded-full hover:bg-gray-200 transition-colors font-medium">
-                        <span class="lang-en">Submit Another</span>
-                        <span class="lang-ar hidden">تقديم طلب آخر</span>
+                        <span class="lang-en hidden">Submit Another</span>
+                        <span class="lang-ar">تقديم طلب آخر</span>
                     </button>
                 </div>
 
@@ -180,20 +180,20 @@
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">1</div>
                             <h3 class="text-xl font-bold text-gray-900">
-                                <span class="lang-en">Personal Information</span>
-                                <span class="lang-ar hidden font-bold">المعلومات الشخصية</span>
+                                <span class="lang-en hidden">Personal Information</span>
+                                <span class="lang-ar font-bold">المعلومات الشخصية</span>
                             </h3>
                         </div>
 
-                        <div class="space-y-5 pl-0 md:pl-11">
+                        <div class="space-y-5 pl-0 md:pl-11" dir="rtl" id="sec1-content">
                             <!-- Full Name -->
                             <div>
                                 <label for="fullName" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                    <span class="lang-en">Full Name</span>
-                                    <span class="lang-ar hidden">الاسم بالكامل</span> 
+                                    <span class="lang-en hidden">Full Name</span>
+                                    <span class="lang-ar">الاسم بالكامل</span> 
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input type="text" id="fullName" name="fullName" required data-en-placeholder="Enter your full name" data-ar-placeholder="أدخل اسمك بالكامل" placeholder="Enter your full name" 
+                                <input type="text" id="fullName" name="fullName" required data-en-placeholder="Enter your full name" data-ar-placeholder="أدخل اسمك بالكامل" placeholder="أدخل اسمك بالكامل" 
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
                             </div>
 
@@ -201,23 +201,23 @@
                                 <!-- Email -->
                                 <div>
                                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">Email Address</span>
-                                        <span class="lang-ar hidden">البريد الإلكتروني</span> 
+                                        <span class="lang-en hidden">Email Address</span>
+                                        <span class="lang-ar">البريد الإلكتروني</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="email" id="email" name="email" required data-en-placeholder="Enter your email" data-ar-placeholder="أدخل بريدك الإلكتروني" placeholder="Enter your email" 
+                                    <input type="email" id="email" name="email" required data-en-placeholder="Enter your email" data-ar-placeholder="أدخل بريدك الإلكتروني" placeholder="أدخل بريدك الإلكتروني" 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
                                 </div>
 
                                 <!-- WhatsApp -->
                                 <div>
                                     <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">WhatsApp Number</span>
-                                        <span class="lang-ar hidden">رقم الواتساب</span> 
+                                        <span class="lang-en hidden">WhatsApp Number</span>
+                                        <span class="lang-ar">رقم الواتساب</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="tel" id="whatsapp" name="whatsapp" required data-en-placeholder="Active phone number" data-ar-placeholder="رقم هاتف فعال" placeholder="Active phone number" pattern="[0-9+ ]+"
-                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
+                                    <input type="tel" id="whatsapp" name="whatsapp" required data-en-placeholder="Active phone number" data-ar-placeholder="رقم هاتف فعال" placeholder="رقم هاتف فعال" pattern="[0-9+ ]+"
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm" dir="ltr">
                                 </div>
                             </div>
 
@@ -225,41 +225,41 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label for="faculty" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">Faculty</span>
-                                        <span class="lang-ar hidden">الكلية</span> 
+                                        <span class="lang-en hidden">Faculty</span>
+                                        <span class="lang-ar">الكلية</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <select id="faculty" name="faculty" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
-                                        <option value="" disabled selected data-en-text="Select your faculty" data-ar-text="اختر كليتك">Select your faculty</option>
-                                        <option value="Medicine" data-en-text="Medicine" data-ar-text="طب بشري">Medicine</option>
-                                        <option value="Dentistry" data-en-text="Dentistry" data-ar-text="طب أسنان">Dentistry</option>
-                                        <option value="Physical Therapy" data-en-text="Physical Therapy" data-ar-text="علاج طبيعي">Physical Therapy</option>
-                                        <option value="Pharmacy" data-en-text="Pharmacy" data-ar-text="صيدلة">Pharmacy</option>
-                                        <option value="Engineering" data-en-text="Engineering" data-ar-text="هندسة">Engineering</option>
-                                        <option value="Artificial Intelligence and Informatics" data-en-text="Artificial Intelligence" data-ar-text="الذكاء الاصطناعي">Artificial Intelligence</option>
-                                        <option value="Fine Arts" data-en-text="Fine Arts" data-ar-text="فنون جميلة">Fine Arts</option>
-                                        <option value="Al-Alsun and Translation" data-en-text="Al-Alsun" data-ar-text="الألسن والترجمة">Al-Alsun</option>
-                                        <option value="Business" data-en-text="Business" data-ar-text="إدارة أعمال">Business</option>
+                                        <option value="" disabled selected data-en-text="Select your faculty" data-ar-text="اختر كليتك">اختر كليتك</option>
+                                        <option value="Medicine" data-en-text="Medicine" data-ar-text="طب بشري">طب بشري</option>
+                                        <option value="Dentistry" data-en-text="Dentistry" data-ar-text="طب أسنان">طب أسنان</option>
+                                        <option value="Physical Therapy" data-en-text="Physical Therapy" data-ar-text="علاج طبيعي">علاج طبيعي</option>
+                                        <option value="Pharmacy" data-en-text="Pharmacy" data-ar-text="صيدلة">صيدلة</option>
+                                        <option value="Engineering" data-en-text="Engineering" data-ar-text="هندسة">هندسة</option>
+                                        <option value="Artificial Intelligence and Informatics" data-en-text="Artificial Intelligence" data-ar-text="الذكاء الاصطناعي">الذكاء الاصطناعي</option>
+                                        <option value="Fine Arts" data-en-text="Fine Arts" data-ar-text="فنون جميلة">فنون جميلة</option>
+                                        <option value="Al-Alsun and Translation" data-en-text="Al-Alsun" data-ar-text="الألسن والترجمة">الألسن والترجمة</option>
+                                        <option value="Business" data-en-text="Business" data-ar-text="إدارة أعمال">إدارة أعمال</option>
                                     </select>
                                 </div>
 
                                 <div>
                                     <label for="academicYear" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">Level</span>
-                                        <span class="lang-ar hidden">المستوى الدراسي</span> 
+                                        <span class="lang-en hidden">Level</span>
+                                        <span class="lang-ar">المستوى الدراسي</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <select id="academicYear" name="academicYear" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
-                                        <option value="" disabled selected data-en-text="Select your level" data-ar-text="اختر المستوى">Select your level</option>
-                                        <option value="Level 0" data-en-text="Level 0" data-ar-text="المستوى 0">Level 0</option>
-                                        <option value="Level 1" data-en-text="Level 1" data-ar-text="المستوى 1">Level 1</option>
-                                        <option value="Level 2" data-en-text="Level 2" data-ar-text="المستوى 2">Level 2</option>
-                                        <option value="Level 3" data-en-text="Level 3" data-ar-text="المستوى 3">Level 3</option>
-                                        <option value="Level 4" data-en-text="Level 4" data-ar-text="المستوى 4">Level 4</option>
-                                        <option value="Level 5" data-en-text="Level 5" data-ar-text="المستوى 5">Level 5</option>
-                                        <option value="Level 6" data-en-text="Level 6" data-ar-text="المستوى 6">Level 6</option>
-                                        <option value="Level 7" data-en-text="Level 7" data-ar-text="المستوى 7">Level 7</option>
-                                        <option value="Level 8" data-en-text="Level 8" data-ar-text="المستوى 8">Level 8</option>
+                                        <option value="" disabled selected data-en-text="Select your level" data-ar-text="اختر المستوى">اختر المستوى</option>
+                                        <option value="Level 0" data-en-text="Level 0" data-ar-text="المستوى 0">المستوى 0</option>
+                                        <option value="Level 1" data-en-text="Level 1" data-ar-text="المستوى 1">المستوى 1</option>
+                                        <option value="Level 2" data-en-text="Level 2" data-ar-text="المستوى 2">المستوى 2</option>
+                                        <option value="Level 3" data-en-text="Level 3" data-ar-text="المستوى 3">المستوى 3</option>
+                                        <option value="Level 4" data-en-text="Level 4" data-ar-text="المستوى 4">المستوى 4</option>
+                                        <option value="Level 5" data-en-text="Level 5" data-ar-text="المستوى 5">المستوى 5</option>
+                                        <option value="Level 6" data-en-text="Level 6" data-ar-text="المستوى 6">المستوى 6</option>
+                                        <option value="Level 7" data-en-text="Level 7" data-ar-text="المستوى 7">المستوى 7</option>
+                                        <option value="Level 8" data-en-text="Level 8" data-ar-text="المستوى 8">المستوى 8</option>
                                     </select>
                                 </div>
                             </div>
@@ -271,31 +271,31 @@
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">2</div>
                             <h3 class="text-xl font-bold text-gray-900">
-                                <span class="lang-en">Experience & Skills</span>
-                                <span class="lang-ar hidden font-bold">الخبرات والمهارات</span>
+                                <span class="lang-en hidden">Experience & Skills</span>
+                                <span class="lang-ar font-bold">الخبرات والمهارات</span>
                             </h3>
                         </div>
 
-                        <div class="space-y-6 pl-0 md:pl-11">
+                        <div class="space-y-6 pl-0 md:pl-11" dir="rtl" id="sec2-content">
                             <div class="bg-gray-50 p-5 rounded-xl border border-gray-200">
                                 <label class="block text-sm font-semibold text-gray-800 mb-4">
-                                    <span class="lang-en">Do you have previous volunteering experience?</span>
-                                    <span class="lang-ar hidden">هل لديك خبرة سابقة في التطوع؟</span> 
+                                    <span class="lang-en hidden">Do you have previous volunteering experience?</span>
+                                    <span class="lang-ar">هل لديك خبرة سابقة في التطوع؟</span> 
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <div class="flex space-x-8 gap-x-8">
                                     <label class="flex items-center cursor-pointer group">
                                         <input type="radio" name="hasExperience" value="Yes" required class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                         <span class="ms-2 font-medium text-gray-700 group-hover:text-ieee-blue transition-colors">
-                                            <span class="lang-en">Yes</span>
-                                            <span class="lang-ar hidden">نعم</span>
+                                            <span class="lang-en hidden">Yes</span>
+                                            <span class="lang-ar">نعم</span>
                                         </span>
                                     </label>
                                     <label class="flex items-center cursor-pointer group">
                                         <input type="radio" name="hasExperience" value="No" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                         <span class="ms-2 font-medium text-gray-700 group-hover:text-ieee-blue transition-colors">
-                                            <span class="lang-en">No</span>
-                                            <span class="lang-ar hidden">لا</span>
+                                            <span class="lang-en hidden">No</span>
+                                            <span class="lang-ar">لا</span>
                                         </span>
                                     </label>
                                 </div>
@@ -305,34 +305,34 @@
                             <div id="experienceDetails" class="hidden space-y-5 bg-blue-50/70 p-5 rounded-xl border border-blue-100">
                                 <div>
                                     <label class="block text-sm font-semibold text-gray-800 mb-4">
-                                        <span class="lang-en">Are you currently a member of any other student activity?</span>
-                                        <span class="lang-ar hidden">هل أنت عضو حالي في أي نشاط طلابي آخر؟</span> 
+                                        <span class="lang-en hidden">Are you currently a member of any other student activity?</span>
+                                        <span class="lang-ar">هل أنت عضو حالي في أي نشاط طلابي آخر؟</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <div class="flex space-x-8 gap-x-8">
                                         <label class="flex items-center cursor-pointer group">
                                             <input type="radio" name="otherActivity" value="Yes" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                             <span class="ms-2 text-sm text-gray-700 group-hover:text-ieee-blue transition-colors">
-                                                <span class="lang-en">Yes</span>
-                                                <span class="lang-ar hidden">نعم</span>
+                                                <span class="lang-en hidden">Yes</span>
+                                                <span class="lang-ar">نعم</span>
                                             </span>
                                         </label>
                                         <label class="flex items-center cursor-pointer group">
                                             <input type="radio" name="otherActivity" value="No" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                             <span class="ms-2 text-sm text-gray-700 group-hover:text-ieee-blue transition-colors">
-                                                <span class="lang-en">No</span>
-                                                <span class="lang-ar hidden">لا</span>
+                                                <span class="lang-en hidden">No</span>
+                                                <span class="lang-ar">لا</span>
                                             </span>
                                         </label>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="expBrief" class="block text-sm font-semibold text-gray-800 mb-1.5">
-                                        <span class="lang-en">Briefly describe your experience</span>
-                                        <span class="lang-ar hidden">صف خبرتك باختصار</span> 
+                                        <span class="lang-en hidden">Briefly describe your experience</span>
+                                        <span class="lang-ar">صف خبرتك باختصار</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
-                                    <textarea id="expBrief" name="expBrief" rows="2" data-en-placeholder="Roles taken and achievements..." data-ar-placeholder="الأدوار التي قمت بها والإنجازات..." placeholder="Roles taken and achievements..." 
+                                    <textarea id="expBrief" name="expBrief" rows="2" data-en-placeholder="Roles taken and achievements..." data-ar-placeholder="الأدوار التي قمت بها والإنجازات..." placeholder="الأدوار التي قمت بها والإنجازات..." 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm resize-none"></textarea>
                                 </div>
                             </div>
@@ -340,19 +340,19 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label for="skills" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">Top 3 Skills</span>
-                                        <span class="lang-ar hidden">أهم 3 مهارات</span> 
+                                        <span class="lang-en hidden">Top 3 Skills</span>
+                                        <span class="lang-ar">أهم 3 مهارات</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
-                                    <input type="text" id="skills" name="skills" required data-en-placeholder="E.g., Design, Python, Leadership" data-ar-placeholder="مثال: التصميم، بايثون، القيادة" placeholder="E.g., Design, Python, Leadership" 
+                                    <input type="text" id="skills" name="skills" required data-en-placeholder="E.g., Design, Python, Leadership" data-ar-placeholder="مثال: التصميم، بايثون، القيادة" placeholder="مثال: التصميم، بايثون، القيادة" 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
                                 </div>
                                 <div>
                                     <label for="portfolio" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">Portfolio / LinkedIn Link</span>
-                                        <span class="lang-ar hidden">رابط معرض الأعمال / لينكد إن</span>
+                                        <span class="lang-en hidden">Portfolio / LinkedIn Link</span>
+                                        <span class="lang-ar">رابط معرض الأعمال / لينكد إن</span>
                                     </label>
-                                    <input type="url" id="portfolio" name="portfolio" placeholder="https://..." 
+                                    <input type="url" id="portfolio" name="portfolio" placeholder="https://..." dir="ltr"
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
                                 </div>
                             </div>
@@ -364,44 +364,44 @@
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">3</div>
                             <h3 class="text-xl font-bold text-gray-900">
-                                <span class="lang-en">Role Selection</span>
-                                <span class="lang-ar hidden font-bold">اختيار الدور</span>
+                                <span class="lang-en hidden">Role Selection</span>
+                                <span class="lang-ar font-bold">اختيار الدور</span>
                             </h3>
                         </div>
 
-                        <div class="space-y-6 pl-0 md:pl-11">
+                        <div class="space-y-6 pl-0 md:pl-11" dir="rtl" id="sec3-content">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-3">
-                                    <span class="lang-en">Tier of position</span>
-                                    <span class="lang-ar hidden">المستوى التنظيمي المطلوب</span> 
+                                    <span class="lang-en hidden">Tier of position</span>
+                                    <span class="lang-ar">المستوى التنظيمي المطلوب</span> 
                                     <span class="text-red-500">*</span>
                                 </label>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
                                         <div class="flex items-center justify-between mb-1">
                                             <span class="text-sm font-semibold text-gray-900">
-                                                <span class="lang-en">General Member</span>
-                                                <span class="lang-ar hidden">عضو لجنة عام</span>
+                                                <span class="lang-en hidden">General Member</span>
+                                                <span class="lang-ar">عضو لجنة عام</span>
                                             </span>
                                             <input type="radio" name="roleTier" value="General Committee Member" required class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                         </div>
                                         <span class="text-xs text-gray-500">
-                                            <span class="lang-en">Execution and technical roles</span>
-                                            <span class="lang-ar hidden">أدوار تنفيذية وتقنية</span>
+                                            <span class="lang-en hidden">Execution and technical roles</span>
+                                            <span class="lang-ar">أدوار تنفيذية وتقنية</span>
                                         </span>
                                     </label>
                                     
                                     <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
                                         <div class="flex items-center justify-between mb-1">
                                             <span class="text-sm font-semibold text-gray-900">
-                                                <span class="lang-en">Committee Head</span>
-                                                <span class="lang-ar hidden">رئيس لجنة</span>
+                                                <span class="lang-en hidden">Committee Head</span>
+                                                <span class="lang-ar">رئيس لجنة</span>
                                             </span>
                                             <input type="radio" name="roleTier" value="Committee Head" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                         </div>
                                         <span class="text-xs text-gray-500">
-                                            <span class="lang-en">Leadership and strategy</span>
-                                            <span class="lang-ar hidden">أدوار قيادية واستراتيجية</span>
+                                            <span class="lang-en hidden">Leadership and strategy</span>
+                                            <span class="lang-ar">أدوار قيادية واستراتيجية</span>
                                         </span>
                                     </label>
                                 </div>
@@ -410,36 +410,36 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
                                     <label for="pref1" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">1st Preference Committee</span>
-                                        <span class="lang-ar hidden">اللجنة - الرغبة الأولى</span> 
+                                        <span class="lang-en hidden">1st Preference Committee</span>
+                                        <span class="lang-ar">اللجنة - الرغبة الأولى</span> 
                                         <span class="text-red-500">*</span>
                                     </label>
                                     <select id="pref1" name="pref1" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
-                                        <option value="" disabled selected data-en-text="Select Committee" data-ar-text="اختر اللجنة">Select Committee</option>
-                                        <option value="Technical" data-en-text="Technical Committee" data-ar-text="لجنة التقنية">Technical Committee</option>
-                                        <option value="Media" data-en-text="Media Committee" data-ar-text="لجنة الميديا">Media Committee</option>
-                                        <option value="PR" data-en-text="Public Relations (PR)" data-ar-text="العلاقات العامة (PR)">Public Relations (PR)</option>
-                                        <option value="Fundraising" data-en-text="Fundraising (FR)" data-ar-text="التمويل (FR)">Fundraising (FR)</option>
-                                        <option value="Logistics" data-en-text="Logistics" data-ar-text="الخدمات اللوجستية">Logistics</option>
-                                        <option value="Membership" data-en-text="Membership" data-ar-text="شؤون الأعضاء">Membership</option>
-                                        <option value="Webmasters" data-en-text="Webmasters" data-ar-text="مطوري المواقع">Webmasters</option>
+                                        <option value="" disabled selected data-en-text="Select Committee" data-ar-text="اختر اللجنة">اختر اللجنة</option>
+                                        <option value="Technical" data-en-text="Technical Committee" data-ar-text="لجنة التقنية">لجنة التقنية</option>
+                                        <option value="Media" data-en-text="Media Committee" data-ar-text="لجنة الميديا">لجنة الميديا</option>
+                                        <option value="PR" data-en-text="Public Relations (PR)" data-ar-text="العلاقات العامة (PR)">العلاقات العامة (PR)</option>
+                                        <option value="Fundraising" data-en-text="Fundraising (FR)" data-ar-text="التمويل (FR)">التمويل (FR)</option>
+                                        <option value="Logistics" data-en-text="Logistics" data-ar-text="الخدمات اللوجستية">الخدمات اللوجستية</option>
+                                        <option value="Membership" data-en-text="Membership" data-ar-text="شؤون الأعضاء">شؤون الأعضاء</option>
+                                        <option value="Webmasters" data-en-text="Webmasters" data-ar-text="مطوري المواقع">مطوري المواقع</option>
                                     </select>
                                 </div>
                                 
                                 <div>
                                     <label for="pref2" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                        <span class="lang-en">2nd Preference (Optional)</span>
-                                        <span class="lang-ar hidden">اللجنة - الرغبة الثانية (اختياري)</span>
+                                        <span class="lang-en hidden">2nd Preference (Optional)</span>
+                                        <span class="lang-ar">اللجنة - الرغبة الثانية (اختياري)</span>
                                     </label>
                                     <select id="pref2" name="pref2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm custom-select">
-                                        <option value="None" selected data-en-text="None" data-ar-text="لا يوجد">None</option>
-                                        <option value="Technical" data-en-text="Technical Committee" data-ar-text="لجنة التقنية">Technical Committee</option>
-                                        <option value="Media" data-en-text="Media Committee" data-ar-text="لجنة الميديا">Media Committee</option>
-                                        <option value="PR" data-en-text="Public Relations (PR)" data-ar-text="العلاقات العامة (PR)">Public Relations (PR)</option>
-                                        <option value="Fundraising" data-en-text="Fundraising (FR)" data-ar-text="التمويل (FR)">Fundraising (FR)</option>
-                                        <option value="Logistics" data-en-text="Logistics" data-ar-text="الخدمات اللوجستية">Logistics</option>
-                                        <option value="Membership" data-en-text="Membership" data-ar-text="شؤون الأعضاء">Membership</option>
-                                        <option value="Webmasters" data-en-text="Webmasters" data-ar-text="مطوري المواقع">Webmasters</option>
+                                        <option value="None" selected data-en-text="None" data-ar-text="لا يوجد">لا يوجد</option>
+                                        <option value="Technical" data-en-text="Technical Committee" data-ar-text="لجنة التقنية">لجنة التقنية</option>
+                                        <option value="Media" data-en-text="Media Committee" data-ar-text="لجنة الميديا">لجنة الميديا</option>
+                                        <option value="PR" data-en-text="Public Relations (PR)" data-ar-text="العلاقات العامة (PR)">العلاقات العامة (PR)</option>
+                                        <option value="Fundraising" data-en-text="Fundraising (FR)" data-ar-text="التمويل (FR)">التمويل (FR)</option>
+                                        <option value="Logistics" data-en-text="Logistics" data-ar-text="الخدمات اللوجستية">الخدمات اللوجستية</option>
+                                        <option value="Membership" data-en-text="Membership" data-ar-text="شؤون الأعضاء">شؤون الأعضاء</option>
+                                        <option value="Webmasters" data-en-text="Webmasters" data-ar-text="مطوري المواقع">مطوري المواقع</option>
                                     </select>
                                 </div>
                             </div>
@@ -447,26 +447,26 @@
                     </div>
 
                     <!-- Strategic Plan (CONDITIONAL) -->
-                    <div id="section3" class="hidden overflow-hidden rounded-xl border border-ieee-blue/20 bg-blue-50/70 shadow-sm transition-all duration-300 ease-in-out ml-0 md:ml-11">
+                    <div id="section3" class="hidden overflow-hidden rounded-xl border border-ieee-blue/20 bg-blue-50/70 shadow-sm transition-all duration-300 ease-in-out ml-0 md:ml-11" dir="rtl">
                         <div class="bg-ieee-blue/90 px-5 py-3 flex justify-between items-center">
                             <h4 class="text-white font-semibold flex items-center gap-2 text-sm">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                                <span class="lang-en">Leadership Requirement</span>
-                                <span class="lang-ar hidden font-bold">متطلبات القيادة</span>
+                                <span class="lang-en hidden">Leadership Requirement</span>
+                                <span class="lang-ar font-bold">متطلبات القيادة</span>
                             </h4>
                         </div>
                         <div class="p-5 space-y-4">
                             <p class="text-sm text-gray-700">
-                                <span class="lang-en">Submit a Strategic Work Plan PDF link addressing your vision, timeline, issue resolution, and delegation structure.</span>
-                                <span class="lang-ar hidden">أرسل رابط PDF لخطة العمل يوضح رؤيتك، الجدول الزمني، حل المشكلات السابقة، وهيكل توزيع المهام.</span>
+                                <span class="lang-en hidden">Submit a Strategic Work Plan PDF link addressing your vision, timeline, issue resolution, and delegation structure.</span>
+                                <span class="lang-ar">أرسل رابط PDF لخطة العمل يوضح رؤيتك، الجدول الزمني، حل المشكلات السابقة، وهيكل توزيع المهام.</span>
                             </p>
                             <div>
                                 <label for="workPlanLink" class="block text-sm font-semibold text-gray-800 mb-1.5">
-                                    <span class="lang-en">Work Plan Link</span>
-                                    <span class="lang-ar hidden">رابط خطة العمل</span> 
+                                    <span class="lang-en hidden">Work Plan Link</span>
+                                    <span class="lang-ar">رابط خطة العمل</span> 
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input type="url" id="workPlanLink" name="workPlanLink" data-en-placeholder="Google Drive/OneDrive link..." data-ar-placeholder="رابط جوجل درايف / ون درايف..." placeholder="Google Drive/OneDrive link..." 
+                                <input type="url" id="workPlanLink" name="workPlanLink" data-en-placeholder="Google Drive/OneDrive link..." data-ar-placeholder="رابط جوجل درايف / ون درايف..." placeholder="رابط جوجل درايف / ون درايف..." dir="ltr"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
                             </div>
                         </div>
@@ -477,29 +477,29 @@
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">4</div>
                             <h3 class="text-xl font-bold text-gray-900">
-                                <span class="lang-en">Commitment & Motivation</span>
-                                <span class="lang-ar hidden font-bold">الالتزام والدوافع</span>
+                                <span class="lang-en hidden">Commitment & Motivation</span>
+                                <span class="lang-ar font-bold">الالتزام والدوافع</span>
                             </h3>
                         </div>
 
-                        <div class="space-y-6 pl-0 md:pl-11">
+                        <div class="space-y-6 pl-0 md:pl-11" dir="rtl" id="sec4-content">
                             <div>
                                 <label for="motivation" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                    <span class="lang-en">Why do you want to join/lead us?</span>
-                                    <span class="lang-ar hidden">لماذا تريد الانضمام/القيادة معنا؟</span> 
+                                    <span class="lang-en hidden">Why do you want to join/lead us?</span>
+                                    <span class="lang-ar">لماذا تريد الانضمام/القيادة معنا؟</span> 
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <textarea id="motivation" name="motivation" required rows="3" data-en-placeholder="Share your motivation and goals..." data-ar-placeholder="شارك دوافعك وأهدافك..." placeholder="Share your motivation and goals..." 
+                                <textarea id="motivation" name="motivation" required rows="3" data-en-placeholder="Share your motivation and goals..." data-ar-placeholder="شارك دوافعك وأهدافك..." placeholder="شارك دوافعك وأهدافك..." 
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm resize-none"></textarea>
                             </div>
 
                             <div>
                                 <label for="howDidYouHear" class="block text-sm font-medium text-gray-700 mb-1.5">
-                                    <span class="lang-en">How did you hear about us?</span>
-                                    <span class="lang-ar hidden">كيف عرفت عنا؟</span> 
+                                    <span class="lang-en hidden">How did you hear about us?</span>
+                                    <span class="lang-ar">كيف عرفت عنا؟</span> 
                                     <span class="text-red-500">*</span>
                                 </label>
-                                <input type="text" id="howDidYouHear" name="howDidYouHear" required data-en-placeholder="e.g., Facebook, Friend..." data-ar-placeholder="مثال: فيسبوك، صديق..." placeholder="e.g., Facebook, Friend..." 
+                                <input type="text" id="howDidYouHear" name="howDidYouHear" required data-en-placeholder="e.g., Facebook, Friend..." data-ar-placeholder="مثال: فيسبوك، صديق..." placeholder="مثال: فيسبوك، صديق..." 
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
                             </div>
 
@@ -510,8 +510,8 @@
                                         <input type="checkbox" required class="w-4 h-4 text-ieee-blue border-gray-300 rounded focus:ring-ieee-cyan">
                                     </div>
                                     <div class="ms-3 text-sm text-gray-700 group-hover:text-gray-900 transition-colors font-medium">
-                                        <span class="lang-en">I agree that I have entered correct information.</span>
-                                        <span class="lang-ar hidden font-bold">أقر بأنني أدخلت معلومات صحيحة.</span> 
+                                        <span class="lang-en hidden">I agree that I have entered correct information.</span>
+                                        <span class="lang-ar font-bold">أقر بأنني أدخلت معلومات صحيحة.</span> 
                                         <span class="text-red-500">*</span>
                                     </div>
                                 </label>
@@ -520,12 +520,12 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="pt-6 pl-0 md:pl-11">
+                    <div class="pt-6 pl-0 md:pl-11" dir="rtl" id="sec-submit">
                         <button type="submit" 
                             class="w-full py-4 bg-ieee-blue hover:bg-[#004f7c] text-white font-bold rounded-xl transform transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ieee-blue text-lg flex justify-center items-center gap-2 shadow-sm">
-                            <span class="lang-en">Submit Application</span>
-                            <span class="lang-ar hidden font-bold">تأكيد الطلب</span>
-                            <svg class="w-5 h-5 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                            <span class="lang-en hidden">Submit Application</span>
+                            <span class="lang-ar font-bold">تأكيد الطلب</span>
+                            <svg id="submit-icon" class="w-5 h-5 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                         </button>
                     </div>
                     
@@ -535,10 +535,10 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-ieee-dark pt-12 pb-8 flex flex-col items-center justify-center z-10 w-full mt-0 border-none">
+    <footer class="bg-ieee-dark pt-12 pb-8 flex flex-col items-center justify-center z-10 w-full mt-0 border-none" dir="ltr">
         
         <!-- Footer Logo (White fill - Fixed Path) -->
-        <svg viewBox="0 0 3482.97 1348.28" xmlns="http://www.w3.org/2000/svg" class="mb-6 h-12 w-auto opacity-90 hover:opacity-100 transition-opacity">
+        <svg viewBox="0 0 1070.22 1102.75" xmlns="http://www.w3.org/2000/svg" class="mb-6 h-12 w-auto opacity-90 hover:opacity-100 transition-opacity">
                   <defs>
     <style>
       .cls-1 {
@@ -586,29 +586,17 @@
 
         <!-- Social Media Links -->
         <div class="flex space-x-5 gap-x-5 mb-4">
-            <!-- Facebook -->
             <a href="https://www.facebook.com/IEEEHUE" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="Facebook">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" />
-                </svg>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
             </a>
-            <!-- Instagram -->
             <a href="https://www.instagram.com/ieeehue/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="Instagram">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
-                </svg>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
             </a>
-            <!-- LinkedIn -->
             <a href="https://www.linkedin.com/company/ieeehue/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="LinkedIn">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
-                </svg>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" /></svg>
             </a>
-            <!-- YouTube -->
             <a href="https://www.youtube.com/@IEEEHUE" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-ieee-cyan transition-colors" aria-label="YouTube">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" clip-rule="evenodd" />
-                </svg>
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" clip-rule="evenodd" /></svg>
             </a>
         </div>
 
@@ -623,9 +611,15 @@
             const btnAr = document.getElementById('btn-ar');
             
             function setLanguage(lang) {
-                // Update Layout Direction
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 
+                // Content sections directional updates
+                const sections = ['sec1-content', 'sec2-content', 'sec3-content', 'sec4-content', 'sec-submit'];
+                sections.forEach(id => {
+                    const el = document.getElementById(id);
+                    if(el) el.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                });
+
                 // Update Toggle Button Styles
                 if(lang === 'en') {
                     btnEn.className = "px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer";
@@ -635,7 +629,7 @@
                     btnEn.className = "px-5 py-1.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-800 transition-colors cursor-pointer";
                 }
 
-                // Toggle Spans visibility securely by manipulating 'hidden' class
+                // Toggle Spans visibility securely
                 document.querySelectorAll('.lang-en').forEach(el => {
                     if(lang === 'en') el.classList.remove('hidden');
                     else el.classList.add('hidden');
@@ -644,6 +638,13 @@
                     if(lang === 'ar') el.classList.remove('hidden');
                     else el.classList.add('hidden');
                 });
+
+                // Update Submit Button Icon direction
+                const submitIcon = document.getElementById('submit-icon');
+                if (submitIcon) {
+                    if (lang === 'ar') submitIcon.classList.add('rtl:rotate-180');
+                    else submitIcon.classList.remove('rtl:rotate-180');
+                }
 
                 // Toggle Input Placeholders
                 document.querySelectorAll('[data-en-placeholder]').forEach(el => {
@@ -660,7 +661,7 @@
             btnEn.addEventListener('click', () => setLanguage('en'));
             btnAr.addEventListener('click', () => setLanguage('ar'));
             
-            // Initialize Default Language to Arabic
+            // Set Default Language to Arabic
             setLanguage('ar');
             
             /* --- Experience Details Toggle --- */
@@ -709,7 +710,7 @@
                 });
             });
 
-            /* --- Form Submission Handling --- */
+            /* --- Form Submission Handling with Actual Google Script Backend --- */
             const form = document.getElementById('recruitmentForm');
             const successMessage = document.getElementById('successMessage');
 
@@ -720,47 +721,50 @@
                 const isAr = document.documentElement.dir === 'rtl';
                 const originalBtnContent = btn.innerHTML;
                 
-                // Show loading state
-                btn.innerHTML = `<svg class="animate-spin h-5 w-5 me-3 text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 
+                // Show dynamic loading state on the button
+                btn.innerHTML = `<svg class="animate-spin h-5 w-5 me-3 text-white inline-block" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 
                                 ${isAr ? 'جاري الإرسال...' : 'Submitting...'}`;
                 btn.disabled = true;
 
-                // 1. Package data as URLSearchParams to bypass strict Google CORS preflight
-                const formData = new FormData(form);
-                const urlEncodedData = new URLSearchParams();
-                for (const pair of formData.entries()) {
-                    urlEncodedData.append(pair[0], pair[1]);
-                }
-
-                // 2. Send the request
+                // Build Request Data
                 const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbytZlE4ypmQhe9pSDpBKnQIRPOb81hcT_I4HXBp8J7vaHtv_-b5RZk3EjvGcOZbDqoPGA/exec';
+                const formData = new FormData(form);
 
+                // Send request securely (Google Script automatically translates FormData to e.parameter)
                 fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    body: urlEncodedData,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    }
+                    body: formData
                 })
-                .then(response => response.json()) // Now it can read your script's response!
-                .then(data => {
-                    if (data.result === "success") {
-                        form.classList.add('hidden');
-                        successMessage.classList.remove('hidden');
-                        window.scrollTo({ top: 300, behavior: 'smooth' });
-                    } else {
-                        alert(isAr ? 'حدث خطأ. يرجى المحاولة مرة أخرى.' : 'An error occurred. Please try again.');
-                        btn.innerHTML = originalBtnContent;
-                        btn.disabled = false;
-                    }
+                .then(response => {
+                    // Success handling - Hide form, show success card, scroll into view
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    window.scrollTo({ top: 300, behavior: 'smooth' });
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    alert(isAr ? 'حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.' : 'Connection error. Please try again.');
+                    console.error('Submission Error:', error);
+                    
+                    // Create inline error banner so we NEVER use alert()
+                    const errorMsg = isAr ? "حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى." : "A connection error occurred. Please try again.";
+                    
+                    let existingError = document.getElementById('form-error-msg');
+                    if(!existingError) {
+                        existingError = document.createElement('div');
+                        existingError.id = 'form-error-msg';
+                        existingError.className = "bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl mb-6 text-sm font-medium animate-[fadeIn_0.3s_ease-out]";
+                        form.prepend(existingError);
+                    }
+                    existingError.textContent = errorMsg;
+                    
+                    // Remove error automatically after 5 seconds
+                    setTimeout(() => { if(existingError) existingError.remove(); }, 5000);
+                    
+                    // Reset Button
                     btn.innerHTML = originalBtnContent;
                     btn.disabled = false;
                 });
             });
+        });
     </script>
 </body>
 </html>
