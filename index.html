@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE Horus Student Branch - Application Form</title>
+    <title>IEEE Horus Student Branch - Board Application</title>
+    
+    <!-- 1. استدعاء خط Tajawal من Google Fonts ليعمل على الموبايل والكمبيوتر -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"FF Formata"', 'Formata', '"Frutiger LT Arabic"', 'sans-serif'],
+                        // 2. إضافة خط Tajawal كبديل أساسي في حالة عدم وجود الخطوط الأخرى على الموبايل
+                        sans: ['"Frutiger LT Arabic"', 'Tajawal', '"FF Formata"', 'Formata', 'sans-serif'],
                     },
                     colors: {
                         ieee: {
@@ -25,25 +32,24 @@
         }
     </script>
     <style>
-        /* Smooth transitions for form elements */
-        input[type="radio"]:checked + span, input[type="checkbox"]:checked + div + span {
-            color: #00629B;
-            font-weight: 500;
+        /* إضافة بسيطة لضمان تطبيق الخط في كل المتصفحات */
+        body {
+            font-family: 'Frutiger LT Arabic', 'Tajawal', 'FF Formata', 'Formata', sans-serif;
         }
 
-        /* Custom Select Dropdown Arrow */
+        input[type="radio"]:checked + span, input[type="checkbox"]:checked + div + span {
+            color: #00629B;
+            font-weight: 700;
+        }
+
         .custom-select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right 1rem center;
-            background-size: 1.2em;
-            padding-right: 2.5rem;
-        }
-        [dir="rtl"] .custom-select {
             background-position: left 1rem center;
+            background-size: 1.2em;
             padding-right: 1rem;
             padding-left: 2.5rem;
         }
@@ -54,6 +60,7 @@
         }
     </style>
 </head>
+<<<<<<< HEAD
 <body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen flex flex-col relative" dir="rtl">
 
     <!-- Simple Header (Main IEEE Blue - Pinned to LTR layout) -->
@@ -109,6 +116,17 @@
         <div class="text-white/90 text-sm font-medium hidden sm:block">
             <span class="lang-en hidden">Season 2026-2027</span>
             <span class="lang-ar">موسم 2026-2027</span>
+=======
+<body class="bg-gray-50 font-sans text-gray-800 antialiased min-h-screen flex flex-col relative">
+
+    <!-- Header -->
+    <header class="bg-ieee-blue py-4 px-6 md:px-10 flex items-center justify-between shadow-md sticky top-0 z-50" dir="ltr">
+        <div class="flex items-center">
+            <img src="logo.svg" alt="IEEE Horus Logo" class="block h-10 w-auto">
+        </div>
+        <div class="text-white/90 text-sm font-medium hidden sm:block">
+            <span>Season 2026-2027</span>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
         </div>
     </header>
 
@@ -117,7 +135,11 @@
         
         <!-- Background Hero Banner Image -->
         <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+<<<<<<< HEAD
             <img src="https://scontent.fcai21-3.fna.fbcdn.net/v/t39.30808-6/490583271_1962402974167559_514628693641795062_n.jpg?stp=dst-jpg_tt6&cstp=mx2048x1365&ctp=s2048x1365&_nc_cat=107&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=EZ0rkixzV60Q7kNvwEwuGpq&_nc_oc=Adq7uhaIN7ODAOKBTIZqNgeZ8KSi5eMbCsnn6ktB5NBFbdN7f2evPePvXXVCwcP4YdI&_nc_zt=23&_nc_ht=scontent.fcai21-3.fna&_nc_gid=tVqwXCIpGkTKBlaGWhkwHQ&_nc_ss=7b2a8&oh=00_AQHUrtVr5jCDhtDY6RvMWlTYcx_ialdbyeTnnONV3pBYjg&oe=6A96325B" 
+=======
+            <img src="490583271_1962402974167559_514628693641795062_n.jpg" 
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                  alt="IEEE Horus Event" class="w-full h-full object-cover object-top blur-md scale-105">
             <!-- Dark Overlay for Readability -->
             <div class="absolute inset-0 bg-ieee-dark/70"></div>
@@ -126,6 +148,7 @@
         <!-- Content Overlay Container -->
         <div class="relative z-10 w-full max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-16">
             
+<<<<<<< HEAD
             <!-- Hero Titles (Dynamically aligns LTR or RTL based on language) -->
             <div class="mb-10 text-left rtl:text-right">
                 <span class="bg-white/10 text-ieee-cyan border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-block backdrop-blur-md mb-4 shadow-sm">
@@ -139,11 +162,24 @@
                 <p class="text-gray-200 text-lg sm:text-xl max-w-xl">
                     <span class="lang-en hidden block">Become a part of our community and shape the future.</span>
                     <span class="lang-ar font-medium block">كن جزءاً من مجتمعنا وشارك في بناء المستقبل.</span>
+=======
+            <!-- Hero Titles -->
+            <div class="mb-10 text-left rtl:text-right">
+                <span class="bg-white/10 text-ieee-cyan border border-white/20 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide inline-flex backdrop-blur-md mb-4 shadow-sm">
+                    استمارة تقديم الهيكل التنظيمي
+                </span>
+                <h2 class="text-4xl sm:text-5xl font-bold text-white mb-3">
+                    Board Recruitment
+                </h2>
+                <p class="text-gray-200 text-lg sm:text-xl max-w-xl text-left rtl:text-right">
+                    كن جزءاً من القيادة وشارك في بناء مستقبل الفرع.
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                 </p>
             </div>
 
             <!-- The White Form Card -->
             <div class="bg-white rounded-2xl shadow-2xl p-6 md:p-10 border border-gray-100">
+<<<<<<< HEAD
                 
                 <!-- Single Working Language Toggle -->
                 <div class="flex mb-8 w-full border-b border-gray-100 pb-6" dir="ltr">
@@ -152,12 +188,15 @@
                         <button type="button" id="btn-ar" class="px-5 py-1.5 rounded-full bg-white shadow-sm text-sm font-bold text-ieee-blue transition-colors cursor-pointer">AR</button>
                     </div>
                 </div>
+=======
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
 
-                <!-- Success Message -->
-                <div id="successMessage" class="hidden flex-col items-center justify-center text-center py-12 animate-[fadeIn_0.5s_ease-out]">
-                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                <!-- Success Message (Hidden by default) -->
+                <div id="successMessage" class="hidden flex-col items-center justify-center text-center py-12 animate-[fadeIn_0.5s_ease-out] w-full">
+                    <div class="mx-auto w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
                         <svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     </div>
+<<<<<<< HEAD
                     <h2 class="text-3xl font-bold text-gray-900 mb-2">
                         <span class="lang-en hidden">Application Received!</span>
                         <span class="lang-ar font-bold">تم استلام الطلب!</span>
@@ -170,13 +209,25 @@
                         <span class="lang-en hidden">Submit Another</span>
                         <span class="lang-ar">تقديم طلب آخر</span>
                     </button>
+=======
+                    <h2 class="text-3xl font-bold text-gray-900 mb-2">تم استلام الطلب بنجاح!</h2>
+                    <p class="text-gray-600 max-w-md mx-auto">
+                        شكراً لتقديمك في فريق القيادة لـ IEEE Horus Student Branch. سيتم مراجعة طلبك والتواصل معك قريباً.
+                    </p>
+                </div>
+
+                <!-- Error Message Banner (Hidden by default) -->
+                <div id="errorBanner" class="hidden mb-6 p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 font-bold text-center animate-[fadeIn_0.3s_ease-out]">
+                    <!-- Error text gets injected here -->
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                 </div>
 
                 <!-- The Form -->
                 <form id="recruitmentForm" class="space-y-10">
                     
-                    <!-- Section 1: Personal Info -->
+                    <!-- SECTION 1 — Applicant Information -->
                     <div class="space-y-6">
+<<<<<<< HEAD
                         <div class="flex items-center gap-3 mb-5">
                             <div class="w-8 h-8 rounded-full bg-ieee-blue text-white flex items-center justify-center font-bold text-sm shadow-md">1</div>
                             <h3 class="text-xl font-bold text-gray-900">
@@ -195,11 +246,25 @@
                                 </label>
                                 <input type="text" id="fullName" name="fullName" required data-en-placeholder="Enter your full name" data-ar-placeholder="أدخل اسمك بالكامل" placeholder="أدخل اسمك بالكامل" 
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
+=======
+                        <div class="flex items-center gap-3 mb-5 border-b border-gray-100 pb-3">
+                            <h3 class="text-xl font-bold text-ieee-blue">
+                                القسم الأول: المعلومات الشخصية
+                            </h3>
+                        </div>
+
+                        <div class="space-y-5">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                    الاسم بالكامل <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" name="fullName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm" dir="auto">
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                             </div>
 
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <!-- Email -->
                                 <div>
+<<<<<<< HEAD
                                     <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
                                         <span class="lang-en hidden">Email Address</span>
                                         <span class="lang-ar">البريد الإلكتروني</span> 
@@ -207,10 +272,15 @@
                                     </label>
                                     <input type="email" id="email" name="email" required data-en-placeholder="Enter your email" data-ar-placeholder="أدخل بريدك الإلكتروني" placeholder="أدخل بريدك الإلكتروني" 
                                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan transition-colors bg-white shadow-sm">
+=======
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                        الرقم الجامعي <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" name="universityId" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm" dir="ltr">
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                                 </div>
-
-                                <!-- WhatsApp -->
                                 <div>
+<<<<<<< HEAD
                                     <label for="whatsapp" class="block text-sm font-medium text-gray-700 mb-1.5">
                                         <span class="lang-en hidden">WhatsApp Number</span>
                                         <span class="lang-ar">رقم الواتساب</span> 
@@ -240,10 +310,24 @@
                                         <option value="Fine Arts" data-en-text="Fine Arts" data-ar-text="فنون جميلة">فنون جميلة</option>
                                         <option value="Al-Alsun and Translation" data-en-text="Al-Alsun" data-ar-text="الألسن والترجمة">الألسن والترجمة</option>
                                         <option value="Business" data-en-text="Business" data-ar-text="إدارة أعمال">إدارة أعمال</option>
+=======
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                        المستوى الدراسي <span class="text-red-500">*</span>
+                                    </label>
+                                    <select name="academicYear" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm custom-select" dir="ltr">
+                                        <option value="" disabled selected>اختر المستوى الدراسي</option>
+                                        <option value="Level 1">Level 1</option>
+                                        <option value="Level 2">Level 2</option>
+                                        <option value="Level 3">Level 3</option>
+                                        <option value="Level 4">Level 4</option>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                                     </select>
                                 </div>
+                            </div>
 
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                                 <div>
+<<<<<<< HEAD
                                     <label for="academicYear" class="block text-sm font-medium text-gray-700 mb-1.5">
                                         <span class="lang-en hidden">Level</span>
                                         <span class="lang-ar">المستوى الدراسي</span> 
@@ -260,12 +344,54 @@
                                         <option value="Level 6" data-en-text="Level 6" data-ar-text="المستوى 6">المستوى 6</option>
                                         <option value="Level 7" data-en-text="Level 7" data-ar-text="المستوى 7">المستوى 7</option>
                                         <option value="Level 8" data-en-text="Level 8" data-ar-text="المستوى 8">المستوى 8</option>
+=======
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                        الكلية والقسم <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="text" name="faculty" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm" dir="auto">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                        رقم الهاتف / الواتساب <span class="text-red-500">*</span>
+                                    </label>
+                                    <input type="tel" name="phone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm text-right" dir="ltr">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                        المنصب الحالي في الفرع <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="currentPosition" name="currentPosition" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm custom-select" dir="ltr">
+                                        <option value="" disabled selected>اختر المنصب الحالي</option>
+                                        <option value="Member">Member</option>
+                                        <option value="Head">Head</option>
+                                        <option value="Officer">Officer</option>
+                                        <option value="None (Not applicable)">None (Not applicable)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                        اللجنة الحالية <span class="text-red-500">*</span>
+                                    </label>
+                                    <select id="currentCommittee" name="currentCommittee" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm custom-select" dir="ltr">
+                                        <option value="" disabled selected>اختر اللجنة الحالية</option>
+                                        <option value="Social Media">Social Media</option>
+                                        <option value="PR">PR</option>
+                                        <option value="FR">FR</option>
+                                        <option value="Logistics">Logistics</option>
+                                        <option value="Membership">Membership</option>
+                                        <option value="Technical">Technical</option>
+                                        <option value="None (Not applicable)">None (Not applicable)</option>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                                     </select>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <!-- Section 2: Experience & Skills -->
                     <div class="space-y-6 pt-6 border-t border-gray-100">
                         <div class="flex items-center gap-3 mb-5">
@@ -468,10 +594,41 @@
                                 </label>
                                 <input type="url" id="workPlanLink" name="workPlanLink" data-en-placeholder="Google Drive/OneDrive link..." data-ar-placeholder="رابط جوجل درايف / ون درايف..." placeholder="رابط جوجل درايف / ون درايف..." dir="ltr"
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
+=======
+                    <!-- SECTION 2 — Choose Your Application Track -->
+                    <div class="space-y-6 pt-6 border-t border-gray-200">
+                        <div class="flex items-center gap-3 mb-5 border-b border-gray-100 pb-3">
+                            <h3 class="text-xl font-bold text-ieee-blue">
+                                القسم الثاني: اختيار مسار التقديم
+                            </h3>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-3">
+                                ما هو المنصب الذي تتقدم إليه؟ <span class="text-red-500">*</span>
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-bold text-gray-900">A. رئيس لجنة (Head of Committee)</span>
+                                        <input type="radio" name="track" value="Head" required class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                    </div>
+                                    <span class="text-xs text-gray-500 mt-2 block" dir="ltr">Social Media, PR, FR, Logistics, Membership, Technical</span>
+                                </label>
+                                
+                                <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-bold text-gray-900">B. Officer</span>
+                                        <input type="radio" name="track" value="Officer" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
+                                    </div>
+                                    <span class="text-xs text-gray-500 mt-2 block" dir="ltr">Chair, Vice Chair, Treasurer, Secretary</span>
+                                </label>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                             </div>
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <!-- Section 4: Final Questions -->
                     <div class="space-y-6 pt-6 border-t border-gray-100">
                         <div class="flex items-center gap-3 mb-5">
@@ -501,18 +658,288 @@
                                 </label>
                                 <input type="text" id="howDidYouHear" name="howDidYouHear" required data-en-placeholder="e.g., Facebook, Friend..." data-ar-placeholder="مثال: فيسبوك، صديق..." placeholder="مثال: فيسبوك، صديق..." 
                                     class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan focus:border-ieee-cyan bg-white shadow-sm">
+=======
+                    <!-- BRANCH A — HEAD OF COMMITTEE APPLICATION -->
+                    <div id="headSection" class="hidden space-y-8 pt-6 border-t border-ieee-cyan/30 bg-blue-50/30 p-6 rounded-xl">
+                        <h3 class="text-2xl font-bold text-ieee-blue text-center mb-6 border-b border-gray-200 pb-4">
+                            استمارة تقديم رؤساء اللجان (Head of Committee)
+                        </h3>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                أي لجنة تود قيادتها؟ <span class="text-red-500">*</span>
+                            </label>
+                            <select id="headRole" name="headRole" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white custom-select font-medium text-gray-800" dir="ltr">
+                                <option value="" disabled selected>اختر اللجنة</option>
+                                <option value="Social Media Head">Social Media Head</option>
+                                <option value="PR Head">Public Relations (PR) Head</option>
+                                <option value="FR Head">Fundraising (FR) Head</option>
+                                <option value="Logistics Head">Logistics Head</option>
+                                <option value="Membership Head">Membership Head</option>
+                                <option value="Technical Head">Technical Head</option>
+                            </select>
+                        </div>
+
+                        <!-- General Head Questions -->
+                        <div class="space-y-5">
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">لماذا أنت مهتم بقيادة هذه اللجنة؟ <span class="text-red-500">*</span></label><textarea name="interestReason" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">ما هي الخبرات السابقة التي تمتلكها في هذا المجال؟ <span class="text-red-500">*</span></label><textarea name="relevantExp" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">ما هي المهارات التي تجعلك مناسباً لهذا المنصب؟ <span class="text-red-500">*</span></label><textarea name="skills" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-gray-200 space-y-5 shadow-sm">
+                            <h4 class="font-bold text-lg text-gray-800 mb-4 border-b pb-2">القيادة والإدارة (Leadership & Management)</h4>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">كيف تصف أسلوبك في القيادة؟ <span class="text-red-500">*</span></label><textarea name="leadershipStyle" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">كيف ستقوم بتحفيز أعضاء لجنتك وإبقائهم مشاركين بفعالية طوال الموسم؟ <span class="text-red-500">*</span></label><textarea name="motivationStrategy" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">كيف ستتعامل مع عضو يتأخر باستمرار عن تسليم المهام أو المواعيد النهائية؟ <span class="text-red-500">*</span></label><textarea name="handlingMissingTasks" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">صف موقفاً قمت فيه بقيادة فريق أو مشروع. ماذا تعلمت من تلك التجربة؟ <span class="text-red-500">*</span></label><textarea name="leadershipSituation" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-gray-200 space-y-5 shadow-sm">
+                            <h4 class="font-bold text-lg text-gray-800 mb-4 border-b pb-2">الرؤية والتخطيط (Vision & Planning)</h4>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">ما هي رؤيتك لهذه اللجنة؟ <span class="text-red-500">*</span></label><textarea name="vision" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">ما هي 2-3 مبادرات أو أفكار تود تقديمها خلال فترتك؟ <span class="text-red-500">*</span></label><textarea name="initiatives" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">ما الذي تعتقد أنه يمكن للجنة تحسينه مقارنة بالمواسم السابقة؟ <span class="text-red-500">*</span></label><textarea name="improvements" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">كيف ستقيس نجاح لجنتك بنهاية الموسم؟ <span class="text-red-500">*</span></label><textarea name="measureSuccess" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <!-- Specific Head Role Questions -->
+                        <div id="socialMediaQuestions" class="hidden space-y-4 bg-ieee-light/50 p-5 rounded-lg border border-ieee-blue/20">
+                            <h4 class="font-bold text-ieee-blue mb-2" dir="ltr">SOCIAL MEDIA HEAD Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستقوم بتطوير تواجد الفرع على وسائل التواصل الاجتماعي وزيادة التفاعل؟ <span class="text-red-500">*</span></label><textarea name="sm_presence" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ما نوع المحتوى الذي ستقدمه لجعل الفرع أكثر جذباً للطلاب؟ <span class="text-red-500">*</span></label><textarea name="sm_content" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستنظم فريق صناعة المحتوى وجدول النشر؟ <span class="text-red-500">*</span></label><textarea name="sm_calendar" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="prQuestions" class="hidden space-y-4 bg-ieee-light/50 p-5 rounded-lg border border-ieee-blue/20">
+                            <h4 class="font-bold text-ieee-blue mb-2" dir="ltr">PR HEAD Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستحسن الصورة العامة والظهور لفرع IEEE Horus؟ <span class="text-red-500">*</span></label><textarea name="pr_image" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستتعامل مع التعاون مع المنظمات الأخرى والأنشطة الطلابية والجهات الخارجية؟ <span class="text-red-500">*</span></label><textarea name="pr_collab" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستتعامل مع مشكلة تواصل أو مشكلة تمس سمعة الفرع؟ <span class="text-red-500">*</span></label><textarea name="pr_crisis" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="frQuestions" class="hidden space-y-4 bg-ieee-light/50 p-5 rounded-lg border border-ieee-blue/20">
+                            <h4 class="font-bold text-ieee-blue mb-2" dir="ltr">FR HEAD Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستتواصل مع الرعاة المحتملين وفرص التمويل؟ <span class="text-red-500">*</span></label><textarea name="fr_approach" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ما هي استراتيجيتك لبناء علاقات مع الرعاة والحفاظ عليها؟ <span class="text-red-500">*</span></label><textarea name="fr_strategy" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">اقترح مبادرة تمويل واحدة تود تنفيذها. <span class="text-red-500">*</span></label><textarea name="fr_initiative" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="logisticsQuestions" class="hidden space-y-4 bg-ieee-light/50 p-5 rounded-lg border border-ieee-blue/20">
+                            <h4 class="font-bold text-ieee-blue mb-2" dir="ltr">LOGISTICS HEAD Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستضمن التخطيط والتنفيذ الجيد للفعاليات من الناحية اللوجستية؟ <span class="text-red-500">*</span></label><textarea name="log_planning" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستتعامل مع مشكلة لوجستية غير متوقعة أثناء الفعالية؟ <span class="text-red-500">*</span></label><textarea name="log_problem" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ما هي الأنظمة التي ستستخدمها لتنظيم المعدات، الأماكن، النقل ومتطلبات الفعاليات؟ <span class="text-red-500">*</span></label><textarea name="log_systems" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="membershipQuestions" class="hidden space-y-4 bg-ieee-light/50 p-5 rounded-lg border border-ieee-blue/20">
+                            <h4 class="font-bold text-ieee-blue mb-2" dir="ltr">MEMBERSHIP HEAD Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستجذب أعضاء جدد وتشجع الطلاب على الانضمام لـ IEEE Horus SB؟ <span class="text-red-500">*</span></label><textarea name="mem_attract" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستحافظ على تفاعل الأعضاء بعد انضمامهم؟ <span class="text-red-500">*</span></label><textarea name="mem_retention" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ماذا ستفعل لبناء إحساس أقوى بالمجتمع والانتماء داخل الفرع؟ <span class="text-red-500">*</span></label><textarea name="mem_community" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="technicalQuestions" class="hidden space-y-4 bg-ieee-light/50 p-5 rounded-lg border border-ieee-blue/20">
+                            <h4 class="font-bold text-ieee-blue mb-2" dir="ltr">TECHNICAL HEAD Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">ما هي الأنشطة التقنية أو فرص التعلم التي تود تقديمها؟ <span class="text-red-500">*</span></label><textarea name="tech_activities" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستحدد الاهتمامات والاحتياجات التقنية للطلاب؟ <span class="text-red-500">*</span></label><textarea name="tech_needs" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستضمن أن الفعاليات التقنية تقدم قيمة حقيقية للمشاركين؟ <span class="text-red-500">*</span></label><textarea name="tech_value" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+                    </div>
+
+                    <!-- BRANCH B — OFFICER APPLICATION -->
+                    <div id="officerSection" class="hidden space-y-8 pt-6 border-t border-purple-500/30 bg-purple-50/30 p-6 rounded-xl">
+                        <h3 class="text-2xl font-bold text-purple-700 text-center mb-6 border-b border-gray-200 pb-4">
+                            استمارة تقديم المكتب (Officers)
+                        </h3>
+                        
+                        <div>
+                            <label class="block text-sm font-bold text-gray-700 mb-1.5">
+                                أي منصب تود شغله؟ <span class="text-red-500">*</span>
+                            </label>
+                            <select id="officerRole" name="officerRole" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 bg-white custom-select font-medium text-gray-800" dir="ltr">
+                                <option value="" disabled selected>اختر المنصب</option>
+                                <option value="Chair">Chair</option>
+                                <option value="Vice Chair">Vice Chair</option>
+                                <option value="Treasurer">Treasurer</option>
+                                <option value="Secretary">Secretary</option>
+                            </select>
+                        </div>
+
+                        <!-- General Officer Questions -->
+                        <div class="space-y-5">
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">لماذا أنت مهتم بهذا المنصب؟ <span class="text-red-500">*</span></label><textarea name="interestReason" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">ما هي الخبرات أو المهارات ذات الصلة التي تمتلكها لهذا الدور؟ <span class="text-red-500">*</span></label><textarea name="relevantExp" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg border border-gray-200 space-y-5 shadow-sm">
+                            <h4 class="font-bold text-lg text-gray-800 mb-4 border-b pb-2">القيادة وإدارة الفرع (Leadership & Branch Management)</h4>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">برأيك، ما الذي يصنع فريق قيادة فعال لفرع IEEE الطلابي؟ <span class="text-red-500">*</span></label><textarea name="effectiveLeadership" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">كيف ستساهم في تحسين التعاون بين اللجان المختلفة؟ <span class="text-red-500">*</span></label><textarea name="cooperation" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1">في حال حدوث أي خلاف بين الـ Officers ما الخطوات التي ستقوم بها لمحاولة حل المشكلة من جانبك؟ <span class="text-red-500">*</span></label><textarea name="disagreements" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-bold text-gray-700 mb-1"> كيف ستتعامل مع رئيس لجنة (Head) يتأخر باستمرار عن تسليم المهام أو المواعيد النهائية؟<span class="text-red-500">*</span></label><textarea name="delayResolution" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <!-- Specific Officer Role Questions -->
+                        <div id="chairQuestions" class="hidden space-y-4 bg-purple-100/50 p-5 rounded-lg border border-purple-300">
+                            <h4 class="font-bold text-purple-700 mb-2" dir="ltr">CHAIR Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">ما هي رؤيتك لـ IEEE Horus SB خلال فترة ولايتك؟ <span class="text-red-500">*</span></label><textarea name="chair_vision" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ما هي الأهداف الرئيسية الثلاثة التي تود أن يحققها الفرع؟ <span class="text-red-500">*</span></label><textarea name="chair_goals" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستضمن عمل جميع اللجان معًا نحو الأهداف العامة للفرع؟ <span class="text-red-500">*</span></label><textarea name="chair_teamwork" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستمثل IEEE Horus SB وتبني علاقات قوية مع إدارة الجامعة والمنظمات الخارجية؟ <span class="text-red-500">*</span></label><textarea name="chair_relations" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="viceChairQuestions" class="hidden space-y-4 bg-purple-100/50 p-5 rounded-lg border border-purple-300">
+                            <h4 class="font-bold text-purple-700 mb-2" dir="ltr">VICE CHAIR Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستدعم رئيس الفرع وتضمن تنفيذ خطط الفرع بشكل صحيح؟ <span class="text-red-500">*</span></label><textarea name="vc_support" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستنسق وتتابع مع رؤساء اللجان؟ <span class="text-red-500">*</span></label><textarea name="vc_coordination" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">إذا كان رئيس الفرع غير متاح أثناء موقف مهم، كيف ستتعامل معه؟ <span class="text-red-500">*</span></label><textarea name="vc_absence" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ما هي الأنظمة التي ستستخدمها لمراقبة تقدم اللجان المختلفة؟ <span class="text-red-500">*</span></label><textarea name="vc_tracking" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="treasurerQuestions" class="hidden space-y-4 bg-purple-100/50 p-5 rounded-lg border border-purple-300">
+                            <h4 class="font-bold text-purple-700 mb-2" dir="ltr">TREASURER Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستدير ميزانية الفرع والموارد المالية بمسؤولية؟ <span class="text-red-500">*</span></label><textarea name="tr_budget" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستحدد أولويات الإنفاق عندما تكون الموارد المالية للفرع محدودة؟ <span class="text-red-500">*</span></label><textarea name="tr_priority" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستحافظ على الشفافية والسجلات المالية الدقيقة؟ <span class="text-red-500">*</span></label><textarea name="tr_transparency" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">اقترح طريقة واحدة يمكن لـ IEEE Horus SB من خلالها زيادة موارده المالية. <span class="text-red-500">*</span></label><textarea name="tr_revenue" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+
+                        <div id="secretaryQuestions" class="hidden space-y-4 bg-purple-100/50 p-5 rounded-lg border border-purple-300">
+                            <h4 class="font-bold text-purple-700 mb-2" dir="ltr">SECRETARY Specifics</h4>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستضمن توثيق اجتماعات الفرع والقرارات والمعلومات المهمة بشكل صحيح؟ <span class="text-red-500">*</span></label><textarea name="sec_doc" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستنظم وتحافظ على السجلات الإدارية للفرع؟ <span class="text-red-500">*</span></label><textarea name="sec_records" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">كيف ستضمن التواصل الفعال بين المكتب التنفيذي ورؤساء اللجان؟ <span class="text-red-500">*</span></label><textarea name="sec_comm" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                            <div><label class="block text-sm font-semibold mb-1">ما هو النظام الذي ستستخدمه لتتبع المهام والمواعيد النهائية والاجتماعات والمستندات المهمة؟ <span class="text-red-500">*</span></label><textarea name="sec_tracking" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white resize-none" dir="auto"></textarea></div>
+                        </div>
+                    </div>
+
+                    <!-- TASK SECTION — Presentation -->
+                    <div class="space-y-6 pt-6 border-t border-gray-200">
+                        <div class="flex items-center gap-3 mb-5 border-b border-gray-100 pb-3">
+                            <h3 class="text-xl font-bold text-ieee-blue">
+                                القسم الثالث: المهمة المطلوبة (Presentation Task)
+                            </h3>
+                        </div>
+
+                        <div class="bg-blue-50/50 p-6 rounded-xl border border-ieee-cyan/30 shadow-sm">
+                            <h4 class="font-bold text-lg text-ieee-blue mb-2">متطلبات العرض التقديمي (Presentation Requirements)</h4>
+                            <p class="text-sm text-gray-700 leading-loose mb-5">
+                                يرجى إعداد عرض تقديمي (Presentation) قصير يوضّح لنا من أنت، وما الذي قدمته خلال رحلتك، وما الذي تطمح إلى تقديمه في المنصب الذي تتقدم إليه. نهدف من خلال هذا العرض إلى التعرف عليك بشكل أفضل، وفهم خبراتك ورؤيتك، ومعرفة مدى استعدادك لتحمل مسؤولية المنصب وصنع تأثير حقيقي داخل الفرع.
+                            </p>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4 text-sm text-gray-800 mb-6">
+                                <ul class="list-disc list-inside space-y-3 marker:text-ieee-cyan">
+                                    <li><strong>عرّف نفسك:</strong> الاسم، الكلية، والمنصب الذي تتقدم له ولماذا.</li>
+                                    <li><strong>خبراتك:</strong> خبراتك السابقة داخل وخارج IEEE، المناصب التي توليتها، والمهارات المكتسبة.</li>
+                                    <li><strong>رحلتك في IEEE HORUS SB:</strong> كيف كانت تجربتك؟ أهم ما تعلمته وموقف أثر فيك.</li>
+                                </ul>
+                                <ul class="list-disc list-inside space-y-3 marker:text-ieee-cyan">
+                                    <li><strong>خطتك للمنصب:</strong> رؤيتك، أهدافك، المبادرات التي ترغب بتنفيذها، وكيف ستدعم الفريق (كـ Officer) أو تدير اللجنة (كـ Head).</li>
+                                    <li><strong>الأثر الذي تريد تحقيقه:</strong> ماذا تريد أن تضيف للفرع؟ وكيف ستجعل التجربة أفضل؟</li>
+                                    <li><strong>رسالة ختامية:</strong> لماذا ترى نفسك مناسباً وما الذي تتمنى تحقيقه.</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-white/60 p-4 rounded-lg mb-6 text-xs text-gray-600 border border-white leading-loose">
+                                <strong class="text-gray-800 text-sm block mb-1">شكل الـ Presentation المقترح:</strong> 
+                                Slide 1: About Me | Slide 2: My Experience | Slide 3: My IEEE HORUS Journey | Slide 4: My Vision & Plan | Slide 5: My Impact | Slide 6: Why Me? | Slide 7: Final Message.<br>
+                                <span class="italic text-gray-500 mt-2 inline-block">*ملاحظة: لا يشترط أن يكون الـعرض طويل؛ المطلوب هو توصيل شخصيتك ورؤيتك بشكل واضح ومختصر.</span>
                             </div>
 
-                            <!-- Agreement Checkbox -->
+                            <div class="pt-4 border-t border-ieee-cyan/20">
+                                <label class="block text-sm font-bold text-gray-800 mb-2">
+                                    يرجى رفع رابط Google Drive للعرض <span class="text-red-500">*</span>
+                                </label>
+                                <input type="url" name="presentationLink" required placeholder="https://drive.google.com/file/d/..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white shadow-sm text-left" dir="ltr">
+                                <p class="text-xs text-red-600 mt-2 font-bold flex items-center gap-1">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                                    تأكد من تعديل صلاحيات الرابط (General Access) لتكون "Anyone with the link" لضمان إمكانية الوصول للجميع.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FINAL SECTION — Commitment & Motivation -->
+                    <div class="space-y-6 pt-6 border-t border-gray-200">
+                        <div class="flex items-center gap-3 mb-5 border-b border-gray-100 pb-3">
+                            <h3 class="text-xl font-bold text-ieee-blue">
+                                القسم الأخير: الالتزام والدوافع
+                            </h3>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-2">
+                                    الوقت المتاح أسبوعياً لـ IEEE Horus SB <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer bg-white hover:bg-gray-50 [&:has(input:checked)]:border-ieee-blue transition-colors">
+                                        <input type="radio" name="weeklyTime" value="1-3 hours" required class="w-4 h-4 text-ieee-blue">
+                                        <span class="mr-2 text-sm font-medium">1–3 ساعات</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer bg-white hover:bg-gray-50 [&:has(input:checked)]:border-ieee-blue transition-colors">
+                                        <input type="radio" name="weeklyTime" value="3-5 hours" class="w-4 h-4 text-ieee-blue">
+                                        <span class="mr-2 text-sm font-medium">3–5 ساعات</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer bg-white hover:bg-gray-50 [&:has(input:checked)]:border-ieee-blue transition-colors">
+                                        <input type="radio" name="weeklyTime" value="5-8 hours" class="w-4 h-4 text-ieee-blue">
+                                        <span class="mr-2 text-sm font-medium">5–8 ساعات</span>
+                                    </label>
+                                    <label class="flex items-center p-3 border rounded-lg cursor-pointer bg-white hover:bg-gray-50 [&:has(input:checked)]:border-ieee-blue transition-colors">
+                                        <input type="radio" name="weeklyTime" value="8+ hours" class="w-4 h-4 text-ieee-blue">
+                                        <span class="mr-2 text-sm font-medium" dir="ltr">8+ ساعات</span>
+                                    </label>
+                                </div>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
+                            </div>
+
                             <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                                <label class="block text-sm font-bold text-gray-800 mb-3">
+                                    هل أنت مستعد لحضور الاجتماعات بانتظام والمشاركة الفعالة في أنشطة الفرع؟ <span class="text-red-500">*</span>
+                                </label>
+                                <div class="flex space-x-6 gap-x-6">
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="radio" name="meetingCommitment" value="Yes" required class="w-4 h-4 text-ieee-blue border-gray-300">
+                                        <span class="mr-2 font-bold text-gray-700">نعم</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer group">
+                                        <input type="radio" name="meetingCommitment" value="No" class="w-4 h-4 text-ieee-blue border-gray-300">
+                                        <span class="mr-2 font-bold text-gray-700">لا</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">ما هو الشيء الوحيد الذي تريد أن يُعرف به IEEE Horus SB بنهاية فترتك؟ <span class="text-red-500">*</span></label>
+                                <textarea name="branchLegacy" required rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white resize-none" dir="auto"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">لماذا يجب أن نختارك لهذا المنصب؟ <span class="text-red-500">*</span></label>
+                                <textarea name="whyYou" required rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white resize-none" dir="auto"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-bold text-gray-700 mb-1">هل هناك أي شيء آخر تود أن تعرفه لجنة الاختيار؟ (اختياري)</label>
+                                <textarea name="additionalNotes" rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-white resize-none" dir="auto"></textarea>
+                            </div>
+
+                            <!-- Declaration Checkbox -->
+                            <div class="bg-blue-50/50 p-4 rounded-xl border border-ieee-cyan/30 mt-6">
                                 <label class="flex items-start cursor-pointer group">
                                     <div class="flex items-center h-5 mt-0.5">
-                                        <input type="checkbox" required class="w-4 h-4 text-ieee-blue border-gray-300 rounded focus:ring-ieee-cyan">
+                                        <input type="checkbox" name="declaration" value="Confirmed" required class="w-4 h-4 text-ieee-blue border-gray-300 rounded focus:ring-ieee-cyan">
                                     </div>
+<<<<<<< HEAD
                                     <div class="ms-3 text-sm text-gray-700 group-hover:text-gray-900 transition-colors font-medium">
                                         <span class="lang-en hidden">I agree that I have entered correct information.</span>
                                         <span class="lang-ar font-bold">أقر بأنني أدخلت معلومات صحيحة.</span> 
                                         <span class="text-red-500">*</span>
+=======
+                                    <div class="mr-3 text-sm text-gray-700 font-medium leading-relaxed">
+                                        <strong>إقرار (Declaration):</strong> أؤكد أن المعلومات المقدمة صحيحة. وأتفهم أن التقديم لا يضمن القبول، وأن من يتم اختيارهم يتوقع منهم المساهمة الفعالة وتحمل مسؤوليات المنصب بالكامل.
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                                     </div>
                                 </label>
                             </div>
@@ -520,12 +947,19 @@
                     </div>
 
                     <!-- Submit Button -->
+<<<<<<< HEAD
                     <div class="pt-6 pl-0 md:pl-11" dir="rtl" id="sec-submit">
                         <button type="submit" 
                             class="w-full py-4 bg-ieee-blue hover:bg-[#004f7c] text-white font-bold rounded-xl transform transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ieee-blue text-lg flex justify-center items-center gap-2 shadow-sm">
                             <span class="lang-en hidden">Submit Application</span>
                             <span class="lang-ar font-bold">تأكيد الطلب</span>
                             <svg id="submit-icon" class="w-5 h-5 rtl:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+=======
+                    <div class="pt-6">
+                        <button type="submit" 
+                            class="w-full py-4 bg-ieee-blue hover:bg-[#004f7c] text-white font-bold rounded-xl transform transition-all active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ieee-blue text-lg flex justify-center items-center gap-2 shadow-sm">
+                            <span>تأكيد الطلب (Submit Application)</span>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                         </button>
                     </div>
                     
@@ -535,6 +969,7 @@
     </main>
 
     <!-- Footer -->
+<<<<<<< HEAD
     <footer class="bg-ieee-dark pt-12 pb-8 flex flex-col items-center justify-center z-10 w-full mt-0 border-none" dir="ltr">
         
         <!-- Footer Logo (White fill - Fixed Path) -->
@@ -601,15 +1036,22 @@
         </div>
 
         <p class="text-gray-500 text-xs mt-2">© 2026 IEEE Horus Student Branch. All rights reserved.</p>
+=======
+    <footer class="bg-ieee-dark pt-12 pb-8 flex flex-col items-center justify-center z-10 w-full mt-0 border-none">
+        <img src="logo.svg" alt="IEEE Horus Logo" class="mb-6 h-12 w-auto opacity-90 hover:opacity-100 transition-opacity">
+        <p class="text-gray-500 text-xs mt-2" dir="ltr">© 2026 IEEE Horus Student Branch. All rights reserved.</p>
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
     </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            /* --- Language Switch Logic --- */
-            const btnEn = document.getElementById('btn-en');
-            const btnAr = document.getElementById('btn-ar');
+            /* --- Track & Role Selection Logic --- */
+            const trackRadios = document.querySelectorAll('input[name="track"]');
+            const headSection = document.getElementById('headSection');
+            const officerSection = document.getElementById('officerSection');
             
+<<<<<<< HEAD
             function setLanguage(lang) {
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
                 
@@ -669,58 +1111,145 @@
             const expDetails = document.getElementById('experienceDetails');
             const otherActivityRadios = document.querySelectorAll('input[name="otherActivity"]');
             const expBrief = document.getElementById('expBrief');
+=======
+            // All specific question sections map
+            const specificSections = {
+                'Social Media Head': document.getElementById('socialMediaQuestions'),
+                'PR Head': document.getElementById('prQuestions'),
+                'FR Head': document.getElementById('frQuestions'),
+                'Logistics Head': document.getElementById('logisticsQuestions'),
+                'Membership Head': document.getElementById('membershipQuestions'),
+                'Technical Head': document.getElementById('technicalQuestions'),
+                'Chair': document.getElementById('chairQuestions'),
+                'Vice Chair': document.getElementById('viceChairQuestions'),
+                'Treasurer': document.getElementById('treasurerQuestions'),
+                'Secretary': document.getElementById('secretaryQuestions')
+            };
 
-            expRadios.forEach(radio => {
+            const headRoleSelect = document.getElementById('headRole');
+            const officerRoleSelect = document.getElementById('officerRole');
+
+            function hideAllSpecificSections() {
+                Object.values(specificSections).forEach(section => {
+                    if(section) {
+                        section.classList.add('hidden');
+                        // Disable required attributes for hidden fields to allow form submission
+                        section.querySelectorAll('textarea, input').forEach(el => el.required = false);
+                    }
+                });
+            }
+
+            function showSpecificSection(role) {
+                hideAllSpecificSections();
+                const section = specificSections[role];
+                if (section) {
+                    section.classList.remove('hidden');
+                    // Re-enable required attributes for the visible fields
+                    section.querySelectorAll('textarea, input').forEach(el => el.required = true);
+                }
+            }
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
+
+            // Track change (Head vs Officer)
+            trackRadios.forEach(radio => {
                 radio.addEventListener('change', (e) => {
-                    if (e.target.value === 'Yes') {
-                        expDetails.classList.remove('hidden');
-                        expDetails.classList.add('animate-[fadeIn_0.3s_ease-out]');
-                        otherActivityRadios.forEach(r => r.required = true);
-                        expBrief.required = true;
+                    // Reset sub-role selections when changing parent track
+                    headRoleSelect.value = "";
+                    officerRoleSelect.value = "";
+                    hideAllSpecificSections();
+
+                    if (e.target.value === 'Head') {
+                        headSection.classList.remove('hidden');
+                        officerSection.classList.add('hidden');
+                        
+                        headSection.querySelectorAll('select, textarea').forEach(el => el.required = true);
+                        officerSection.querySelectorAll('select, textarea').forEach(el => el.required = false);
                     } else {
-                        expDetails.classList.add('hidden');
-                        expDetails.classList.remove('animate-[fadeIn_0.3s_ease-out]');
-                        otherActivityRadios.forEach(r => {
-                            r.required = false;
-                            r.checked = false;
-                        });
-                        expBrief.required = false;
-                        expBrief.value = '';
+                        officerSection.classList.remove('hidden');
+                        headSection.classList.add('hidden');
+                        
+                        officerSection.querySelectorAll('select, textarea').forEach(el => el.required = true);
+                        headSection.querySelectorAll('select, textarea').forEach(el => el.required = false);
                     }
                 });
             });
 
-            /* --- Role Tier -> Section 3 (Strategic Plan) Toggle --- */
-            const roleTierRadios = document.querySelectorAll('input[name="roleTier"]');
-            const section3 = document.getElementById('section3');
-            const workPlanLinkInput = document.getElementById('workPlanLink');
+            // Specific role change listeners
+            headRoleSelect.addEventListener('change', (e) => showSpecificSection(e.target.value));
+            officerRoleSelect.addEventListener('change', (e) => showSpecificSection(e.target.value));
 
-            roleTierRadios.forEach(radio => {
-                radio.addEventListener('change', (e) => {
-                    const isLeadership = e.target.value === 'Committee Head';
-                    if (isLeadership) {
-                        section3.classList.remove('hidden');
-                        setTimeout(() => section3.classList.add('opacity-100'), 10);
-                        workPlanLinkInput.required = true;
-                    } else {
-                        section3.classList.add('hidden');
-                        workPlanLinkInput.required = false;
-                        workPlanLinkInput.value = '';
+            /* --- Current Position / Committee Locking Logic --- */
+            const currentPositionSelect = document.getElementById('currentPosition');
+            const currentCommitteeSelect = document.getElementById('currentCommittee');
+
+            currentPositionSelect.addEventListener('change', (e) => {
+                if (e.target.value === 'Officer') {
+                    // Lock to None if user is an Officer
+                    currentCommitteeSelect.value = 'None (Not applicable)';
+                    currentCommitteeSelect.disabled = true; 
+                    
+                    // Create hidden input to ensure the value still passes with FormData
+                    let hiddenInput = document.getElementById('hiddenCommittee');
+                    if (!hiddenInput) {
+                        hiddenInput = document.createElement('input');
+                        hiddenInput.type = 'hidden';
+                        hiddenInput.id = 'hiddenCommittee';
+                        hiddenInput.name = 'currentCommittee';
+                        currentCommitteeSelect.parentNode.appendChild(hiddenInput);
                     }
-                });
+                    hiddenInput.value = 'None (Not applicable)';
+                } else {
+                    // Unlock for other roles
+                    currentCommitteeSelect.disabled = false;
+                    const hiddenInput = document.getElementById('hiddenCommittee');
+                    if (hiddenInput) hiddenInput.remove();
+                    if(currentCommitteeSelect.value === 'None (Not applicable)') {
+                        currentCommitteeSelect.value = ''; // Reset to placeholder
+                    }
+                }
             });
 
+<<<<<<< HEAD
             /* --- Form Submission Handling with Actual Google Script Backend --- */
+=======
+            /* --- Auto-Scroll on Validation Error --- */
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
             const form = document.getElementById('recruitmentForm');
+            
+            // Listen for default HTML5 browser validation failures
+            form.addEventListener('invalid', function(e) {
+                e.preventDefault(); 
+                
+                const firstInvalid = form.querySelector(':invalid');
+                if (firstInvalid) {
+                    const offset = 120; // Offset for sticky header
+                    const top = firstInvalid.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    
+                    // Briefly highlight the field
+                    firstInvalid.classList.add('ring-2', 'ring-red-500', 'border-red-500');
+                    setTimeout(() => {
+                        firstInvalid.classList.remove('ring-2', 'ring-red-500', 'border-red-500');
+                    }, 3000);
+                }
+            }, true);
+
+            /* --- Form Submission & API Connection --- */
             const successMessage = document.getElementById('successMessage');
+            
+            // Prepare an error banner for network issues
+            const errorBanner = document.getElementById('errorBanner');
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault(); 
                 
+                // Hide any previous error banner
+                errorBanner.classList.add('hidden');
+
                 const btn = form.querySelector('button[type="submit"]');
-                const isAr = document.documentElement.dir === 'rtl';
                 const originalBtnContent = btn.innerHTML;
                 
+<<<<<<< HEAD
                 // Show dynamic loading state on the button
                 btn.innerHTML = `<svg class="animate-spin h-5 w-5 me-3 text-white inline-block" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 
                                 ${isAr ? 'جاري الإرسال...' : 'Submitting...'}`;
@@ -760,6 +1289,52 @@
                     setTimeout(() => { if(existingError) existingError.remove(); }, 5000);
                     
                     // Reset Button
+=======
+                // Loading UI state
+                btn.innerHTML = `<svg class="animate-spin h-5 w-5 me-3 text-white inline" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> 
+                                جاري الإرسال...`;
+                btn.disabled = true;
+
+                // 1. Package the form data using standard FormData
+                const formData = new FormData(form);
+                
+                // Add exact position name so the Google Script knows which tab to use
+                const selectedTrack = formData.get('track');
+                let targetPosition = '';
+                if (selectedTrack === 'Head') targetPosition = formData.get('headRole');
+                if (selectedTrack === 'Officer') targetPosition = formData.get('officerRole');
+                
+                formData.set('position', targetPosition); 
+
+                // 2. PASTE YOUR NEW WEBHOOK URL HERE
+                const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzLy8VWv00LLECqqgLqzqMrfn_i4aeRJ57sqRDMHXOhdsjvqJ53X9ZwZF_GmZ6DWDLDFw/exec';
+
+                // 3. Send the data to Google Apps Script
+                fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    body: formData 
+                    // Note: Pure FormData automatically bypasses strict browser CORS checks.
+                })
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json(); 
+                })
+                .then(data => {
+                    if (data.result === "success") {
+                        form.classList.add('hidden');
+                        successMessage.classList.remove('hidden');
+                        window.scrollTo({ top: 150, behavior: 'smooth' });
+                    } else {
+                        throw new Error(data.error || 'Server rejected the submission.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Submission Error:', error);
+                    errorBanner.classList.remove('hidden');
+                    errorBanner.innerText = 'حدث خطأ في الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
+                    window.scrollTo({ top: errorBanner.offsetTop - 100, behavior: 'smooth' });
+                    
+>>>>>>> da4bb2ccb8605d1f814c592f09ed86244f22958c
                     btn.innerHTML = originalBtnContent;
                     btn.disabled = false;
                 });
