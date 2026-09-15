@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام تسجيل وحضور الفعالية - IEEE</title>
+    <style>
+        :root {
+            --ieee-blue: #00629B;
+            --ieee-dark-blue: #002855;
+            --ieee-light-blue: #EBF3F9;
+            --ieee-accent: #00B5E2;
+            --success-green: #28a745;
+            --success-light: #d4edda;
+            --gray-bg: #f8f9fa;
+            --border-color: #ced4da;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--gray-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 98, 155, 0.1);
+            overflow: hidden;
+            border-top: 5px solid var(--ieee-blue);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--ieee-dark-blue), var(--ieee-blue));
+            color: white;
+            padding: 25px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--ieee-dark-blue);
+            font-size: 14px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--ieee-accent);
+            box-shadow: 0 0 0 3px rgba(0, 181, 226, 0.15);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .divider span {
+            background: #fff;
+            padding: 0 15px;
+            color: #6c757d;
+            font-size: 13px;
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        .divider::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--border-color);
+            z-index: 0;
+        }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--ieee-blue);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background-color: var(--ieee-dark-blue);
+        }
+
+        .btn:disabled {
+            background-color: var(--border-color);
+            cursor: not-allowed;
+        }
+
+        .result-card {
+            margin-top: 25px;
+            background-color: var(--ieee-light-blue);
+            border: 1px solid #b8daff;
+            border-radius: 6px;
+            padding: 20px;
+            display: none;
+        }
+
+        .result-card h3 {
+            color: var(--ieee-dark-blue);
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-bottom: 2px solid var(--ieee-accent);
+            padding-bottom: 8px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .info-value {
+            color: var(--text-color);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .status-registered {
+            background-color: var(--success-light);
+            color: var(--success-green);
+        }
+
+        .status-unregistered {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-success {
+            background-color: var(--success-green);
+            margin-top: 15px;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 15px;
+            display: none;
+            color: var(--ieee-blue);
+            font-weight: 600;
+        }
+
+        .alert {
+            padding: 12px;
+            border-radius: 4px;
+            margin-top: 15px;
+            font-size: 14px;
+            display: none;
+        }
+
+        .alert-error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .alert-success {
+            background-color: var(--success-light);
+            color: var(--success-green);
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>IEEE Horus Student Branch</h1>
+            <p>نظام التحقق وتسجيل الحضور والفعاليات</p>
+        </div>
+        <div class="content">
+            <form id="searchForm" onsubmit="handleSearch(event)">
+                <div class="form-group">
+                    <label for="ticketId">رقم التذكرة (Ticket ID)</label>
+                    <input type="text" id="ticketId" placeholder="أدخل رقم التذكرة هنا...">
+                </div>
+
+                <div class="divider">
+                    <span>أو</span>
+                </div>
+
+                <div class="form-group">
+                    <label for="universityId">الرقم الجامعي (University ID)</label>
+                    <input type="text" id="universityId" placeholder="أدخل الرقم الجامعي هنا...">
+                </div>
+
+                <button type="submit" class="btn" id="searchBtn">بحث عن المشارك</button>
+            </form>
+
+            <div class="loading" id="loadingIndicator">جاري البحث في قاعدة البيانات...</div>
+            <div class="alert alert-error" id="errorAlert"></div>
+
+            <div class="result-card" id="resultCard">
+                <h3>بيانات المشارك</h3>
+                <div class="info-row">
+                    <span class="info-label">الاسم:</span>
+                    <span class="info-value" id="resName">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">المرحلة الدراسية:</span>
+                    <span class="info-value" id="resLevel">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">الرقم الجامعي:</span>
+                    <span class="info-value" id="resUniId">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">رقم التذكرة:</span>
+                    <span class="info-value" id="resTicket">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">حالة التسجيل:</span>
+                    <span class="info-value">
+                        <span id="resStatusBadge" class="status-badge">-</span>
+                    </span>
+                </div>
+
+                <button type="button" class="btn btn-success" id="confirmBtn" onclick="updateRegistrationStatus()">تأكيد وتسجيل الحضور</button>
+                <div class="alert alert-success" id="successAlert" style="margin-top: 10px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // رابط Google Apps Script المرفق
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwIdoNrBA9Efu5JXQXp5vsjQ45pZlAlrgxt4Kb_TOeyWrO8IC9JOuYSfqYJjYq6IJFj/exec";
+
+        let currentParticipantRow = null;
+
+        function handleSearch(e) {
+            e.preventDefault();
+            const ticketId = document.getElementById('ticketId').value.trim();
+            const universityId = document.getElementById('universityId').value.trim();
+
+            hideMessages();
+
+            if (!ticketId && !universityId) {
+                showError("الرجاء إدخال رقم التذكرة أو الرقم الجامعي للبحث.");
+                return;
+            }
+
+            setLoading(true);
+            document.getElementById('resultCard').style.display = 'none';
+
+            const payload = {
+                action: "search",
+                ticketId: ticketId,
+                universityId: universityId
+            };
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                setLoading(false);
+                if (data.status === "success") {
+                    currentParticipantRow = data.row;
+                    displayResult(data.participant);
+                } else {
+                    showError(data.message || "لم يتم العثور على بيانات مطابقة.");
+                }
+            })
+            .catch(error => {
+                setLoading(false);
+                showError("حدث خطأ أثناء الاتصال بالخادم. تأكد من صحة الرابط.");
+                console.error(error);
+            });
+        }
+
+        function displayResult(p) {
+            document.getElementById('resName').textContent = p.name || "غير متوفر";
+            document.getElementById('resLevel').textContent = p.academicLevel || "غير متوفر";
+            document.getElementById('resUniId').textContent = p.universityId || "غير متوفر";
+            document.getElementById('resTicket').textContent = p.ticketId || "غير متوفر";
+
+            const badge = document.getElementById('resStatusBadge');
+            const confirmBtn = document.getElementById('confirmBtn');
+
+            const isRegistered = p.registrationStatus && p.registrationStatus.toString().trim() !== "" && p.registrationStatus.toString().toLowerCase() !== "not registered" && p.registrationStatus.toString() !== "غير مسجل";
+
+            if (isRegistered) {
+                badge.textContent = "تم التسجيل مسبقاً (" + p.registrationStatus + ")";
+                badge.className = "status-badge status-registered";
+                confirmBtn.style.display = "none";
+            } else {
+                badge.textContent = "لم يتم التسجيل بعد";
+                badge.className = "status-badge status-unregistered";
+                confirmBtn.style.display = "block";
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = "تأكيد وتسجيل الحضور";
+            }
+
+            document.getElementById('resultCard').style.display = 'block';
+        }
+
+        function updateRegistrationStatus() {
+            if (!currentParticipantRow) return;
+
+            const confirmBtn = document.getElementById('confirmBtn');
+            confirmBtn.disabled = true;
+            confirmBtn.textContent = "جاري التحديث...";
+
+            const payload = {
+                action: "update",
+                row: currentParticipantRow,
+                registrationStatus: "Registered"
+            };
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    const badge = document.getElementById('resStatusBadge');
+                    badge.textContent = "تم التسجيل بنجاح (Registered)";
+                    badge.className = "status-badge status-registered";
+                    confirmBtn.style.display = "none";
+                    showSuccess("تم تحديث حالة التسجيل في Google Sheets بنجاح!");
+                } else {
+                    confirmBtn.disabled = false;
+                    confirmBtn.textContent = "تأكيد وتسجيل الحضور";
+                    showError(data.message || "فشل تحديث الحالة.");
+                }
+            })
+            .catch(error => {
+                confirmBtn.disabled = false;
+                confirmBtn.textContent = "تأكيد وتسجيل الحضور";
+                showError("حدث خطأ أثناء الاتصال بالخادم.");
+                console.error(error);
+            });
+        }
+
+        function setLoading(isLoading) {
+            document.getElementById('loadingIndicator').style.display = isLoading ? 'block' : 'none';
+            document.getElementById('searchBtn').disabled = isLoading;
+        }
+
+        function showError(msg) {
+            const err = document.getElementById('errorAlert');
+            err.textContent = msg;
+            err.style.display = 'block';
+        }
+
+        function showSuccess(msg) {
+            const succ = document.getElementById('successAlert');
+            succ.textContent = msg;
+            succ.style.display = 'block';
+        }
+
+        function hideMessages() {
+            document.getElementById('errorAlert').style.display = 'none';
+            document.getElementById('successAlert').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

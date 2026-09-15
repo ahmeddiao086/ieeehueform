@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEEE Horus - Dashboard</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Frutiger LT Arabic"', 'Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        ieee: { blue: '#00629B', dark: '#0A192F', light: '#E2F1F8', cyan: '#00B5E2' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Frutiger LT Arabic', 'Tajawal', sans-serif; }
+        .tab-btn.active { background-color: #00629B; color: white; border-color: #00629B; }
+        .tab-btn:not(.active) { background-color: white; color: #4B5563; border-color: #E5E7EB; }
+        .tab-btn:not(.active):hover { background-color: #F3F4F6; }
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c1c1c1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00629B; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 h-screen flex flex-col overflow-hidden relative">
+
+    <!-- Header -->
+    <header class="bg-ieee-blue py-3 px-6 flex items-center justify-between shadow-md z-20 shrink-0" dir="ltr">
+        <div class="flex items-center gap-3">
+            <h1 class="text-white font-bold text-lg tracking-wide hidden sm:block">IEEE Horus Recruitment Dashboard</h1>
+            <h1 class="text-white font-bold text-lg tracking-wide sm:hidden">Dashboard</h1>
+        </div>
+        <div class="text-ieee-cyan text-sm font-bold bg-ieee-dark/50 px-3 py-1 rounded-full border border-white/10">
+            Season 26/27
+        </div>
+    </header>
+
+    <!-- Login Screen -->
+    <div id="loginScreen" class="absolute inset-0 z-50 flex items-center justify-center bg-gray-900/40 backdrop-blur-sm mt-14">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl w-full max-w-sm border border-gray-100 transform transition-all">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-ieee-light rounded-full flex items-center justify-center mx-auto mb-3">
+                    <svg class="w-8 h-8 text-ieee-blue" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-800">تسجيل الدخول</h2>
+                <p class="text-sm text-gray-500 mt-1">أدخل كلمة المرور لعرض المتقدمين</p>
+            </div>
+            
+            <form id="loginForm" class="space-y-4">
+                <div>
+                    <input type="password" id="passwordInput" required placeholder="كلمة المرور..." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-ieee-cyan bg-gray-50 text-center text-lg tracking-widest" dir="ltr">
+                </div>
+                <div id="loginError" class="hidden text-red-600 text-sm font-bold text-center bg-red-50 p-2 rounded"></div>
+                <button type="submit" id="loginBtn" class="w-full py-3 bg-ieee-blue hover:bg-ieee-dark text-white font-bold rounded-lg transition-colors flex justify-center items-center gap-2">
+                    <span>دخول</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Area (Hidden until login) -->
+    <main id="dashboardScreen" class="hidden flex-1 overflow-hidden flex flex-col md:flex-row">
+        
+        <!-- Sidebar / Tabs -->
+        <aside class="w-full md:w-64 bg-white border-l border-gray-200 overflow-y-auto shrink-0 shadow-[4px_0_15px_rgba(0,0,0,0.03)] z-10 flex flex-col">
+            <div class="p-4 border-b border-gray-100 bg-gray-50/50">
+                <h3 class="font-bold text-gray-700 text-sm mb-1">الأقسام واللجان</h3>
+                <p class="text-xs text-gray-500">اختر المنصب لعرض المتقدمين</p>
+            </div>
+            <nav id="tabsContainer" class="p-3 flex flex-row md:flex-col gap-2 overflow-x-auto md:overflow-visible">
+                <!-- Tabs will be generated here -->
+            </nav>
+        </aside>
+
+        <!-- Content Area -->
+        <div class="flex-1 bg-gray-50 flex flex-col overflow-hidden">
+            <!-- Toolbar -->
+            <div class="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between shrink-0">
+                <h2 id="currentTabTitle" class="text-xl font-bold text-ieee-blue flex items-center gap-2">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                    نظرة عامة (General)
+                </h2>
+                <div class="text-sm text-gray-500 bg-gray-100 px-3 py-1.5 rounded-lg border border-gray-200 font-medium">
+                    إجمالي المتقدمين: <span id="applicantCount" class="font-bold text-ieee-blue ml-1">0</span>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="flex-1 overflow-auto p-6 relative">
+                
+                <!-- Loading State -->
+                <div id="loadingState" class="absolute inset-0 bg-gray-50/80 z-10 flex flex-col items-center justify-center hidden backdrop-blur-sm">
+                    <svg class="animate-spin h-10 w-10 text-ieee-cyan mb-3" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    <p class="text-gray-600 font-medium">جاري جلب البيانات...</p>
+                </div>
+
+                <!-- Empty State -->
+                <div id="emptyState" class="hidden h-full flex flex-col items-center justify-center text-center">
+                    <svg class="w-16 h-16 text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                    <h3 class="text-lg font-bold text-gray-500">لا يوجد متقدمين في هذا القسم بعد</h3>
+                </div>
+
+                <!-- The Table -->
+                <div id="tableWrapper" class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-right">
+                            <thead class="text-xs text-gray-600 uppercase bg-gray-50 border-b border-gray-200">
+                                <tr id="tableHead">
+                                    <!-- Headers injected here -->
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody" class="divide-y divide-gray-100">
+                                <!-- Rows injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for Detailed Applicant View -->
+    <div id="applicantModal" class="fixed inset-0 z-[60] flex items-center justify-center bg-gray-900/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] flex flex-col transform scale-95 transition-transform duration-300" id="modalContent">
+            
+            <!-- Modal Header -->
+            <div class="px-6 py-4 border-b border-gray-100 flex items-center justify-between bg-gray-50/50 rounded-t-2xl">
+                <div>
+                    <h3 id="modalApplicantName" class="text-xl font-bold text-gray-900 mb-1">اسم المتقدم</h3>
+                    <p id="modalApplicantRole" class="text-sm font-medium text-ieee-cyan bg-cyan-50 px-2 py-0.5 rounded inline-block" dir="ltr">Role</p>
+                </div>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-700 bg-white p-2 rounded-lg border border-gray-200 hover:bg-gray-100 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <!-- Modal Body (Questions & Answers) -->
+            <div id="modalBody" class="p-6 overflow-y-auto space-y-5">
+                <!-- QA injected here -->
+            </div>
+            
+            <!-- Modal Footer -->
+            <div class="px-6 py-4 border-t border-gray-100 bg-gray-50 rounded-b-2xl flex justify-end">
+                <button onclick="closeModal()" class="px-5 py-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold rounded-lg transition-colors">إغلاق</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ---------------------------------------------------------
+        // 1. إعدادات السكريبت والـ API
+        // ---------------------------------------------------------
+        
+        // **ضع الرابط الجديد لسكريبت الـ API هنا (الذي أنشأناه للتو للقراءة فقط)**
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyq7PVJRwE6vgQDrIPPkGvFwMEdRW7khaCD6bymFX9kiSOc6SAE9k50-AZRdSIo5SSvrw/exec'; // <-- REPLACE THIS WITH YOUR NEW DO_GET SCRIPT URL
+        
+        let savedPassword = '';
+        let globalData = [];
+        let currentActiveTab = 'General';
+
+        const tabs = [
+            'General', 'Chair', 'Vice Chair', 'Treasurer', 'Secretary',
+            'Social Media Head', 'PR Head', 'FR Head', 'Logistics Head', 'Membership Head', 'Technical Head'
+        ];
+
+        // ---------------------------------------------------------
+        // 2. نظام تسجيل الدخول والحماية (Login & IP Security)
+        // ---------------------------------------------------------
+        const loginForm = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+        const loginError = document.getElementById('loginError');
+        const passwordInput = document.getElementById('passwordInput');
+        
+        let clientIP = 'unknown';
+
+        // جلب الـ IP الخاص بالمستخدم بمجرد فتح الصفحة
+        fetch('https://api.ipify.org?format=json')
+            .then(res => res.json())
+            .then(data => { clientIP = data.ip; })
+            .catch(err => console.warn('Could not fetch IP, using fallback.'));
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const pwd = passwordInput.value;
+            if(!pwd) return;
+
+            loginError.classList.add('hidden');
+            const originalBtnContent = loginBtn.innerHTML;
+            loginBtn.innerHTML = `<svg class="animate-spin h-5 w-5 mx-auto text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
+            loginBtn.disabled = true;
+
+            // نرسل الـ IP وكلمة المرور للسيرفر
+            fetch(`${API_URL}?sheet=General&password=${encodeURIComponent(pwd)}&ip=${encodeURIComponent(clientIP)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.authStatus === true) {
+                        // نجاح الدخول
+                        savedPassword = pwd;
+                        document.getElementById('loginScreen').classList.add('hidden');
+                        document.getElementById('dashboardScreen').classList.remove('hidden');
+                        
+                        initTabs();
+                        renderData(data);
+                    } else {
+                        // فشل الدخول
+                        loginError.innerText = data.error || 'كلمة المرور غير صحيحة';
+                        loginError.classList.remove('hidden');
+                        
+                        // إذا تم الحظر، قم بتعطيل الحقل والزر تماماً وإظهار اللون الأحمر
+                        if (data.blocked) {
+                            passwordInput.disabled = true;
+                            passwordInput.classList.add('bg-red-50', 'border-red-300', 'cursor-not-allowed');
+                            passwordInput.value = '';
+                            loginBtn.classList.add('hidden'); // إخفاء زر الدخول كلياً
+                        }
+                    }
+                })
+                .catch(err => {
+                    loginError.innerText = 'حدث خطأ في الاتصال بالسيرفر.';
+                    loginError.classList.remove('hidden');
+                })
+                .finally(() => {
+                    // نعيد الزر لطبيعته فقط إذا لم يكن المستخدم محظوراً
+                    if (!passwordInput.disabled) {
+                        loginBtn.innerHTML = originalBtnContent;
+                        loginBtn.disabled = false;
+                    }
+                });
+        });
+
+        // ---------------------------------------------------------
+        // 3. نظام التنقل والتبويبات (Tabs System)
+        // ---------------------------------------------------------
+        function initTabs() {
+            const container = document.getElementById('tabsContainer');
+            container.innerHTML = '';
+
+            tabs.forEach(tab => {
+                const btn = document.createElement('button');
+                btn.className = `tab-btn w-full text-right px-4 py-3 rounded-xl border font-bold text-sm transition-all whitespace-nowrap md:whitespace-normal flex items-center justify-between ${tab === 'General' ? 'active' : ''}`;
+                btn.innerHTML = `
+                    <span dir="ltr">${tab === 'General' ? 'نظرة عامة (General)' : tab}</span>
+                    <svg class="w-4 h-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                `;
+                
+                btn.onclick = () => {
+                    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentActiveTab = tab;
+                    document.getElementById('currentTabTitle').innerHTML = tab === 'General' ? 'نظرة عامة (General)' : `<span dir="ltr">${tab}</span>`;
+                    fetchData(tab);
+                };
+                container.appendChild(btn);
+            });
+        }
+
+        // ---------------------------------------------------------
+        // 4. جلب البيانات وعرضها
+        // ---------------------------------------------------------
+        function fetchData(sheetName) {
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('tableWrapper').classList.add('hidden');
+
+            fetch(`${API_URL}?sheet=${encodeURIComponent(sheetName)}&password=${encodeURIComponent(savedPassword)}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.authStatus === false) {
+                        alert("انتهت الجلسة أو تم تغيير كلمة المرور. يرجى التحديث.");
+                        location.reload();
+                        return;
+                    }
+                    renderData(data);
+                })
+                .catch(err => {
+                    console.error("Error fetching data:", err);
+                    alert("حدث خطأ أثناء جلب البيانات.");
+                    document.getElementById('loadingState').classList.add('hidden');
+                });
+        }
+
+        function renderData(data) {
+            document.getElementById('loadingState').classList.add('hidden');
+            const countEl = document.getElementById('applicantCount');
+            
+            if (!data.rows || data.rows.length === 0) {
+                document.getElementById('emptyState').classList.remove('hidden');
+                document.getElementById('tableWrapper').classList.add('hidden');
+                countEl.innerText = '0';
+                return;
+            }
+
+            globalData = data.rows; // حفظ البيانات لفتح الـ Modal
+            countEl.innerText = data.rows.length;
+            
+            document.getElementById('emptyState').classList.add('hidden');
+            document.getElementById('tableWrapper').classList.remove('hidden');
+
+            // 1. بناء العناوين (نكتفي بأهم 4 أعمدة في الجدول لتجنب الزحام)
+            const thead = document.getElementById('tableHead');
+            thead.innerHTML = '';
+            
+            // تحديد الأعمدة المراد عرضها في الجدول الخارجي
+            let displayHeaders = [];
+            if (currentActiveTab === 'General') {
+                displayHeaders = data.headers; // عرض الكل لأنها قليلة
+            } else {
+                // للجان: نظهر أهم البيانات فقط، والباقي في النافذة المنبثقة
+                displayHeaders = data.headers.filter(h => 
+                    h.includes('الاسم') || h.includes('الرقم الجامعي') || h.includes('المستوى') || h.includes('الكلية') || h.includes('الهاتف')
+                );
+            }
+
+            displayHeaders.forEach(h => {
+                const th = document.createElement('th');
+                th.className = "px-4 py-3 font-bold";
+                th.innerText = h;
+                thead.appendChild(th);
+            });
+            // عمود زر التفاصيل
+            const thAction = document.createElement('th');
+            thAction.className = "px-4 py-3 text-center";
+            thAction.innerText = "التفاصيل";
+            thead.appendChild(thAction);
+
+            // 2. بناء الصفوف
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            data.rows.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-blue-50/50 transition-colors cursor-default";
+
+                displayHeaders.forEach(h => {
+                    const td = document.createElement('td');
+                    td.className = "px-4 py-3 border-r border-gray-100 last:border-0";
+                    td.innerText = row[h] || '-';
+                    tr.appendChild(td);
+                });
+
+                // زر عرض الإجابات
+                const tdAction = document.createElement('td');
+                tdAction.className = "px-4 py-3 text-center border-r border-gray-100";
+                
+                if (currentActiveTab !== 'General') {
+                    const btn = document.createElement('button');
+                    btn.className = "bg-ieee-blue hover:bg-ieee-cyan text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-colors shadow-sm flex items-center justify-center gap-1 mx-auto";
+                    btn.innerHTML = `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> عرض الإجابات`;
+                    btn.onclick = () => openModal(index);
+                    tdAction.appendChild(btn);
+                } else {
+                    tdAction.innerHTML = '<span class="text-xs text-gray-400">انتقل لصفحة المنصب للتفاصيل</span>';
+                }
+
+                tr.appendChild(tdAction);
+                tbody.appendChild(tr);
+            });
+        }
+
+        // ---------------------------------------------------------
+        // 5. نظام النافذة المنبثقة (Modal) لعرض كل إجابات المتقدم
+        // ---------------------------------------------------------
+        const modal = document.getElementById('applicantModal');
+        const modalContent = document.getElementById('modalContent');
+
+        function openModal(rowIndex) {
+            const rowData = globalData[rowIndex];
+            
+            // جلب الاسم من أي عمود يحتوي على كلمة "اسم"
+            const nameKey = Object.keys(rowData).find(k => k.includes('الاسم')) || 'متقدم';
+            document.getElementById('modalApplicantName').innerText = rowData[nameKey];
+            document.getElementById('modalApplicantRole').innerText = currentActiveTab;
+
+            const body = document.getElementById('modalBody');
+            body.innerHTML = '';
+
+            // عرض جميع الأسئلة وإجاباتها
+            Object.keys(rowData).forEach(question => {
+                const answer = rowData[question];
+                if (!answer) return; // تخطي الحقول الفارغة
+
+                const block = document.createElement('div');
+                block.className = "bg-gray-50 border border-gray-200 rounded-xl p-4";
+                
+                const qTitle = document.createElement('h4');
+                qTitle.className = "text-sm font-bold text-ieee-blue mb-2";
+                qTitle.innerText = question;
+
+                const aText = document.createElement('div');
+                
+                // التأكد إذا كان الإجابة عبارة عن رابط (مثل لينك الدرايف) لجعلها قابلة للضغط
+                if (answer.startsWith('http://') || answer.startsWith('https://')) {
+                    aText.innerHTML = `<a href="${answer}" target="_blank" class="text-ieee-cyan font-bold underline flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg> فتح الرابط</a>`;
+                } else {
+                    aText.className = "text-gray-700 text-sm whitespace-pre-wrap leading-relaxed";
+                    aText.innerText = answer;
+                }
+
+                block.appendChild(qTitle);
+                block.appendChild(aText);
+                body.appendChild(block);
+            });
+
+            // إظهار النافذة بحركة ناعمة
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // إغلاق النافذة عند الضغط خارجها
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+    </script>
+</body>
+</html>
