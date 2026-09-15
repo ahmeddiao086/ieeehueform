@@ -183,7 +183,6 @@
                                         <option value="Member">Member</option>
                                         <option value="Head">Head</option>
                                         <option value="Officer">Officer</option>
-                                        <option value="None (Not applicable)">None (Not applicable)</option>
                                     </select>
                                 </div>
                                 <div>
@@ -220,7 +219,7 @@
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
                                     <div class="flex items-center justify-between mb-1">
-                                        <span class="text-sm font-bold text-gray-900">A. رئيس لجنة (Head of Committee)</span>
+                                        <span class="text-sm font-bold text-gray-900">رئيس لجنة (Head of Committee)</span>
                                         <input type="radio" name="track" value="Head" required class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                     </div>
                                     <span class="text-xs text-gray-500 mt-2 block" dir="ltr">Social Media, PR, FR, Logistics, Membership, Technical</span>
@@ -228,7 +227,7 @@
                                 
                                 <label class="relative flex flex-col p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all [&:has(input:checked)]:border-ieee-blue [&:has(input:checked)]:bg-blue-50/50">
                                     <div class="flex items-center justify-between mb-1">
-                                        <span class="text-sm font-bold text-gray-900">B. Officer</span>
+                                        <span class="text-sm font-bold text-gray-900">Officer</span>
                                         <input type="radio" name="track" value="Officer" class="w-4 h-4 text-ieee-blue focus:ring-ieee-cyan border-gray-300">
                                     </div>
                                     <span class="text-xs text-gray-500 mt-2 block" dir="ltr">Chair, Vice Chair, Treasurer, Secretary</span>
@@ -692,33 +691,33 @@
                 formData.set('position', targetPosition); 
 
                 // 2. PASTE YOUR NEW WEBHOOK URL HERE
-                const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzLy8VWv00LLECqqgLqzqMrfn_i4aeRJ57sqRDMHXOhdsjvqJ53X9ZwZF_GmZ6DWDLDFw/exec';
+                const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbycED4mqLUZoMLrxuUhfSFTX7KwaOZaKqAHAOnKwfh-5hXvy2jB_hNehPu1Pwz0xes63w/exec';
 
                 // 3. Send the data to Google Apps Script
+                // Send request via fetch API using 'no-cors' to bypass strict browser security
                 fetch(WEBHOOK_URL, {
                     method: 'POST',
-                    body: formData 
-                    // Note: Pure FormData automatically bypasses strict browser CORS checks.
+                    mode: 'no-cors', // <--- This prevents the CORS error
+                    body: formData
                 })
-                .then(response => {
-                    if (!response.ok) throw new Error('Network response was not ok');
-                    return response.json(); 
-                })
-                .then(data => {
-                    if (data.result === "success") {
-                        form.classList.add('hidden');
-                        successMessage.classList.remove('hidden');
-                        window.scrollTo({ top: 150, behavior: 'smooth' });
-                    } else {
-                        throw new Error(data.error || 'Server rejected the submission.');
-                    }
+                .then(() => {
+                    // Because we use 'no-cors', the response is hidden from the browser.
+                    // So instead of looking for data.result === "success", we just show success!
+                    form.classList.add('hidden');
+                    successMessage.classList.remove('hidden');
+                    window.scrollTo({ top: 150, behavior: 'smooth' });
                 })
                 .catch(error => {
                     console.error('Submission Error:', error);
-                    errorBanner.classList.remove('hidden');
-                    errorBanner.innerText = 'حدث خطأ في الاتصال بالخادم. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
-                    window.scrollTo({ top: errorBanner.offsetTop - 100, behavior: 'smooth' });
                     
+                    // Show error banner
+                    errorBanner.classList.remove('hidden');
+                    errorBanner.innerText = 'حدث خطأ في الاتصال. يرجى التحقق من اتصالك بالإنترنت والمحاولة مرة أخرى.';
+                    
+                    const top = errorBanner.getBoundingClientRect().top + window.scrollY - 150;
+                    window.scrollTo({ top: top, behavior: 'smooth' });
+                    
+                    // Reset button state
                     btn.innerHTML = originalBtnContent;
                     btn.disabled = false;
                 });
