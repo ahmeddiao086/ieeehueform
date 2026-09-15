@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -585,4 +586,593 @@
         });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استمارة التسجيل — بطولة كرة القدم 5×5</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        ieee: {
+                            green: '#10b981', 
+                            darkgreen: '#047857',
+                            light: '#f3f4f6',
+                            dark: '#1f2937'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            /* Using a dark green semi-transparent overlay on top of BG.jpg for better text readability */
+            background: linear-gradient(rgba(10, 30, 15, 0.85), rgba(10, 30, 15, 0.9)), url('BG.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Cairo', sans-serif;
+        }
+        
+        .form-section {
+            transition: all 0.4s ease-in-out;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .form-section.hidden {
+            display: none;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        /* Custom styling for radio and checkboxes */
+        .custom-radio:checked + label {
+            background-color: #ecfdf5;
+            border-color: #10b981;
+            color: #047857;
+        }
+        .custom-radio:checked + label .radio-icon {
+            color: #10b981;
+        }
+
+        /* Enhanced clear borders for input fields */
+        .input-field {
+            @apply w-full px-4 py-3 rounded-lg border-2 border-gray-500 bg-white text-gray-900 font-medium focus:outline-none focus:ring-0 focus:border-ieee-green focus:border-2 transition-colors shadow-sm;
+        }
+        
+        .section-title {
+            @apply text-xl font-bold text-gray-800 mb-6 flex items-center gap-3 pb-3 border-b-2 border-ieee-green/20 inline-block;
+        }
+
+        .label-text {
+            @apply block text-sm font-bold text-gray-800 mb-2;
+        }
+
+        /* Glass effect for the main container */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="min-h-screen py-10 px-4 flex items-center justify-center">
+
+    <div class="max-w-4xl w-full glass-card rounded-2xl shadow-2xl overflow-hidden relative">
+        <div class="h-4 w-full bg-gradient-to-l from-ieee-green to-ieee-darkgreen"></div>
+
+        <div class="px-8 py-10 text-center border-b border-gray-300">
+            <div class="flex items-center justify-center mb-6">
+                <!-- Last Call Logo -->
+                <img src="Last Call.svg" alt="Last Call Logo" class="h-28 w-auto drop-shadow-md hover:scale-105 transition-transform duration-300" onerror="this.onerror=null; this.src='https://placehold.co/200x100/10b981/ffffff?text=Last+Call';">
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3 tracking-tight">بطولة كرة القدم 5×5</h1>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto font-medium">أهلاً بكم في استمارة التسجيل لبطولة كرة القدم. يرجى اختيار طريقة المشاركة وتعبئة البيانات بدقة.</p>
+        </div>
+
+        <form id="registrationForm" class="p-8 md:p-12 space-y-10">
+            
+            <div class="form-section bg-white p-6 rounded-xl border border-gray-300 shadow-sm" id="section-1">
+                <h2 class="section-title"><i class="fa-solid fa-sitemap text-ieee-green"></i> القسم الأول — طريقة المشاركة</h2>
+                <p class="text-gray-600 mb-6 font-medium">اختر طريقة مشاركتك في البطولة ليتم توجيهك للقسم المناسب.</p>
+                
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="relative">
+                        <input type="radio" name="participation_type" id="type-team" value="مشاركة كفريق" class="custom-radio peer sr-only" required onchange="handleParticipationChange()">
+                        <label for="type-team" class="flex flex-col items-center justify-center p-6 border-2 border-gray-400 rounded-xl cursor-pointer transition-all hover:bg-gray-50">
+                            <i class="fa-solid fa-users text-4xl mb-3 text-gray-400 radio-icon transition-colors"></i>
+                            <span class="font-bold text-lg text-gray-900">مشاركة كفريق</span>
+                            <span class="text-sm text-center text-gray-500 mt-2">يسجل قائد الفريق فقط ويملاً بيانات جميع اللاعبين</span>
+                        </label>
+                    </div>
+
+                    <div class="relative">
+                        <input type="radio" name="participation_type" id="type-individual" value="مشاركة كفرد" class="custom-radio peer sr-only" required onchange="handleParticipationChange()">
+                        <label for="type-individual" class="flex flex-col items-center justify-center p-6 border-2 border-gray-400 rounded-xl cursor-pointer transition-all hover:bg-gray-50">
+                            <i class="fa-solid fa-user text-4xl mb-3 text-gray-400 radio-icon transition-colors"></i>
+                            <span class="font-bold text-lg text-gray-900">مشاركة كفرد</span>
+                            <span class="text-sm text-center text-gray-500 mt-2">تسجل بياناتك بنفسك وسيتم ضمك لفريق</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section bg-white p-6 rounded-xl border border-gray-300 shadow-sm" id="section-2">
+                <h2 class="section-title"><i class="fa-regular fa-id-card text-ieee-green"></i> القسم الثاني — البيانات الأساسية</h2>
+                
+                <div class="space-y-6">
+                    <div class="grid md:grid-cols-1 gap-6">
+                        <div>
+                            <label class="label-text">الاسم بالكامل <span class="text-red-500">*</span></label>
+                            <input type="text" name="full_name" class="input-field" placeholder="أدخل اسمك الثلاثي" required>
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50 p-4 border-2 border-gray-200 rounded-lg">
+                        <label class="label-text mb-3">هل قمت بملء استمارة التسجيل الأساسية الخاصة بـ Last Call؟ <span class="text-red-500">*</span></label>
+                        <div class="flex gap-6">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="last_call_form" value="نعم" class="w-5 h-5 text-ieee-green border-2 border-gray-500 focus:ring-ieee-green" required>
+                                <span class="font-bold text-gray-800">نعم</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="last_call_form" value="لا" class="w-5 h-5 text-ieee-green border-2 border-gray-500 focus:ring-ieee-green" required>
+                                <span class="font-bold text-gray-800">لا</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section hidden bg-white p-6 rounded-xl border-2 border-ieee-green/50 shadow-md ring-1 ring-ieee-green/20" id="section-team">
+                <h2 class="section-title"><i class="fa-solid fa-shield-halved text-ieee-green"></i> القسم الثالث — بيانات الفريق واللاعبين</h2>
+                
+                <!-- Team Info -->
+                <div class="bg-gray-50 p-5 rounded-lg mb-8 border border-gray-300">
+                    <h3 class="font-bold text-lg mb-4 text-ieee-darkgreen border-b border-gray-300 pb-2">بيانات الفريق الأساسية</h3>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="label-text">اسم الفريق <span class="text-red-500">*</span></label>
+                            <input type="text" name="team_name" class="input-field dynamic-required-team" placeholder="أدخل اسم الفريق">
+                        </div>
+                        <div>
+                            <label class="label-text">شعار الفريق (اختياري)</label>
+                            <input type="file" name="team_logo" accept="image/*" class="w-full px-3 py-2 border-2 border-gray-500 rounded-lg text-sm bg-white text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-bold file:bg-green-100 file:text-ieee-darkgreen hover:file:bg-green-200 transition-colors shadow-sm focus:outline-none focus:border-ieee-green cursor-pointer">
+                            <p class="text-xs text-gray-600 mt-2 font-medium">يفضل أن تكون الصورة بجودة واضحة.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Captain -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-lg mb-4 text-gray-800 flex items-center gap-2"><i class="fa-solid fa-star text-yellow-500"></i> قائد الفريق (أنت)</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="label-text">اسم قائد الفريق <span class="text-red-500">*</span></label>
+                            <input type="text" name="captain_name" class="input-field dynamic-required-team" placeholder="الاسم بالكامل">
+                        </div>
+                        <div>
+                            <label class="label-text">المركز <span class="text-red-500">*</span></label>
+                            <select name="captain_position" class="input-field dynamic-required-team">
+                                <option value="">اختر المركز...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 border-t border-gray-200 pt-5">
+                    <h3 class="font-bold mb-4 text-gray-800">اللاعب الثاني</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="label-text">اسم اللاعب 2 <span class="text-red-500">*</span></label>
+                            <input type="text" name="player2_name" class="input-field dynamic-required-team" placeholder="الاسم">
+                        </div>
+                        <div>
+                            <label class="label-text">المركز <span class="text-red-500">*</span></label>
+                            <select name="player2_position" class="input-field dynamic-required-team">
+                                <option value="">اختر...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 border-t border-gray-200 pt-5">
+                    <h3 class="font-bold mb-4 text-gray-800">اللاعب الثالث</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="label-text">اسم اللاعب 3 <span class="text-red-500">*</span></label>
+                            <input type="text" name="player3_name" class="input-field dynamic-required-team" placeholder="الاسم">
+                        </div>
+                        <div>
+                            <label class="label-text">المركز <span class="text-red-500">*</span></label>
+                            <select name="player3_position" class="input-field dynamic-required-team">
+                                <option value="">اختر...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 border-t border-gray-200 pt-5">
+                    <h3 class="font-bold mb-4 text-gray-800">اللاعب الرابع</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="label-text">اسم اللاعب 4 <span class="text-red-500">*</span></label>
+                            <input type="text" name="player4_name" class="input-field dynamic-required-team" placeholder="الاسم">
+                        </div>
+                        <div>
+                            <label class="label-text">المركز <span class="text-red-500">*</span></label>
+                            <select name="player4_position" class="input-field dynamic-required-team">
+                                <option value="">اختر...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-6 border-t border-gray-200 pt-5">
+                    <h3 class="font-bold mb-4 text-gray-800">اللاعب الخامس</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="label-text">اسم اللاعب 5 <span class="text-red-500">*</span></label>
+                            <input type="text" name="player5_name" class="input-field dynamic-required-team" placeholder="الاسم">
+                        </div>
+                        <div>
+                            <label class="label-text">المركز <span class="text-red-500">*</span></label>
+                            <select name="player5_position" class="input-field dynamic-required-team">
+                                <option value="">اختر...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-300 mt-8">
+                    <h3 class="font-bold text-lg mb-4 text-ieee-darkgreen border-b border-gray-300 pb-2">اللاعبين الاحتياط</h3>
+                    
+                    <div class="mb-6">
+                        <label class="label-text">هل ترغب في إضافة لاعبين احتياط؟ <span class="text-red-500">*</span></label>
+                        <select id="subsCount" name="reserve_players" class="input-field dynamic-required-team" onchange="handleSubsChange()">
+                            <option value="">اختر...</option>
+                            <option value="لا">لا</option>
+                            <option value="لاعب احتياط واحد">لاعب احتياط واحد</option>
+                            <option value="لاعبان احتياط">لاعبان احتياط</option>
+                        </select>
+                    </div>
+
+                    <!-- Sub 1 -->
+                    <div id="sub1-container" class="hidden mb-4 border-t border-gray-300 pt-4">
+                        <h4 class="font-bold text-md text-gray-800 mb-3">لاعب احتياط 1</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <input type="text" name="sub1_name" id="sub1Name" class="input-field" placeholder="اسم اللاعب الاحتياط 1">
+                            </div>
+                            <div>
+                                <select name="sub1_position" id="sub1Position" class="input-field">
+                                    <option value="">المركز...</option>
+                                    <option value="حارس مرمى">حارس مرمى</option>
+                                    <option value="مدافع">مدافع</option>
+                                    <option value="لاعب وسط">لاعب وسط</option>
+                                    <option value="مهاجم">مهاجم</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub 2 -->
+                    <div id="sub2-container" class="hidden mb-2 border-t border-gray-300 pt-4">
+                        <h4 class="font-bold text-md text-gray-800 mb-3">لاعب احتياط 2</h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <input type="text" name="sub2_name" id="sub2Name" class="input-field" placeholder="اسم اللاعب الاحتياط 2">
+                            </div>
+                            <div>
+                                <select name="sub2_position" id="sub2Position" class="input-field">
+                                    <option value="">المركز...</option>
+                                    <option value="حارس مرمى">حارس مرمى</option>
+                                    <option value="مدافع">مدافع</option>
+                                    <option value="لاعب وسط">لاعب وسط</option>
+                                    <option value="مهاجم">مهاجم</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section hidden bg-white p-6 rounded-xl border-2 border-ieee-green/50 shadow-md ring-1 ring-ieee-green/20" id="section-individual">
+                <h2 class="section-title"><i class="fa-solid fa-running text-ieee-green"></i> القسم الرابع — مشاركة كفرد (بيانات اللاعب)</h2>
+                
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-300">
+                    <div class="grid md:grid-cols-1 gap-6 mb-6 border-b border-gray-200 pb-6">
+                        <div>
+                            <label class="label-text">اسم اللاعب <span class="text-red-500">*</span></label>
+                            <input type="text" name="individual_name" class="input-field dynamic-required-individual" placeholder="أدخل اسمك الثلاثي">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="label-text">المركز المفضل — التفضيل الأول <span class="text-red-500">*</span></label>
+                            <select name="pref_pos_1" class="input-field dynamic-required-individual">
+                                <option value="">اختر التفضيل الأول...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="label-text">المركز المفضل — التفضيل الثاني <span class="text-red-500">*</span></label>
+                            <select name="pref_pos_2" class="input-field dynamic-required-individual">
+                                <option value="">اختر التفضيل الثاني...</option>
+                                <option value="حارس مرمى">حارس مرمى</option>
+                                <option value="مدافع">مدافع</option>
+                                <option value="لاعب وسط">لاعب وسط</option>
+                                <option value="مهاجم">مهاجم</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section hidden bg-green-50 p-6 rounded-xl border-2 border-green-400" id="section-confirmation">
+                <h2 class="section-title"><i class="fa-solid fa-check-double text-ieee-green"></i> القسم الأخير — التأكيد</h2>
+                
+                <label class="flex items-start gap-4 cursor-pointer p-4 bg-white rounded-lg border-2 border-gray-400 hover:border-ieee-green hover:shadow-md transition-all">
+                    <div class="mt-1">
+                        <input type="checkbox" name="agreement" value="أوافق" class="w-6 h-6 rounded border-2 border-gray-600 text-ieee-green focus:ring-ieee-green cursor-pointer" required>
+                    </div>
+                    <span class="text-gray-900 leading-relaxed font-bold">
+                        أقر بأن جميع البيانات التي قمت بإدخالها صحيحة، وأتعهد بالالتزام بقواعد وتعليمات البطولة.
+                    </span>
+                </label>
+
+                <div class="mt-8 flex justify-center">
+                    <button type="submit" id="submitBtn" class="bg-ieee-green hover:bg-ieee-darkgreen text-white font-bold py-4 px-12 rounded-full shadow-lg transform transition-all hover:scale-105 hover:shadow-xl w-full md:w-auto text-lg flex items-center justify-center gap-3 border-2 border-transparent focus:outline-none focus:ring-4 focus:ring-green-300">
+                        <span>تأكيد وتسجيل</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div id="messageModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden items-center justify-center z-50 transition-opacity opacity-0">
+        <div class="bg-white rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300 text-center border-t-8 border-ieee-green" id="modalContent">
+            <div id="modalIconContainer" class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
+                <i id="modalIcon" class="fa-solid fa-check text-4xl text-ieee-green"></i>
+            </div>
+            <h3 id="modalTitle" class="text-2xl font-bold text-gray-900 mb-2">تم التسجيل بنجاح!</h3>
+            <p id="modalDesc" class="text-gray-700 font-medium mb-6">شكراً لك، تم استلام بياناتك بنجاح. حظاً موفقاً في البطولة.</p>
+            <button onclick="closeModal()" id="modalBtn" class="w-full bg-ieee-green hover:bg-ieee-darkgreen text-white font-bold py-3 px-6 rounded-xl transition-colors">
+                حسناً
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function handleParticipationChange() {
+            const teamType = document.getElementById('type-team').checked;
+            const individualType = document.getElementById('type-individual').checked;
+            
+            const teamSection = document.getElementById('section-team');
+            const individualSection = document.getElementById('section-individual');
+            const confirmationSection = document.getElementById('section-confirmation');
+            
+            const teamInputs = document.querySelectorAll('.dynamic-required-team');
+            const individualInputs = document.querySelectorAll('.dynamic-required-individual');
+
+            if (teamType) {
+                teamSection.classList.remove('hidden');
+                individualSection.classList.add('hidden');
+                confirmationSection.classList.remove('hidden');
+                
+                teamInputs.forEach(input => input.setAttribute('required', 'true'));
+                individualInputs.forEach(input => input.removeAttribute('required'));
+                
+            } else if (individualType) {
+                individualSection.classList.remove('hidden');
+                teamSection.classList.add('hidden');
+                confirmationSection.classList.remove('hidden');
+                
+                individualInputs.forEach(input => input.setAttribute('required', 'true'));
+                teamInputs.forEach(input => input.removeAttribute('required'));
+            }
+            
+            if (teamType) handleSubsChange();
+        }
+
+        function handleSubsChange() {
+            const subsCount = document.getElementById('subsCount').value;
+            const sub1Container = document.getElementById('sub1-container');
+            const sub2Container = document.getElementById('sub2-container');
+            
+            const sub1Inputs = [document.getElementById('sub1Name'), document.getElementById('sub1Position')];
+            const sub2Inputs = [document.getElementById('sub2Name'), document.getElementById('sub2Position')];
+
+            sub1Container.classList.add('hidden');
+            sub2Container.classList.add('hidden');
+            
+            sub1Inputs.forEach(input => input.removeAttribute('required'));
+            sub2Inputs.forEach(input => input.removeAttribute('required'));
+
+            const isTeamMode = document.getElementById('type-team').checked;
+
+            if (subsCount === "لاعب احتياط واحد") {
+                sub1Container.classList.remove('hidden');
+                if (isTeamMode) sub1Inputs.forEach(input => input.setAttribute('required', 'true'));
+            } else if (subsCount === "لاعبان احتياط") {
+                sub1Container.classList.remove('hidden');
+                sub2Container.classList.remove('hidden');
+                if (isTeamMode) {
+                    sub1Inputs.forEach(input => input.setAttribute('required', 'true'));
+                    sub2Inputs.forEach(input => input.setAttribute('required', 'true'));
+                }
+            }
+        }
+
+        // --- Custom Message Box Handler ---
+        function showMessage(isSuccess, title, desc) {
+            const modal = document.getElementById('messageModal');
+            const modalContent = document.getElementById('modalContent');
+            const iconContainer = document.getElementById('modalIconContainer');
+            const icon = document.getElementById('modalIcon');
+            const titleEl = document.getElementById('modalTitle');
+            const descEl = document.getElementById('modalDesc');
+            const btn = document.getElementById('modalBtn');
+
+            titleEl.innerText = title;
+            descEl.innerText = desc;
+
+            if (isSuccess) {
+                modalContent.className = "bg-white rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300 text-center border-t-8 border-ieee-green";
+                iconContainer.className = "w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5";
+                icon.className = "fa-solid fa-check text-4xl text-ieee-green";
+                btn.className = "w-full bg-ieee-green hover:bg-ieee-darkgreen text-white font-bold py-3 px-6 rounded-xl transition-colors";
+            } else {
+                modalContent.className = "bg-white rounded-2xl p-8 max-w-sm w-full mx-4 shadow-2xl transform scale-95 transition-transform duration-300 text-center border-t-8 border-red-500";
+                iconContainer.className = "w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-5";
+                icon.className = "fa-solid fa-xmark text-4xl text-red-500";
+                btn.className = "w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-xl transition-colors";
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('messageModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        // --- Form Submit and Base64 Conversion ---
+        const form = document.getElementById('registrationForm');
+        const submitButton = document.getElementById('submitBtn');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbz3rlBEJVAF9Nca0zlLpmHK1Um21ab6kzwGGPkSEsyqWzYHMbqhKfr6JPOSc9XjpqAB/exec';
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault(); 
+            
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<span>جاري التسجيل...</span> <i class="fa-solid fa-circle-notch fa-spin"></i>'; 
+            submitButton.disabled = true;
+            submitButton.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const formData = new FormData(form);
+            
+            // Handle logo file to Base64
+            const fileInput = document.querySelector('input[type="file"][name="team_logo"]');
+            if (fileInput && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                
+                const getBase64 = (file) => new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
+
+                try {
+                    const base64DataUrl = await getBase64(file);
+                    const base64Content = base64DataUrl.split(',')[1];
+                    
+                    formData.append('team_logo_base64', base64Content);
+                    formData.append('team_logo_name', file.name);
+                    formData.append('team_logo_mime', file.type);
+                    
+                    // Remove original file object so fetch doesn't fail
+                    formData.delete('team_logo');
+                } catch (error) {
+                    console.error("Error reading file:", error);
+                    showMessage(false, "خطأ في الصورة", "حدث خطأ أثناء قراءة صورة الشعار. يرجى المحاولة مرة أخرى بصورة مختلفة.");
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-75', 'cursor-not-allowed');
+                    return; 
+                }
+            }
+
+            // Fetch to Google Apps Script
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        showMessage(true, "تم التسجيل بنجاح!", "شكراً لك، تم استلام بياناتك بنجاح. حظاً موفقاً في البطولة.");
+                        form.reset(); 
+                        
+                        // Hide sections again
+                        document.getElementById('section-team').classList.add('hidden');
+                        document.getElementById('section-individual').classList.add('hidden');
+                        document.getElementById('section-confirmation').classList.add('hidden');
+                    } else {
+                        throw new Error(data.error || 'Unknown error occurred');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error!', error);
+                    showMessage(false, "حدث خطأ!", "لم نتمكن من إرسال البيانات. يرجى التأكد من اتصالك بالإنترنت والمحاولة مرة أخرى.");
+                })
+                .finally(() => {
+                    // Reset Button UI
+                    submitButton.innerHTML = originalText;
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-75', 'cursor-not-allowed');
+                });
+        });
+    </script>
+</body>
+>>>>>>> 200b80b2eb366987be28c9699db7d2e987835c1e
 </html>

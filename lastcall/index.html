@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IEEE Horus Student Branch - Last Call Event</title>
+    <title>IEEE Horus Student Branch - Last Call Event (أغلق التسجيل)</title>
     <!-- Tailwind CSS for modern responsive styling -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -24,9 +24,6 @@
         body {
             font-family: 'Cairo', sans-serif;
         }
-        .step-transition {
-            transition: all 0.3s ease-in-out;
-        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
@@ -42,15 +39,16 @@
                 </div>
             </div>
             <div class="bg-slate-800/80 px-4 py-2 rounded-lg border border-slate-700 text-xs text-slate-300">
-                مخصص للأعضاء الحاليين والسابقين فقط
+                الحالة: التسجيل مغلق
             </div>
         </div>
     </header>
 
-    <!-- Main Form Container -->
-    <main class="max-w-4xl w-full mx-auto p-4 md:p-6 my-8 flex-grow">
-        <form id="lastCallForm" class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+    <!-- Main Container -->
+    <main class="max-w-4xl w-full mx-auto p-4 md:p-6 my-12 flex-grow flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden max-w-xl w-full p-8 md:p-12 text-center space-y-6">
             
+<<<<<<< HEAD
             <!-- STEP 0: Introduction & Instructions -->
             <section id="section-0" class="form-section p-6 md:p-8 space-y-6">
                 <div class="border-b pb-4">
@@ -66,15 +64,26 @@
                         <li>يرجى قراءة جميع التعليمات الخاصة بالمواصلات والوجبات بعناية قبل اختيار الخيارات وإرسال الطلب النهائي.</li>
                     </ul>
                 </div>
+=======
+            <!-- Closed Icon / Badge -->
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto text-4xl font-black shadow-inner">
+                🔒
+            </div>
 
-                <div class="flex justify-end pt-4">
-                    <button type="button" onclick="nextStep(1)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition flex items-center gap-2">
-                        <span>التالي: البيانات الشخصية</span>
-                        <svg class="w-5 h-5 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </button>
-                </div>
-            </section>
+            <!-- Title -->
+            <div class="space-y-2">
+                <span class="text-xs font-bold text-red-600 bg-red-50 px-3 py-1 rounded-full border border-red-200">عذرًا، انتهى وقـت التسجيل</span>
+                <h2 class="text-3xl font-black text-ieeeDark">أُغلِق التسجيل في Last Call Event</h2>
+            </div>
+>>>>>>> 200b80b2eb366987be28c9699db7d2e987835c1e
 
+            <!-- Descriptive Message -->
+            <div class="bg-slate-50 border border-slate-200 p-6 rounded-2xl text-slate-700 text-sm leading-relaxed space-y-3">
+                <p>لقد تم إغلاق استقبال الاستجابات والطلبات الجديدة لهذه الفعالية بعد اكتمال الأعداد المحددة.</p>
+                <p>نشكر جميع أعضاء IEEE Horus Student Branch على تفاعلهم وحماسهم. نلقاكم في الفعاليات القادمة بإذن الله!</p>
+            </div>
+
+<<<<<<< HEAD
             <!-- STEP 1: Personal Data -->
             <section id="section-1" class="form-section p-6 md:p-8 space-y-6 hidden">
                 <div class="border-b pb-4 flex justify-between items-center">
@@ -84,49 +93,21 @@
                     </div>
                     <span class="text-xs text-slate-400 font-bold">1 / 8</span>
                 </div>
+=======
+            <!-- Support / Contact Note -->
+            <div class="pt-2 text-xs text-slate-500">
+                إذا كان لديك أي استفسار طارئ، يرجى التواصل مع فريق التنظيم عبر قنوات التواصل الرسمية للفرع.
+            </div>
+>>>>>>> 200b80b2eb366987be28c9699db7d2e987835c1e
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">الاسم بالكامل <span class="text-red-500">*</span></label>
-                        <input type="text" id="fullName" required placeholder="اكتب اسمك بالكامل" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">رقم الهاتف <span class="text-red-500">*</span></label>
-                        <input type="tel" id="phone" required placeholder="أدخل رقم الهاتف المستخدم للتواصل معك" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">البريد الإلكتروني <span class="text-red-500">*</span></label>
-                        <input type="email" id="email" required placeholder="أدخل بريدًا إلكترونيًا فعالًا" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">الكلية <span class="text-red-500">*</span></label>
-                        <input type="text" id="college" required placeholder="اسم الكلية" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">الحالة الأكاديمية <span class="text-red-500">*</span></label>
-                        <div class="flex gap-6 mt-3">
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="academicStatus" value="طالب" checked class="accent-ieeeBlue"> طالب</label>
-                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="academicStatus" value="خريج" class="accent-ieeeBlue"> خريج</label>
-                        </div>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-bold text-slate-700 mb-1">الرقم الجامعي <span class="text-red-500">*</span></label>
-                        <input type="text" id="universityId" required placeholder="يرجى إدخال الرقم الجامعي" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none">
-                        <span class="text-xs text-slate-400 mt-1 block">سواء كنت طالبًا حاليًا أو خريجًا.</span>
-                    </div>
-                    <div class="md:col-span-2">
-                        <label class="block text-sm font-bold text-slate-700 mb-1">المستوى الأكاديمي <span class="text-red-500">*</span></label>
-                        <select id="academicLevel" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-ieeeBlue focus:outline-none bg-white">
-                            <option value="Level 0">Level 0</option>
-                            <option value="Level 1">Level 1</option>
-                            <option value="Level 2">Level 2</option>
-                            <option value="Level 3">Level 3</option>
-                            <option value="Level 4">Level 4</option>
-                            <option value="خريج">خريج</option>
-                        </select>
-                    </div>
-                </div>
+            <!-- Action Button -->
+            <div class="pt-4">
+                <a href="https://www.facebook.com" target="_blank" class="inline-block bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">
+                    متابعة صفحتنا الرسمية
+                </a>
+            </div>
 
+<<<<<<< HEAD
                 <div class="flex justify-between pt-6 border-t">
                     <button type="button" onclick="prevStep(0)" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold px-6 py-3 rounded-xl transition">السابق</button>
                     <button type="button" onclick="validateAndNext(1, 2)" class="bg-ieeeBlue hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-md transition">التالي: بيانات العضوية</button>
@@ -442,6 +423,9 @@
             </section>
 
         </form>
+=======
+        </div>
+>>>>>>> 200b80b2eb366987be28c9699db7d2e987835c1e
     </main>
 
     <!-- Footer -->
@@ -449,6 +433,7 @@
         <p>© 2026 IEEE Horus Student Branch. All Rights Reserved.</p>
     </footer>
 
+<<<<<<< HEAD
     <!-- Success Modal -->
     <div id="successModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
         <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
@@ -917,5 +902,7 @@
             return items;
         }
     </script>
+=======
+>>>>>>> 200b80b2eb366987be28c9699db7d2e987835c1e
 </body>
 </html>
