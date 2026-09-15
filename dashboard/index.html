@@ -164,12 +164,10 @@
         // ---------------------------------------------------------
         // 1. إعدادات السكريبت والـ API
         // ---------------------------------------------------------
+        const API_URL = 'https://script.google.com/macros/s/AKfycbyavuviMR1Pg-jfnjjg_XA2bMNjODbwsWFqE9cDYokOUvNMxI7LJA2rPzPtG2_odogIZg/exec'; // ضع رابطك الجديد هنا
         
-        // **ضع الرابط الجديد لسكريبت الـ API هنا (الذي أنشأناه للتو للقراءة فقط)**
-        const API_URL = 'https://script.google.com/macros/s/AKfycbxgNbMtZpWQKiK3KUTcpVp0a2NRJBry9jg8DL9r-PACk5F5XCVztr27_S_YLZhCKmdY9Q/exec'; // <-- REPLACE THIS WITH YOUR NEW DO_GET SCRIPT URL
-        
-        let savedPassword = '';
-        let globalData = [];
+        let allDashboardData = {}; // متغير لحفظ جميع البيانات دفعة واحدة
+        let globalData = []; // البيانات الخاصة باللجنة المعروضة حالياً (لنافذة التفاصيل)
         let currentActiveTab = 'General';
 
         const tabs = [
@@ -178,7 +176,7 @@
         ];
 
         // ---------------------------------------------------------
-        // 2. نظام تسجيل الدخول والحماية (Login & IP Security)
+        // 2. نظام تسجيل الدخول والحماية
         // ---------------------------------------------------------
         const loginForm = document.getElementById('loginForm');
         const loginBtn = document.getElementById('loginBtn');
@@ -187,11 +185,37 @@
         
         let clientIP = 'unknown';
 
-        // جلب الـ IP الخاص بالمستخدم بمجرد فتح الصفحة
+        function getDeviceInfo() {
+            const ua = navigator.userAgent;
+            let os = "نظام غير معروف";
+            if (ua.indexOf("Windows NT 10.0") !== -1) os = "Windows 10/11";
+            else if (ua.indexOf("Windows NT 6.3") !== -1) os = "Windows 8.1";
+            else if (ua.indexOf("Windows NT 6.2") !== -1) os = "Windows 8";
+            else if (ua.indexOf("Windows NT 6.1") !== -1) os = "Windows 7";
+            else if (ua.indexOf("Mac OS X") !== -1) os = "macOS / Apple";
+            else if (ua.indexOf("Android") !== -1) os = "Android";
+            else if (ua.indexOf("iPhone") !== -1) os = "iPhone (iOS)";
+            else if (ua.indexOf("iPad") !== -1) os = "iPad (iOS)";
+            else if (ua.indexOf("Linux") !== -1) os = "Linux";
+
+            let browser = "متصفح غير معروف";
+            if (ua.indexOf("Chrome") !== -1 && ua.indexOf("Edg") === -1) browser = "Chrome";
+            else if (ua.indexOf("Safari") !== -1 && ua.indexOf("Chrome") === -1) browser = "Safari";
+            else if (ua.indexOf("Firefox") !== -1) browser = "Firefox";
+            else if (ua.indexOf("Edg") !== -1) browser = "Edge";
+
+            let deviceModel = "";
+            if (/Android \d+; ([^;]+)\)/.test(ua)) deviceModel = " - " + ua.match(/Android \d+; ([^;]+)\)/)[1];
+
+            return `${os}${deviceModel} (${browser})`;
+        }
+
+        const clientDevice = getDeviceInfo();
+
         fetch('https://api.ipify.org?format=json')
             .then(res => res.json())
             .then(data => { clientIP = data.ip; })
-            .catch(err => console.warn('Could not fetch IP, using fallback.'));
+            .catch(err => console.warn('Could not fetch IP'));
 
         loginForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -203,29 +227,29 @@
             loginBtn.innerHTML = `<svg class="animate-spin h-5 w-5 mx-auto text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>`;
             loginBtn.disabled = true;
 
-            // نرسل الـ IP وكلمة المرور للسيرفر
-            fetch(`${API_URL}?sheet=General&password=${encodeURIComponent(pwd)}&ip=${encodeURIComponent(clientIP)}`)
+            const requestUrl = `${API_URL}?password=${encodeURIComponent(pwd)}&ip=${encodeURIComponent(clientIP)}&device=${encodeURIComponent(clientDevice)}`;
+
+            // إرسال الطلب لمرة واحدة فقط وجلب جميع البيانات
+            fetch(requestUrl)
                 .then(res => res.json())
                 .then(data => {
                     if (data.authStatus === true) {
-                        // نجاح الدخول
-                        savedPassword = pwd;
+                        // حفظ كل البيانات المستلمة في المتغير العالمي
+                        allDashboardData = data.allSheetsData; 
+                        
                         document.getElementById('loginScreen').classList.add('hidden');
                         document.getElementById('dashboardScreen').classList.remove('hidden');
                         
                         initTabs();
-                        renderData(data);
+                        renderLocalData('General'); // عرض General كبداية
                     } else {
-                        // فشل الدخول
                         loginError.innerText = data.error || 'كلمة المرور غير صحيحة';
                         loginError.classList.remove('hidden');
-                        
-                        // إذا تم الحظر، قم بتعطيل الحقل والزر تماماً وإظهار اللون الأحمر
                         if (data.blocked) {
                             passwordInput.disabled = true;
                             passwordInput.classList.add('bg-red-50', 'border-red-300', 'cursor-not-allowed');
                             passwordInput.value = '';
-                            loginBtn.classList.add('hidden'); // إخفاء زر الدخول كلياً
+                            loginBtn.classList.add('hidden'); 
                         }
                     }
                 })
@@ -234,7 +258,6 @@
                     loginError.classList.remove('hidden');
                 })
                 .finally(() => {
-                    // نعيد الزر لطبيعته فقط إذا لم يكن المستخدم محظوراً
                     if (!passwordInput.disabled) {
                         loginBtn.innerHTML = originalBtnContent;
                         loginBtn.disabled = false;
@@ -243,7 +266,7 @@
         });
 
         // ---------------------------------------------------------
-        // 3. نظام التنقل والتبويبات (Tabs System)
+        // 3. نظام التنقل والتبويبات
         // ---------------------------------------------------------
         function initTabs() {
             const container = document.getElementById('tabsContainer');
@@ -262,66 +285,46 @@
                     btn.classList.add('active');
                     currentActiveTab = tab;
                     document.getElementById('currentTabTitle').innerHTML = tab === 'General' ? 'نظرة عامة (General)' : `<span dir="ltr">${tab}</span>`;
-                    fetchData(tab);
+                    
+                    // استخدام البيانات المحلية فوراً بدون انتظار!
+                    renderLocalData(tab); 
                 };
                 container.appendChild(btn);
             });
         }
 
         // ---------------------------------------------------------
-        // 4. جلب البيانات وعرضها
+        // 4. عرض البيانات المحلية فوراً
         // ---------------------------------------------------------
-        function fetchData(sheetName) {
-            document.getElementById('loadingState').classList.remove('hidden');
-            document.getElementById('emptyState').classList.add('hidden');
-            document.getElementById('tableWrapper').classList.add('hidden');
-
-            fetch(`${API_URL}?sheet=${encodeURIComponent(sheetName)}&password=${encodeURIComponent(savedPassword)}`)
-                .then(res => res.json())
-                .then(data => {
-                    if (data.authStatus === false) {
-                        alert("انتهت الجلسة أو تم تغيير كلمة المرور. يرجى التحديث.");
-                        location.reload();
-                        return;
-                    }
-                    renderData(data);
-                })
-                .catch(err => {
-                    console.error("Error fetching data:", err);
-                    alert("حدث خطأ أثناء جلب البيانات.");
-                    document.getElementById('loadingState').classList.add('hidden');
-                });
-        }
-
-        function renderData(data) {
-            document.getElementById('loadingState').classList.add('hidden');
+        function renderLocalData(sheetName) {
+            const data = allDashboardData[sheetName];
             const countEl = document.getElementById('applicantCount');
             
-            if (!data.rows || data.rows.length === 0) {
+            // إخفاء الـ Loading لأن العرض فوري
+            document.getElementById('loadingState').classList.add('hidden');
+
+            if (!data || !data.rows || data.rows.length === 0) {
                 document.getElementById('emptyState').classList.remove('hidden');
                 document.getElementById('tableWrapper').classList.add('hidden');
                 countEl.innerText = '0';
                 return;
             }
 
-            globalData = data.rows; // حفظ البيانات لفتح الـ Modal
+            globalData = data.rows; 
             countEl.innerText = data.rows.length;
             
             document.getElementById('emptyState').classList.add('hidden');
             document.getElementById('tableWrapper').classList.remove('hidden');
 
-            // 1. بناء العناوين (نكتفي بأهم 4 أعمدة في الجدول لتجنب الزحام)
             const thead = document.getElementById('tableHead');
             thead.innerHTML = '';
             
-            // تحديد الأعمدة المراد عرضها في الجدول الخارجي
             let displayHeaders = [];
             if (currentActiveTab === 'General') {
-                displayHeaders = data.headers; // عرض الكل لأنها قليلة
+                displayHeaders = data.headers; 
             } else {
-                // للجان: نظهر أهم البيانات فقط، والباقي في النافذة المنبثقة
                 displayHeaders = data.headers.filter(h => 
-                    h.includes('الاسم') || h.includes('الرقم الجامعي') || h.includes('المستوى') || h.includes('الكلية') || h.includes('الهاتف')
+                    h.includes('الاسم') || h.includes('الرقم الجامعي') || h.includes('المستوى') || h.includes('الكلية') || h.includes('الهاتف') || h.includes('المنصب')
                 );
             }
 
@@ -331,13 +334,11 @@
                 th.innerText = h;
                 thead.appendChild(th);
             });
-            // عمود زر التفاصيل
             const thAction = document.createElement('th');
             thAction.className = "px-4 py-3 text-center";
             thAction.innerText = "التفاصيل";
             thead.appendChild(thAction);
 
-            // 2. بناء الصفوف
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = '';
 
@@ -352,7 +353,6 @@
                     tr.appendChild(td);
                 });
 
-                // زر عرض الإجابات
                 const tdAction = document.createElement('td');
                 tdAction.className = "px-4 py-3 text-center border-r border-gray-100";
                 
@@ -372,15 +372,13 @@
         }
 
         // ---------------------------------------------------------
-        // 5. نظام النافذة المنبثقة (Modal) لعرض كل إجابات المتقدم
+        // 5. نظام النافذة المنبثقة (Modal)
         // ---------------------------------------------------------
         const modal = document.getElementById('applicantModal');
         const modalContent = document.getElementById('modalContent');
 
         function openModal(rowIndex) {
             const rowData = globalData[rowIndex];
-            
-            // جلب الاسم من أي عمود يحتوي على كلمة "اسم"
             const nameKey = Object.keys(rowData).find(k => k.includes('الاسم')) || 'متقدم';
             document.getElementById('modalApplicantName').innerText = rowData[nameKey];
             document.getElementById('modalApplicantRole').innerText = currentActiveTab;
@@ -388,10 +386,9 @@
             const body = document.getElementById('modalBody');
             body.innerHTML = '';
 
-            // عرض جميع الأسئلة وإجاباتها
             Object.keys(rowData).forEach(question => {
                 const answer = rowData[question];
-                if (!answer) return; // تخطي الحقول الفارغة
+                if (!answer) return;
 
                 const block = document.createElement('div');
                 block.className = "bg-gray-50 border border-gray-200 rounded-xl p-4";
@@ -402,7 +399,6 @@
 
                 const aText = document.createElement('div');
                 
-                // التأكد إذا كان الإجابة عبارة عن رابط (مثل لينك الدرايف) لجعلها قابلة للضغط
                 if (answer.startsWith('http://') || answer.startsWith('https://')) {
                     aText.innerHTML = `<a href="${answer}" target="_blank" class="text-ieee-cyan font-bold underline flex items-center gap-1"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg> فتح الرابط</a>`;
                 } else {
@@ -415,7 +411,6 @@
                 body.appendChild(block);
             });
 
-            // إظهار النافذة بحركة ناعمة
             modal.classList.remove('hidden');
             setTimeout(() => {
                 modal.classList.remove('opacity-0');
@@ -433,7 +428,6 @@
             }, 300);
         }
 
-        // إغلاق النافذة عند الضغط خارجها
         modal.addEventListener('click', (e) => {
             if (e.target === modal) closeModal();
         });
