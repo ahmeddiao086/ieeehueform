@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لجان IEEE Horus SB</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Cairo for Arabic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#030712',
+                            card: '#0f172a',
+                            border: '#1e293b',
+                            blue: '#3b82f6',
+                            glow: '#60a5fa',
+                            accent: '#2563eb'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #030712;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+        .hero-glow {
+            background: radial-gradient(circle at 50% 20%, rgba(37, 99, 235, 0.25) 0%, rgba(15, 23, 42, 0) 70%);
+        }
+        .glass-card {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(59, 130, 246, 0.3);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="bg-brand-dark min-h-screen flex flex-col justify-between selection:bg-blue-600 selection:text-white">
+
+    <!-- Ambient Glow Background Effect -->
+    <div class="absolute top-0 left-0 w-full h-[800px] hero-glow pointer-events-none z-0"></div>
+
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 glass-card border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo Section -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center justify-center">
+                    <img src="https://ieeehueform.vercel.app/logo.svg" alt="IEEE HUE Logo" class="h-6 sm:h-7 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(59,130,246,0.4)]" onerror="this.onerror=null; this.src='https://placehold.co/180x50/1e293b/ffffff?text=IEEE+Horus';">
+                </div>
+                <div>
+                    <span class="text-xl font-black tracking-wider bg-gradient-to-r from-white via-blue-200 to-blue-400 bg-clip-text text-transparent">IEEE Horus SB</span>
+                    <span class="block text-xs text-blue-400 font-medium tracking-widest">COMMITTEES PORTAL</span>
+                </div>
+            </div>
+
+            <!-- Action / Register Button -->
+            <div class="flex items-center gap-4">
+                <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-blue-600/30 transition-all transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <span>رابط التسجيل</span>
+                    <i class="fa-solid fa-external-link-alt text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- COUNTDOWN TIMER & STATUS BAR -->
+    <section class="relative z-10 pt-10 pb-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-blue-500/20 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-4 text-center md:text-right">
+                <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl shrink-0">
+                    <i class="fa-solid fa-clock-rotate-left animate-spin" style="animation-duration: 8s;"></i>
+                </div>
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold mb-1">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+                        2 Days left (متبقي يومان)
+                    </div>
+                    <h2 class="text-xl sm:text-2xl font-black">ينتهي التسجيل بنهاية يوم الخميس</h2>
+                </div>
+            </div>
+
+            <!-- Timer Boxes -->
+            <div class="flex items-center gap-3 text-center">
+                <div class="glass-card px-4 py-3 rounded-2xl min-w-[70px] border border-white/10">
+                    <span id="days" class="block text-2xl sm:text-3xl font-black text-blue-400">02</span>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-wider">أيام</span>
+                </div>
+                <span class="text-xl font-bold text-blue-400">:</span>
+                <div class="glass-card px-4 py-3 rounded-2xl min-w-[70px] border border-white/10">
+                    <span id="hours" class="block text-2xl sm:text-3xl font-black text-blue-400">00</span>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-wider">ساعة</span>
+                </div>
+                <span class="text-xl font-bold text-blue-400">:</span>
+                <div class="glass-card px-4 py-3 rounded-2xl min-w-[70px] border border-white/10">
+                    <span id="minutes" class="block text-2xl sm:text-3xl font-black text-blue-400">00</span>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-wider">دقيقة</span>
+                </div>
+                <span class="text-xl font-bold text-blue-400">:</span>
+                <div class="glass-card px-4 py-3 rounded-2xl min-w-[70px] border border-white/10">
+                    <span id="seconds" class="block text-2xl sm:text-3xl font-black text-blue-400">00</span>
+                    <span class="text-[10px] text-slate-400 uppercase tracking-wider">ثانية</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMITTEES SECTION -->
+    <section id="committees" class="relative z-10 py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        <div class="text-center mb-12">
+            <h1 class="text-3xl sm:text-5xl font-black mb-4">لجان الفرع وتفاصيلها</h1>
+            <p class="text-slate-400 max-w-xl mx-auto text-sm sm:text-base">تعرف على مهام ووصف كل لجنة لتحديد اختيارك الأمثل والمشاركة بفعالية.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- 1. Technical Committee -->
+            <div class="glass-card rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:bg-blue-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 group-hover:text-blue-400 transition-colors">1. Technical Committee</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                        إذا كنت شغوفًا بالتكنولوجيا والهندسة، وتسعى إلى اكتساب معارف جديدة ومشاركة خبراتك مع الآخرين، فهذه اللجنة هي فرصتك لتطوير مهاراتك التقنية والمساهمة في تقديم الجلسات التعليمية وورش العمل وتنفيذ المشروعات التقنية، إلى جانب تبادل المعرفة والخبرات مع أعضاء الفرع.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <button onclick="openModal('Technical Committee', 'إذا كنت شغوفًا بالتكنولوجيا والهندسة، وتسعى إلى اكتساب معارف جديدة ومشاركة خبراتك مع الآخرين، فهذه اللجنة هي فرصتك لتطوير مهاراتك التقنية والمساهمة في تقديم الجلسات التعليمية وورش العمل وتنفيذ المشروعات التقنية، إلى جانب تبادل المعرفة والخبرات مع أعضاء الفرع.', 'fa-code')" class="inline-flex items-center gap-2 text-blue-400 font-semibold hover:text-blue-300 transition-colors text-sm">
+                        <span>التفاصيل</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold transition-all shadow-md shadow-blue-600/30">
+                        سجل الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- 2. Social Media Committee -->
+            <div class="glass-card rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-indigo-600/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 text-2xl mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-camera-retro"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 group-hover:text-indigo-400 transition-colors">2. Social Media Committee</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                        إذا كنت مهتمًا بالتصوير أو التصميم أو المونتاج أو كتابة المحتوى، فستتاح لك الفرصة للمشاركة في صناعة محتوى إبداعي يعكس هوية الفرع، وتغطية فعالياته وأنشطته، وإعداد المنشورات والتصاميم ومقاطع الفيديو للنشر عبر منصات التواصل الاجتماعي.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <button onclick="openModal('Social Media Committee', 'إذا كنت مهتمًا بالتصوير أو التصميم أو المونتاج أو كتابة المحتوى، فستتاح لك الفرصة للمشاركة في صناعة محتوى إبداعي يعكس هوية الفرع، وتغطية فعالياته وأنشطته، وإعداد المنشورات والتصاميم ومقاطع الفيديو للنشر عبر منصات التواصل الاجتماعي.', 'fa-camera-retro')" class="inline-flex items-center gap-2 text-indigo-400 font-semibold hover:text-indigo-300 transition-colors text-sm">
+                        <span>التفاصيل</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md shadow-indigo-600/30">
+                        سجل الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. PR Committee -->
+            <div class="glass-card rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-sky-600/20 border border-sky-500/30 flex items-center justify-center text-sky-400 text-2xl mb-6 group-hover:bg-sky-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 group-hover:text-sky-400 transition-colors">3. PR Committee</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                        إذا كنت تتمتع بمهارات التواصل وبناء العلاقات، فستساعدك هذه اللجنة على تطوير قدراتك في التواصل مع الطلاب والجهات المختلفة، وبناء علاقات فعّالة مع الشركاء والمتحدثين، والتنسيق معهم، وتمثيل الفرع في الفعاليات والمناسبات المختلفة.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <button onclick="openModal('PR Committee', 'إذا كنت تتمتع بمهارات التواصل وبناء العلاقات، فستساعدك هذه اللجنة على تطوير قدراتك في التواصل مع الطلاب والجهات المختلفة، وبناء علاقات فعّالة مع الشركاء والمتحدثين، والتنسيق معهم، وتمثيل الفرع في الفعاليات والمناسبات المختلفة.', 'fa-handshake')" class="inline-flex items-center gap-2 text-sky-400 font-semibold hover:text-sky-300 transition-colors text-sm">
+                        <span>التفاصيل</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition-all shadow-md shadow-sky-600/30">
+                        سجل الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. FR Committee -->
+            <div class="glass-card rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-600/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 group-hover:text-emerald-400 transition-colors">4. FR Committee</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                        إذا كنت مهتمًا بالتفاوض والتخطيط وبناء الشراكات، فستشارك في البحث عن الرعاة والشركاء المحتملين، والتواصل مع الشركات والمؤسسات، وإعداد عروض الرعاية، والمساهمة في توفير الموارد المالية اللازمة لتنفيذ فعاليات الفرع وأنشطته.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <button onclick="openModal('FR Committee', 'إذا كنت مهتمًا بالتفاوض والتخطيط وبناء الشراكات، فستشارك في البحث عن الرعاة والشركاء المحتملين، والتواصل مع الشركات والمؤسسات، وإعداد عروض الرعاية، والمساهمة في توفير الموارد المالية اللازمة لتنفيذ فعاليات الفرع وأنشطته.', 'fa-chart-line')" class="inline-flex items-center gap-2 text-emerald-400 font-semibold hover:text-emerald-300 transition-colors text-sm">
+                        <span>التفاصيل</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md shadow-emerald-600/30">
+                        سجل الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Logistics Committee -->
+            <div class="glass-card rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-amber-600/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl mb-6 group-hover:bg-amber-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400 transition-colors">5. Logistics Committee</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                        إذا كنت تتميز بمهارات التنظيم والتنسيق، فستساهم في تجهيز أماكن الفعاليات، وإعداد الأدوات والمعدات اللازمة، وتنظيم المساحات، واستقبال المشاركين، والتأكد من توافر المتطلبات اللازمة لضمان سير الفعاليات والأنشطة بسلاسة وكفاءة.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <button onclick="openModal('Logistics Committee', 'إذا كنت تتميز بمهارات التنظيم والتنسيق، فستساهم في تجهيز أماكن الفعاليات، وإعداد الأدوات والمعدات اللازمة، وتنظيم المساحات، واستقبال المشاركين، والتأكد من توافر المتطلبات اللازمة لضمان سير الفعاليات والأنشطة بسلاسة وكفاءة.', 'fa-boxes-stacked')" class="inline-flex items-center gap-2 text-amber-400 font-semibold hover:text-amber-300 transition-colors text-sm">
+                        <span>التفاصيل</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white text-xs font-bold transition-all shadow-md shadow-amber-600/30">
+                        سجل الآن
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Membership Committee -->
+            <div class="glass-card rounded-3xl p-8 transition-all duration-300 flex flex-col justify-between group">
+                <div>
+                    <div class="w-14 h-14 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3 group-hover:text-purple-400 transition-colors">6. Membership Committee</h3>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                        إذا كنت تحب التواصل مع الآخرين ومساعدتهم على خوض تجربة طلابية مميزة، فستشارك في استقطاب أعضاء جدد، وتعريفهم بأنشطة IEEE Horus SB وأهدافه، ومتابعة الأعضاء الحاليين، ومساعدتهم على الاندماج في الفرع والمشاركة في فعالياته ومبادراته، بما يسهم في تعزيز انتمائهم وتشجيعهم على التفاعل والمشاركة الفعّالة.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                    <button onclick="openModal('Membership Committee', 'إذا كنت تحب التواصل مع الآخرين ومساعدتهم على خوض تجربة طلابية مميزة، فستشارك في استقطاب أعضاء جدد، وتعريفهم بأنشطة IEEE Horus SB وأهدافه، ومتابعة الأعضاء الحاليين، ومساعدتهم على الاندماج في الفرع والمشاركة في فعالياته ومبادراته، بما يسهم في تعزيز انتمائهم وتشجيعهم على التفاعل والمشاركة الفعّالة.', 'fa-users')" class="inline-flex items-center gap-2 text-purple-400 font-semibold hover:text-purple-300 transition-colors text-sm">
+                        <span>التفاصيل</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold transition-all shadow-md shadow-purple-600/30">
+                        سجل الآن
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 border-t border-white/10 mt-20 py-8 text-center text-xs text-slate-500 glass-card">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© 2026 IEEE Horus Student Branch. جميع الحقوق محفوظة.</p>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="hover:text-blue-400 transition-colors font-medium">رابط الاستمارة الرسمية</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL POPUP -->
+    <div id="committeeModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm hidden p-4">
+        <div class="glass-card rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-blue-500/30 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-5 left-5 text-slate-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="flex items-center gap-4 mb-6">
+                <div id="modalIconContainer" class="w-12 h-12 rounded-xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-blue-400 text-2xl">
+                    <i id="modalIcon" class="fa-solid fa-code"></i>
+                </div>
+                <h3 id="modalTitle" class="text-2xl font-bold">عنوان اللجنة</h3>
+            </div>
+            <p id="modalDescription" class="text-slate-300 text-sm leading-relaxed mb-6 font-light">
+                الوصف التفصيلي للجنة...
+            </p>
+            <a href="https://forms.cloud.microsoft/r/h1vD6KZRdu" target="_blank" class="block text-center py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold transition-all shadow-lg shadow-blue-600/30">
+                الانضمام لهذه اللجنة الآن
+            </a>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Modal Handler
+        function openModal(title, description, iconClass) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDescription').innerText = description;
+            document.getElementById('modalIcon').className = `fa-solid ${iconClass}`;
+            document.getElementById('committeeModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('committeeModal').classList.add('hidden');
+        }
+
+        // Close modal on outside click
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('committeeModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Countdown Timer Logic until end of upcoming Thursday
+        function getNextThursdayEnd() {
+            const now = new Date();
+            const result = new Date(now);
+            const day = now.getDay();
+            // Thursday is index 4 (0=Sun, 1=Mon, 2=Tue, 3=Wed, 4=Thu)
+            let diff = 4 - day;
+            if (diff <= 0) {
+                diff += 7; // if today is thursday or later, target next thursday
+            }
+            result.setDate(now.getDate() + diff);
+            result.setHours(23, 59, 59, 999);
+            return result;
+        }
+
+        const targetDate = getNextThursdayEnd();
+
+        function updateTimer() {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').innerText = "00";
+                document.getElementById('hours').innerText = "00";
+                document.getElementById('minutes').innerText = "00";
+                document.getElementById('seconds').innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60 * 60 / 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
