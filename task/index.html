@@ -24,13 +24,30 @@
   .badge{display:inline-block;background:#e6f2fa;color:var(--primary);padding:2px 14px;border-radius:99px;font-weight:700;font-size:.9rem}
   .notice{background:#fff8e8;border:1px solid #f6dfa8;border-radius:12px;padding:12px 16px;font-size:.95rem;margin-top:10px}
   .notice.blue{background:#eef6fc;border-color:#cfe4f3}
+
+  .brief{background:#f8fbfe;border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin:18px 0 4px}
+  .brief[dir=ltr]{text-align:left}
+  .brief h3{margin:14px 0 4px;font-size:1.05rem;color:var(--primary-dark)}
+  .brief h3:first-child{margin-top:0}
+  .brief p{margin:6px 0}
+  .brief ul,.brief ol{margin:6px 0;padding-inline-start:24px}
+  .brief li{margin:2px 0}
+  .brief figure{margin:12px 0 4px}
+  .brief figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:10px;background:#fff}
+  .brief figcaption{color:var(--muted);font-size:.85rem;margin-top:6px}
+  .iconlinks{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 2px}
+  .iconlink{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--primary);color:var(--primary);background:#fff;border-radius:12px;padding:6px 14px;text-decoration:none;font-weight:700;font-size:.92rem}
+  .iconlink:hover{background:var(--primary);color:#fff}
+  .iconlink svg{width:20px;height:20px;flex:none}
+  .iconlink.off{border-color:var(--line);color:var(--muted);cursor:not-allowed;background:#f4f6f9}
+  .iconlink.off:hover{background:#f4f6f9;color:var(--muted)}
+
   label.q{display:block;font-weight:700;margin:22px 0 4px}
   .hint{color:var(--muted);font-size:.88rem;margin:0 0 8px}
-  textarea,input[type=url],input[type=file]{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fbfdff}
-  textarea{min-height:140px;resize:vertical}
+  textarea,input[type=url],input[type=text]{width:100%;font:inherit;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:#fbfdff}
+  textarea{min-height:110px;resize:vertical}
   textarea:focus,input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(0,98,155,.15)}
   .count{font-size:.8rem;color:var(--muted);text-align:left}
-  .or{text-align:center;color:var(--muted);margin:6px 0;font-size:.9rem}
   .roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
   .role{border:2px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;background:#fff;text-align:right;font:inherit;transition:.15s}
   .role:hover{border-color:var(--primary);transform:translateY(-2px)}
@@ -66,90 +83,158 @@
 <script>
 /* ===================== الإعدادات ===================== */
 const API_URL = 'https://script.google.com/macros/s/AKfycbzLXzjvcXfLaUcNz9aHAXN1b5zZ4_XOsLG3yAaau-D6TYU9LMaKdbz6LZux6Kr7pnj8DQ/exec';
-const MAX_FILE_MB = 8;
 const AUTOSAVE_DELAY_MS = 2500;
 const DEADLINE_TEXT = ''; // مثال: 'آخر موعد للتسليم: الأحد 8 نوفمبر، الساعة 11:59 مساءً'
 
-const WHY = {id:'why', type:'text', min:80,
-  label:'لماذا اخترتَ هذه اللجنة؟',
-  hint:'اكتب من ثلاثة إلى خمسة أسطر بأسلوبك الخاص: ما الذي يميّزك، وما الذي ستضيفه إلى اللجنة؟'};
+const IEEE_DAY_INSTAGRAM = 'https://www.instagram.com/ieeeday/';
+const GRAPHIC_RESOURCES_URL = '';   // رابط Drive لمصادر المساعدة (يُضاف لاحقًا)
+const MEMBERSHIP_SAMPLE_IMG = '/task/membership-excel-sample.png';
+const MEMBERSHIP_EXCEL_COL5 = '';   // نص العمود الخامس في جدول التقييم (يُضاف عند توفّره)
 
+/* ===================== الروابط المسموحة ===================== */
+const HOSTS = {
+  drive:     ['drive.google.com','docs.google.com'],
+  portfolio: ['drive.google.com','docs.google.com','behance.net'],
+  form:      ['forms.gle','docs.google.com','forms.office.com','forms.microsoft.com','forms.cloud.microsoft']
+};
+const HOST_MSG = {
+  drive:     'يجب أن يكون الرابط من Google Drive.',
+  portfolio: 'يجب أن يكون الرابط من Google Drive أو Behance.',
+  form:      'يجب أن يكون الرابط لنموذج Google Forms أو Microsoft Forms.'
+};
+const SHARE_HINT = 'تأكّد من ضبط المشاركة على «أي شخص لديه الرابط» (Anyone with the link) بصلاحية عارض (Viewer)، وإلا لن نتمكّن من فتح الملف.';
+
+/* ===================== أدوات تعريف الحقول ===================== */
+const pdfField = (id, label, extra) => Object.assign({id, type:'link', hosts:'drive', required:true, label,
+  hint:'اكتب إجابتك في ملف PDF، وارفعه إلى Google Drive، ثم ألصق رابطه هنا. ' + SHARE_HINT}, extra || {});
+const driveField = (id, label, hint) => ({id, type:'link', hosts:'drive', required:true, label, hint:(hint ? hint + ' ' : '') + SHARE_HINT});
+const textField = (id, label, o) => Object.assign({id, type:'text', required:true, min:0, label}, o || {});
+
+/* ===================== المهام ===================== */
 const COMMITTEES = {
-  pr:{ label:'العلاقات العامة (PR)', tasks:[
-    {id:'invite', type:'text', min:120, label:'اكتب رسالة دعوة موجَّهة إلى متحدث أو شركة لحضور فعالية تنظّمها IEEE Horus',
-     hint:'رسالة مهذّبة موجزة (من خمسة إلى ثمانية أسطر). اختر فعالية من وحي خيالك، وبيّن سبب مناسبة هذا المتحدث أو هذه الشركة.'},
-    {id:'reply', type:'text', min:100, label:'سألك أحد الطلاب: «ما الفائدة التي ستعود عليّ من الانضمام إلى IEEE؟» كيف تجيبه؟',
-     hint:'اكتب إجابتك بأسلوبك الشخصي، مستندًا إلى تجربتك أو رأيك.'},
-    WHY]},
-  fr:{ label:'العلاقات الخارجية والتمويل (FR)', tasks:[
-    {id:'sponsors', type:'text', min:120, label:'رشِّح خمس شركات يمكن أن ترعى فعالية طلابية، وبيّن سبب ملاءمة كل منها',
-     hint:'سطر أو سطران لكل شركة.'},
-    {id:'pitch', type:'text', min:120, label:'اكتب رسالة موجزة (من خمسة إلى ستة أسطر) تطلب فيها رعاية فعالية',
-     hint:'وضّح ما الذي يمكن أن نقدّمه للراعي مقابل رعايته.'},
-    WHY]},
-  membership:{ label:'العضوية', tasks:[
-    {id:'benefits', type:'text', min:100, label:'لماذا ينبغي للطالب أن ينضم إلى IEEE؟ (من ثلاثة إلى أربعة أسطر)',
-     hint:'اكتب من تجربتك أو من رؤيتك الشخصية، لا بعبارات جاهزة.'},
-    {id:'engage', type:'text', min:100, label:'اقترح نشاطين بسيطين يُبقيان الأعضاء نشطين طوال الفصل الدراسي',
-     hint:'اشرح الفكرة وكيف يمكن تنفيذها بإمكانات متواضعة.'},
-    WHY]},
-  logistics:{ label:'اللوجستيات', tasks:[
-    {id:'plan', type:'text', min:150, label:'أعدّ قائمة تحضيرات لورشة عمل مدتها ساعة واحدة لثلاثين شخصًا',
-     hint:'القاعة، والتجهيزات، والتسجيل، والضيافة، وكل ما تراه مهمًّا، مرتَّبًا زمنيًّا.'},
-    {id:'problem', type:'text', min:80, label:'قبل بدء الورشة بعشر دقائق تعطّل جهاز العرض (البروجكتور). ماذا تفعل؟',
-     hint:'اذكر خطوات واضحة.'},
-    WHY]},
-  technical:{ label:'اللجنة التقنية', tasks:[
-    {id:'workshop', type:'text', min:120, label:'اقترح ورشة للمبتدئين (مثل: Arduino أو Git أو أساسيات الويب) مع ثلاث نقاط رئيسية للمحتوى',
-     hint:'اختر موضوعًا تتقنه فعلًا.'},
-    {id:'explain', type:'text', min:100, label:'اشرح مفهومًا تقنيًّا واحدًا (مثل: إنترنت الأشياء IoT أو واجهات البرمجة API) في خمسة أسطر لطالب غير متخصص',
-     hint:'اختر مفهومًا تستطيع شرحه بمثال من حياتك.'},
-    {id:'project', type:'url', optional:true, label:'رابط مشروع أو شيفرة برمجية سابقة (GitHub أو غيره)', hint:'اختياري.'},
-    WHY]},
-  social:{ label:'السوشيال ميديا', tasks:[] }
+  pr:{ label:'العلاقات العامة (PR)', sections:[{ blocks:[
+      {t:'p', text:'في كل عام ينظّم فرع IEEE Horus فعالية تقنية كبيرة داخل الجامعة، ويجذب عددًا كبيرًا من الطلاب والمهتمين بالتكنولوجيا. لكن هذا العام واجه الفريق مشكلة، وهي أن الحضور كان منخفضًا مقارنةً بالأعوام السابقة. وعندما بدأنا البحث عن السبب، وجدنا أن كثيرًا من الطلاب لم يكونوا يعرفون موعد الفعالية أو تفاصيلها، رغم أننا نشرنا عنها على صفحات IEEE في وسائل التواصل الاجتماعي.'},
+      {t:'p', text:'إذا كانت لدينا فعالية في جامعتنا، فماذا ستفعل بصفتك عضوًا في فريق العلاقات العامة (PR) لضمان أكبر حضور ممكن؟'},
+      {t:'ol', items:[
+        'تحليل الأسباب: ما السبب الرئيسي المحتمل لعدم علم الطلاب بالفعالية؟',
+        'تحديد خطوات تحسين الترويج: اذكر من 3 إلى 5 خطوات يمكنك اتخاذها لضمان وصول خبر الفعالية إلى الجمهور المستهدف على نحو أفضل.',
+        'التواصل مع الجمهور: كيف ستتعامل مع آراء الطلاب الذين لم يحضروا؟ وكيف ستقنعهم بحضور الفعاليات القادمة؟']}
+    ], fields:[ pdfField('answer','رابط ملف PDF الذي يتضمّن إجاباتك', {hint:'اكتب إجاباتك باللغة العربية في ملف PDF، وارفعه إلى Google Drive، ثم ألصق رابطه هنا. ' + SHARE_HINT}) ]}]},
+
+  fr:{ label:'العلاقات الخارجية والتمويل (FR)', sections:[{ blocks:[
+      {t:'p', text:'ضمن لجنة جمع التمويل والرعايات (Fundraising – FR): إقناع الشركات بتمويل فعالياتنا الطلابية. المطلوب منك:'},
+      {t:'ol', items:[
+        'كيف ستقنع الشركة بدعم الفعالية؟ اذكر أبرز النقاط التي ستعرضها عليهم.',
+        'اقترح فكرة بسيطة لمشاركة الشركة بصورة بارزة خلال الفعالية.',
+        'تخيّل أن ممثل إحدى الشركات سألك: «ما الفائدة التي ستعود عليّ إذا دعمتكم؟» كيف ستجيبه؟']},
+      {t:'p', text:'ملاحظة: كن مبدعًا وشارك أفكارك الخاصة دون الاعتماد على إجابات جاهزة. أبرِز كيف تفيد الفعالية الشركة، وانظر إلى الاعتراضات بوصفها فرصًا لإظهار مهارتك في الإقناع.'}
+    ], fields:[ pdfField('answer','رابط ملف PDF الذي يتضمّن إجاباتك', {hint:'اكتب إجاباتك باللغة العربية في ملف PDF، وارفعه إلى Google Drive، ثم ألصق رابطه هنا. ' + SHARE_HINT}) ]}]},
+
+  membership:{ label:'العضوية', sections:[
+    { blocks:[
+      {t:'h', text:'السؤال الأول: تسجيل المشاركين في الفعاليات'},
+      {t:'p', text:'لنفترض أن الفرع ينظم فعالية داخل الجامعة، وقد أبدى عدد كبير من الطلاب اهتمامهم بالمشاركة وسجّلوا لحضورها.'},
+      {t:'p', text:'المطلوب: إنشاء نموذج تسجيل باستخدام Google Forms أو Microsoft Forms لجمع بيانات الطلاب الراغبين في حضور الفعالية.'},
+      {t:'p', text:'يجب أن يتضمن النموذج البيانات التالية:'},
+      {t:'h', text:'أولًا: البيانات الأساسية (إجبارية)'},
+      {t:'ul', items:['الاسم بالكامل.','الكود الجامعي.','رقم الهاتف.','البريد الإلكتروني.']},
+      {t:'h', text:'ثانيًا: بيانات اختيارية'},
+      {t:'ul', items:['ماذا تعرف عن IEEE Horus Student Branch؟']},
+      {t:'p', text:'يجب مراعاة سهولة استخدام النموذج، ووضوح الأسئلة، وتنظيم البيانات التي يتم جمعها.'}
+    ], fields:[ {id:'form', type:'link', hosts:'form', required:true, label:'رابط نموذج التسجيل (Google Forms أو Microsoft Forms)',
+        hint:'تأكّد من أن النموذج يقبل الردود، وأن الرابط يفتح لأي شخص لديه الرابط دون تسجيل دخول.'} ]},
+    { blocks:[
+      {t:'h', text:'السؤال الثاني: تنظيم الحضور (Attendance Management)'},
+      {t:'p', text:'بعد تسجيل عدد كبير من الطلاب، كيف ستنظم عملية تسجيل الحضور يوم الفعالية لتجنب التكدس والازدحام أمام نقاط التسجيل؟'},
+      {t:'p', text:'المطلوب: اشرح خطتك لتنظيم دخول الطلاب، والتحقق من بياناتهم، وتسجيل حضورهم بطريقة سريعة ومنظمة تضمن انسيابية الدخول.'}
+    ], fields:[
+      pdfField('attendance','رابط ملف PDF الذي يتضمّن خطتك لتنظيم الحضور'),
+      textField('office','هل لديك خبرة في برامج Microsoft Office؟', {rows:2, hint:'يمكنك الإجابة بـ «نعم» أو بتفصيل أكثر، ولا يوجد حدّ أدنى للطول.'}) ]},
+    { blocks:[
+      {t:'h', text:'السؤال الثالث: ملف Excel لتقييم الأعضاء'},
+      {t:'p', text:'المطلوب: إنشاء ملف Excel يحتوي على جدول لتقييم الأعضاء، وفقًا للتفاصيل التالية:'},
+      {t:'ol', items:[
+        'العمود الأول: أسماء الطلاب (Student Names).',
+        'العمود الثاني: تقييم كل طالب من 10 خلال الشهر الأول (Month 1).',
+        'العمود الثالث: تقييم كل طالب من 10 خلال الشهر الثاني (Month 2).',
+        'العمود الرابع: تقييم كل طالب من 10 خلال الشهر الثالث (Month 3).'
+      ].concat(MEMBERSHIP_EXCEL_COL5 ? [MEMBERSHIP_EXCEL_COL5] : [])},
+      {t:'img', src:MEMBERSHIP_SAMPLE_IMG, alt:'نموذج توضيحي لجدول Excel المطلوب', caption:'نموذج توضيحي للجدول المطلوب (للاسترشاد فقط).'}
+    ], fields:[ driveField('excel','رابط ملف Excel (Google Drive)') ]}
+  ]},
+
+  logistics:{ label:'اللوجستيات', sections:[{ blocks:[
+      {t:'h', text:'تفاصيل الفعالية'},
+      {t:'p', text:'تخيّل أنك عضو في لجنة Logistics ضمن فريق تنظيم فعالية جامعية تستمر لمدة يوم واحد، وتتضمن مجموعة من المحاضرات (Sessions) يقدمها متحدثون من خارج الجامعة، بالإضافة إلى فترات استراحة بين المحاضرات. تبدأ الفعالية في تمام الساعة 10:00 صباحًا وتنتهي في الساعة 4:00 مساءً.'},
+      {t:'p', text:'تتولى لجنة Logistics مسؤولية تجهيز القاعة والتأكد من جاهزية جميع المتطلبات، مثل المقاعد، وأجهزة العرض، والميكروفونات، وتنظيم دخول الحضور وخروجهم، والتعامل مع أي مشكلات قد تؤثر على سير الفعالية.'},
+      {t:'h', text:'السؤال الأول: التعامل مع الطوارئ'},
+      {t:'p', text:'أثناء الفعالية، كان من المقرر أن يبدأ المتحدث الأول جلسته في الساعة 10:30 صباحًا، ولكنه تأخر بسبب ظروف خارجة عن إرادته، ولم يصل إلى الجامعة في الموعد المحدد.'},
+      {t:'p', text:'كيف ستتعامل مع هذا الموقف؟ وما الخطوات التي ستتخذها لتجنب تأثر جدول الفعالية أو شعور الحضور بالملل؟'},
+      {t:'h', text:'السؤال الثاني: إدارة المشكلات داخل القاعة'},
+      {t:'p', text:'أثناء إحدى المحاضرات، بدأ أحد الطلاب في القاعة بإحداث ضوضاء والتحدث بصوت مرتفع، مما تسبب في تشتيت انتباه الحضور وإزعاج المتحدث.'},
+      {t:'p', text:'حاولت التعامل معه وطلبت منه الهدوء أكثر من مرة، ولكنه استمر في التصرف نفسه ولم يستجب.'},
+      {t:'p', text:'كيف ستتعامل مع هذا الموقف؟ وما الإجراء الذي ستتخذه للحفاظ على النظام داخل القاعة دون التأثير على سير المحاضرة؟'}
+    ], fields:[ pdfField('answer','رابط ملف PDF الذي يتضمّن إجاباتك') ]}]},
+
+  technical:{ label:'اللجنة التقنية', sections:[{ blocks:[], fields:[
+      textField('workshop','اقترح ورشة للمبتدئين (مثل: Arduino أو Git أو أساسيات الويب) مع ثلاث نقاط رئيسية للمحتوى', {rows:5, hint:'اختر موضوعًا تتقنه فعلًا. لا يوجد حدّ أدنى للطول.'}),
+      textField('skills','ما المهارات التي ترغب في اكتسابها من خلال انضمامك إلى اللجنة التقنية؟', {rows:4, hint:'لا يوجد حدّ أدنى للطول.'}),
+      textField('why','لماذا اخترتَ هذه اللجنة؟', {min:80, rows:5, hint:'اكتب من ثلاثة إلى خمسة أسطر بأسلوبك الخاص: ما الذي يميّزك، وما الذي ستضيفه إلى اللجنة؟'}) ]}]},
+
+  social:{ label:'السوشيال ميديا', sections:[] }
 };
 
-const PORTFOLIO = {id:'portfolio', type:'url', optional:true,
-  label:'رابط أعمال سابقة (Portfolio)', hint:'اختياري: Behance أو Drive أو إنستجرام أو أي رابط يتضمّن أعمالك.'};
-
 const SOCIAL_ROLES = {
-  design:{ label:'تصميم الجرافيك', desc:'منشورات وهوية بصرية', tasks:[
-    {id:'post', type:'upload', accept:'image/*', label:'صمِّم منشورًا أو ستوري يعلن عن فعالية افتراضية لـ IEEE Horus',
-     hint:'ارفع الصورة أو أرفق رابطها. اكتب في التصميم اسم الفعالية وتاريخها ومكانها.'},
-    {id:'design_why', type:'text', min:80, label:'اشرح اختياراتك في التصميم (الألوان، والخطوط، والفكرة)',
-     hint:'من ثلاثة إلى أربعة أسطر بأسلوبك.'},
-    PORTFOLIO, WHY]},
-  video:{ label:'مونتاج الفيديو', desc:'مقاطع ريلز وفيديوهات قصيرة', tasks:[
-    {id:'reel', type:'upload', accept:'video/*', label:'أنتِج مقطع ريلز مدته بين 15 و30 ثانية يعلن عن ورشة عمل أو فعالية افتراضية',
-     hint:'يُفضَّل رفعه على Drive وإرفاق الرابط، مع التأكد من أن الرابط متاح لكل من يملكه.'},
-    {id:'video_why', type:'text', min:80, label:'ما الأدوات التي استخدمتها، وما الفكرة التي يقوم عليها المقطع؟',
-     hint:'من ثلاثة إلى أربعة أسطر بأسلوبك.'},
-    PORTFOLIO, WHY]},
-  writer:{ label:'كتابة المحتوى', desc:'تعليقات توضيحية وأفكار محتوى', tasks:[
-    {id:'captions', type:'text', min:150, label:'اكتب ثلاثة تعليقات (كابشن) قصيرة: لورشة عمل، ولمسابقة، وللتذكير بفتح باب التقديم',
-     hint:'بأسلوبك الخاص، وبلغة تناسب طلبة الجامعة.'},
-    {id:'reels_ideas', type:'text', min:120, label:'اقترح ثلاث أفكار لمقاطع ريلز أو فيديوهات قصيرة تجذب الطلبة إلى IEEE',
-     hint:'اشرح كل فكرة في سطرين.'},
-    PORTFOLIO, WHY]},
-  marketing:{ label:'التسويق', desc:'خطط النشر وزيادة التفاعل', tasks:[
-    {id:'plan_week', type:'text', min:150, label:'أعدّ خطة نشر لمدة أسبوع للإعلان عن ورشة عمل',
-     hint:'ماذا ستنشر كل يوم، وعلى أي منصة، ولماذا؟'},
-    {id:'engage_ideas', type:'text', min:100, label:'اقترح ثلاث طرائق لزيادة التفاعل مع صفحة الفرع',
-     hint:'أفكار عملية وبسيطة.'},
-    PORTFOLIO, WHY]},
-  voiceover:{ label:'التعليق الصوتي', desc:'تسجيل صوتي', tasks:[
-    {id:'voice', type:'upload', accept:'audio/*', label:'سجِّل صوتك وأنت تقرأ الإعلان الآتي',
-     hint:'«يسرّ IEEE Horus Student Branch دعوتكم إلى حضور ورشة عمل جديدة يوم السبت القادم، بالتعاون مع نخبة من المتخصصين. التسجيل متاح الآن، والأماكن محدودة، فبادروا بالحجز!»  سجِّل بصوتك أنت دون استخدام برامج تحويل الصوت، ثم ارفع الملف أو أرفق رابطه.'},
-    {id:'voice_why', type:'text', min:60, label:'ما نوع الأداء الذي حاولت إيصاله في تسجيلك؟',
-     hint:'سطران أو ثلاثة بأسلوبك.'},
-    Object.assign({}, PORTFOLIO, {hint:'اختياري: رابط تسجيلات سابقة.'}), WHY]}
+  design:{ label:'تصميم الجرافيك', desc:'تصميم منشورات وهوية بصرية', sections:[{ dir:'ltr', blocks:[
+      {t:'h', text:'Task Description'},
+      {t:'p', text:'Design a creative and engaging social media announcement post announcing that IEEE Day 2027 will be held on 6 October 2027 at Horus University.'},
+      {t:'p', text:'Before starting the design, research IEEE Day, its history, significance, and global celebrations. Use your findings to develop a creative visual concept that connects the spirit of IEEE Day with the excitement of hosting the celebration at Horus University.'},
+      {t:'h', text:'Design Requirements:'},
+      {t:'ul', items:[
+        'Clearly announce: IEEE Day 2027.',
+        'Include the event date: 6 October 2027.',
+        'Include the venue: Horus University.',
+        'Include the official IEEE Logo and IEEE Day Logo in their original colors without modifications.',
+        "Reflect IEEE's spirit of innovation, technology, engineering, and global collaboration.",
+        'Follow the IEEE Horus Student Branch visual identity.',
+        'Make the announcement visually exciting and easy to understand at first glance.',
+        'Use the same identity and colors as IEEE Day (check Instagram).']},
+      {t:'h', text:'Output:'},
+      {t:'ul', items:['One social media post (1080 × 1350 px), JPG format.']},
+      {t:'links', items:[
+        {kind:'instagram', label:'IEEE Day on Instagram', url:IEEE_DAY_INSTAGRAM},
+        {kind:'drive', label:'Resources', url:GRAPHIC_RESOURCES_URL}]}
+    ], fields:[
+      driveField('gd_post','رابط التصميم النهائي بصيغة JPG ومقاس 1080 × 1350', 'ارفع الصورة إلى Google Drive، ثم ألصق رابطها هنا.'),
+      textField('gd_tools','الأدوات والبرامج التي استخدمتها في التصميم', {rows:3, hint:'اذكرها في سطر أو أكثر، ولا يوجد حدّ أدنى للطول.'}),
+      {id:'gd_portfolio', type:'link', hosts:'portfolio', required:false, label:'رابط أعمال سابقة (Portfolio)', hint:'اختياري: رابط Google Drive أو Behance.'} ]}]},
+
+  video:{ label:'مونتاج الفيديو', desc:'مقاطع ريلز وفيديوهات قصيرة', sections:[{ blocks:[
+      {t:'p', text:'ارفع أعمالك السابقة في مونتاج الفيديو، وأرفق رابط Google Drive الذي يضم هذه الأعمال.'}
+    ], fields:[ driveField('ve_work','رابط أعمالك السابقة (Google Drive)', 'يمكنك وضع الأعمال في مجلد واحد وإرفاق رابط المجلد.') ]}]},
+
+  photo:{ label:'التصوير الفوتوغرافي', desc:'صور ومحتوى بصري', sections:[{ blocks:[
+      {t:'p', text:'ارفع أعمالك السابقة في التصوير الفوتوغرافي، ثم اكتب موديل الكاميرا (إن وُجدت) وموديل الهاتف الذي تستخدمه في التصوير.'}
+    ], fields:[
+      driveField('ph_work','رابط أعمالك السابقة (Google Drive)', 'ضع الصور في مجلد واحد وأرفق رابط المجلد.'),
+      {id:'ph_camera', type:'line', required:false, label:'موديل الكاميرا (إن وُجدت)', hint:'مثال: Canon EOS 250D.'},
+      {id:'ph_phone', type:'line', required:true, label:'موديل الهاتف', hint:'مثال: iPhone 13 أو Samsung Galaxy S22.'} ]}]},
+
+  voice:{ label:'التعليق الصوتي', desc:'تسجيلات صوتية', sections:[{ blocks:[
+      {t:'p', text:'ارفع عيّنات من أعمالك السابقة في التعليق الصوتي (Voice Over)، وأرفق رابط Google Drive الذي يضم هذه العيّنات.'}
+    ], fields:[ driveField('vo_samples','رابط عيّنات التعليق الصوتي (Google Drive)', 'يمكنك وضع العيّنات في مجلد واحد وإرفاق رابط المجلد.') ]}]},
+
+  writer:{ label:'كتابة المحتوى', desc:'سيناريو وكتابة إبداعية', sections:[{ blocks:[
+      {t:'p', text:'اكتب سيناريو (Script) لفيديو ترويجي لفرع IEEE Horus Student Branch.'},
+      {t:'p', text:'هدف الفيديو هو التعريف بالفرع والترويج له داخل جامعة حورس، سواء كان الفيديو موشن جرافيك أو فيديو حيًّا (Live Action) كاملًا.'}
+    ], fields:[ pdfField('cw_script','رابط ملف PDF الذي يتضمّن السيناريو', {hint:'اكتب السيناريو في ملف PDF، وارفعه إلى Google Drive، ثم ألصق رابطه هنا. ' + SHARE_HINT}) ]}]}
 };
 
 /* ===================== الحالة ===================== */
 const app = document.getElementById('app');
 const savebar = document.getElementById('savebar');
 const state = {
-  code:'', info:null, role:null, tasks:null, values:{},
+  code:'', info:null, role:null, fields:null, values:{},
   dirty:false, saving:false, again:false, timer:null, submitting:false,
   pasteCount:0, pasteChars:0
 };
@@ -164,7 +249,7 @@ function setStatus(text, cls=''){
 }
 
 /* ===================== المسودة (محلية + على الخادم) ===================== */
-const localKey = () => 'horus_draft_v1_' + state.code;
+const localKey = () => 'horus_draft_v2_' + state.code;
 function loadLocal(){ try{ return JSON.parse(localStorage.getItem(localKey()) || 'null'); }catch(e){ return null; } }
 function saveLocal(synced){
   try{ localStorage.setItem(localKey(), JSON.stringify({role:state.role, values:state.values, synced:!!synced})); }catch(e){}
@@ -172,8 +257,8 @@ function saveLocal(synced){
 function clearLocal(){ try{ localStorage.removeItem(localKey()); }catch(e){} }
 
 function collectValues(){
-  if(!state.tasks) return;
-  state.tasks.forEach(f => {
+  if(!state.fields) return;
+  state.fields.forEach(f => {
     const el = document.getElementById('f_' + f.id);
     if(el) state.values[f.id] = el.value;
   });
@@ -220,7 +305,7 @@ async function saveRemote(){
 }
 
 function flush(){
-  if(!state.tasks || state.submitting) return;
+  if(!state.fields || state.submitting) return;
   collectValues(); saveLocal(false);
   if(state.dirty){
     try{
@@ -279,42 +364,68 @@ function renderRoles(){
   });
 }
 
+/* ===================== عرض المهمة ===================== */
+const ICONS = {
+  instagram:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>',
+  drive:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>'
+};
+
+function blockHtml(b){
+  if(b.t === 'h') return `<h3>${esc(b.text)}</h3>`;
+  if(b.t === 'p') return `<p>${esc(b.text)}</p>`;
+  if(b.t === 'ul' || b.t === 'ol') return `<${b.t}>` + b.items.map(i => `<li>${esc(i)}</li>`).join('') + `</${b.t}>`;
+  if(b.t === 'img') return `<figure><img src="${esc(b.src)}" alt="${esc(b.alt || '')}" loading="lazy">${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>`;
+  if(b.t === 'links') return '<div class="iconlinks">' + b.items.map(l => l.url
+      ? `<a class="iconlink" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${ICONS[l.kind] || ''}<span>${esc(l.label)}</span></a>`
+      : `<span class="iconlink off" title="سيتوفّر قريبًا">${ICONS[l.kind] || ''}<span>${esc(l.label)} (قريبًا)</span></span>`).join('') + '</div>';
+  return '';
+}
+
 function fieldHtml(f){
-  const opt = f.optional ? ' <span class="hint" style="display:inline">(اختياري)</span>' : '';
+  const opt = f.required ? '' : ' <span class="hint" style="display:inline">(اختياري)</span>';
   let h = `<label class="q" for="f_${f.id}">${esc(f.label)}${opt}</label>`;
   if(f.hint) h += `<p class="hint">${esc(f.hint)}</p>`;
-  if(f.type === 'text') h += `<textarea id="f_${f.id}" maxlength="3000"></textarea><div class="count" id="c_${f.id}">0 / ${f.min} حرفًا على الأقل</div>`;
-  if(f.type === 'url') h += `<input type="url" id="f_${f.id}" placeholder="https://" dir="ltr">`;
-  if(f.type === 'upload') h += `<input type="file" id="u_${f.id}" accept="${f.accept}">
-    <div class="or">أو</div><input type="url" id="f_${f.id}" placeholder="رابط الملف (Drive وغيره)" dir="ltr">
-    <p class="hint" style="margin-top:6px">لا تُحفَظ الملفات المرفوعة ضمن المسودة؛ أعد اختيار الملف قبل الإرسال، أو استخدم الرابط.</p>`;
+  if(f.type === 'text'){
+    h += `<textarea id="f_${f.id}" rows="${f.rows || 4}" maxlength="3000"></textarea>`;
+    if(f.min) h += `<div class="count" id="c_${f.id}">0 / ${f.min} حرفًا على الأقل</div>`;
+  }else if(f.type === 'line'){
+    h += `<input type="text" id="f_${f.id}" maxlength="120">`;
+  }else{
+    h += `<input type="url" id="f_${f.id}" placeholder="https://" dir="ltr" autocomplete="off">`;
+  }
   return h;
+}
+
+function sectionsOf(){
+  return state.info.committee === 'social' ? SOCIAL_ROLES[state.role].sections : COMMITTEES[state.info.committee].sections;
 }
 
 function renderForm(){
   const social = state.info.committee === 'social';
-  const tasks = social ? SOCIAL_ROLES[state.role].tasks : COMMITTEES[state.info.committee].tasks;
-  state.tasks = tasks;
+  const sections = sectionsOf();
+  state.fields = sections.reduce((all, s) => all.concat(s.fields), []);
   const back = social ? '<p><button type="button" class="link" id="back">← تغيير التخصص</button></p>' : '';
   const roleBadge = social ? ` — ${esc(SOCIAL_ROLES[state.role].label)}` : '';
+  const body = sections.map(s =>
+    (s.blocks && s.blocks.length ? `<div class="brief" dir="${s.dir || 'rtl'}">${s.blocks.map(blockHtml).join('')}</div>` : '') +
+    s.fields.map(fieldHtml).join('')).join('');
   show(intro() + `<form class="card" id="form" novalidate>${back}
-    <h2>المهمة${roleBadge}</h2>` + tasks.map(fieldHtml).join('') +
-    `<label class="decl"><input type="checkbox" id="decl"><span>أُقرّ بأن الإجابات والأعمال المرفوعة من إنجازي أنا، وأنني استعنت بالذكاء الاصطناعي (إن فعلت) مصدرًا للأفكار فقط.</span></label>
+    <h2>المهمة${roleBadge}</h2>${body}
+    <label class="decl"><input type="checkbox" id="decl"><span>أُقرّ بأن الإجابات والأعمال المرفقة من إنجازي أنا، وأنني استعنت بالذكاء الاصطناعي (إن فعلت) مصدرًا للأفكار فقط.</span></label>
     <div class="err" id="err"></div>
     <button class="btn" type="submit" id="send">إرسال المهمة</button></form>`);
   if(document.getElementById('back')) document.getElementById('back').onclick = () => { collectValues(); renderRoles(); };
 
   // استعادة القيم المحفوظة وربط الحفظ التلقائي
   state.pasteCount = 0; state.pasteChars = 0;
-  tasks.forEach(f => {
+  state.fields.forEach(f => {
     const el = document.getElementById('f_' + f.id);
     if(state.values[f.id]) el.value = state.values[f.id];
-    el.addEventListener('input', () => {
-      if(f.type === 'text') document.getElementById('c_' + f.id).textContent = `${el.value.trim().length} / ${f.min} حرفًا على الأقل`;
-      onEdit();
-    });
+    const counter = document.getElementById('c_' + f.id);
+    const upd = () => { if(counter) counter.textContent = `${el.value.trim().length} / ${f.min} حرفًا على الأقل`; };
+    upd();
+    el.addEventListener('input', () => { upd(); onEdit(); });
     if(f.type === 'text'){
-      document.getElementById('c_' + f.id).textContent = `${el.value.trim().length} / ${f.min} حرفًا على الأقل`;
       el.addEventListener('paste', e => {
         state.pasteCount++;
         state.pasteChars += ((e.clipboardData || window.clipboardData).getData('text') || '').length;
@@ -324,11 +435,15 @@ function renderForm(){
   document.getElementById('form').onsubmit = submit;
 }
 
-const toB64 = file => new Promise((res, rej) => {
-  const r = new FileReader();
-  r.onload = () => res(String(r.result).split(',')[1]);
-  r.onerror = rej; r.readAsDataURL(file);
-});
+/* ===================== التحقق والإرسال ===================== */
+function checkLink(val, hostsKey){
+  let u;
+  try{ u = new URL(val); }catch(e){ return 'الرابط غير صالح. يجب أن يبدأ بـ https://'; }
+  if(u.protocol !== 'https:') return 'يجب أن يبدأ الرابط بـ https://';
+  const h = u.hostname.toLowerCase();
+  const ok = HOSTS[hostsKey].some(x => h === x || h.endsWith('.' + x));
+  return ok ? '' : HOST_MSG[hostsKey];
+}
 
 function fail(t){ const e = document.getElementById('err'); e.textContent = t; e.scrollIntoView({behavior:'smooth',block:'center'}); }
 
@@ -336,27 +451,20 @@ async function submit(ev){
   ev.preventDefault();
   if(state.submitting) return;
   document.getElementById('err').textContent = '';
-  const answers = [], files = {};
-  for(const f of state.tasks){
-    const el = document.getElementById('f_' + f.id);
-    const val = el.value.trim();
-    if(f.type === 'text'){
-      if(val.length < f.min) return fail(`«${f.label}» — اكتب ${f.min} حرفًا على الأقل.`);
-      answers.push({id:f.id, label:f.label, value:val});
-    }else if(f.type === 'url'){
-      if(!f.optional && !val) return fail(`«${f.label}» — الرابط مطلوب.`);
-      if(val && !/^https?:\/\//i.test(val)) return fail('يجب أن تبدأ الروابط بـ https://');
-      if(val) answers.push({id:f.id, label:f.label, value:val});
-    }else if(f.type === 'upload'){
-      const file = document.getElementById('u_' + f.id).files[0];
-      if(!file && !val) return fail(`«${f.label}» — ارفع ملفًا أو أرفق رابطًا.`);
-      if(val && !/^https?:\/\//i.test(val)) return fail('يجب أن تبدأ الروابط بـ https://');
-      if(file){
-        if(file.size > MAX_FILE_MB * 1024 * 1024) return fail(`حجم الملف أكبر من ${MAX_FILE_MB} ميغابايت. ارفعه على Drive وأرفق الرابط.`);
-        files[f.id] = {name:file.name, mime:file.type, data:await toB64(file)};
-      }
-      if(val) answers.push({id:f.id, label:f.label, value:val});
+  const answers = [];
+  for(const f of state.fields){
+    const val = document.getElementById('f_' + f.id).value.trim();
+    if(!val){
+      if(f.required) return fail(`«${f.label}» — هذا الحقل مطلوب.`);
+      continue;
     }
+    if(f.type === 'link'){
+      const err = checkLink(val, f.hosts);
+      if(err) return fail(`«${f.label}» — ${err}`);
+    }else if(f.min && val.length < f.min){
+      return fail(`«${f.label}» — اكتب ${f.min} حرفًا على الأقل.`);
+    }
+    answers.push({id:f.id, label:f.label, value:val});
   }
   if(!document.getElementById('decl').checked) return fail('يجب الموافقة على الإقرار قبل الإرسال.');
   if(!confirm('بعد الإرسال لا يمكن تعديل إجابتك ولا إرسال إجابة أخرى. هل أنت متأكد من الإرسال؟')) return;
@@ -365,12 +473,14 @@ async function submit(ev){
   const btn = document.getElementById('send'); btn.disabled = true; btn.textContent = 'جارٍ الإرسال…';
   try{
     const r = await fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
-      body: JSON.stringify({action:'submit', code:state.code, role:state.role, answers, files, declaration:true,
+      body: JSON.stringify({action:'submit', code:state.code, role:state.role, answers, declaration:true,
         meta:{pasteCount:state.pasteCount, pasteChars:state.pasteChars}})});
     const res = await r.json();
     if(res.ok){ clearLocal(); return msg('🎉','تم إرسال مهمتك','شكرًا لك! سنراجع المهام ونتواصل معك.','ok'); }
     if(res.error === 'already'){ clearLocal(); return msg('✅','تم استلام مهمتك مسبقًا','لا يمكن إرسال أكثر من إجابة واحدة.','ok'); }
-    fail('حدثت مشكلة أثناء الإرسال، يرجى المحاولة مرة أخرى.');
+    if(res.error === 'link') fail('أحد الروابط غير صالح. تأكّد من أنه رابط Google Drive (أو Behance للأعمال السابقة، أو نموذج Google Forms / Microsoft Forms).');
+    else if(res.error === 'incomplete') fail('بعض الحقول المطلوبة ناقصة، يرجى مراجعة الإجابات.');
+    else fail('حدثت مشكلة أثناء الإرسال، يرجى المحاولة مرة أخرى.');
   }catch(e){ fail('تعذّر الاتصال، تأكّد من الإنترنت ثم حاول مرة أخرى.'); }
   state.submitting = false; btn.disabled = false; btn.textContent = 'إرسال المهمة';
 }
