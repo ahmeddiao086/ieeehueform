@@ -87,7 +87,7 @@ const AUTOSAVE_DELAY_MS = 2500;
 const DEADLINE_TEXT = ''; // مثال: 'آخر موعد للتسليم: الأحد 8 نوفمبر، الساعة 11:59 مساءً'
 
 const IEEE_DAY_INSTAGRAM = 'https://www.instagram.com/ieeeday/';
-const GRAPHIC_RESOURCES_URL = '';   // رابط Drive لمصادر المساعدة (يُضاف لاحقًا)
+const RESOURCES_URL = 'https://drive.google.com/drive/folders/16fu1NxAsXUeMGq2lsmXsqUasV-fGyLQK?usp=sharing'; // مجلد المصادر (ويضم شعار IEEE Horus SB)
 const MEMBERSHIP_SAMPLE_IMG = '/task/membership-excel-sample.png';
 const MEMBERSHIP_EXCEL_COL5 = '';   // نص العمود الخامس في جدول التقييم (يُضاف عند توفّره)
 
@@ -105,7 +105,7 @@ const HOST_MSG = {
 const SHARE_HINT = 'تأكّد من ضبط المشاركة على «أي شخص لديه الرابط» (Anyone with the link) بصلاحية عارض (Viewer)، وإلا لن نتمكّن من فتح الملف.';
 
 /* ===================== أدوات تعريف الحقول ===================== */
-const pdfField = (id, label, extra) => Object.assign({id, type:'link', hosts:'drive', required:true, label,
+const pdfField = (id, label, extra) => Object.assign({id, type:'link', hosts:'drive', required:true, logo:true, label,
   hint:'اكتب إجابتك في ملف PDF، وارفعه إلى Google Drive، ثم ألصق رابطه هنا. ' + SHARE_HINT}, extra || {});
 const driveField = (id, label, hint) => ({id, type:'link', hosts:'drive', required:true, label, hint:(hint ? hint + ' ' : '') + SHARE_HINT});
 const textField = (id, label, o) => Object.assign({id, type:'text', required:true, min:0, label}, o || {});
@@ -151,16 +151,16 @@ const COMMITTEES = {
       pdfField('attendance','رابط ملف PDF الذي يتضمّن خطتك لتنظيم الحضور'),
       textField('office','هل لديك خبرة في برامج Microsoft Office؟', {rows:2, hint:'يمكنك الإجابة بـ «نعم» أو بتفصيل أكثر، ولا يوجد حدّ أدنى للطول.'}) ]},
     { blocks:[
-      {t:'h', text:'السؤال الثالث: ملف Excel لتقييم الأعضاء'},
-      {t:'p', text:'المطلوب: إنشاء ملف Excel يحتوي على جدول لتقييم الأعضاء، وفقًا للتفاصيل التالية:'},
+      {t:'h', text:'السؤال الثالث: ملف Excel أو Google Sheets لتقييم الأعضاء'},
+      {t:'p', text:'المطلوب: إنشاء ملف Excel أو جدول Google Sheets (أونلاين) يحتوي على جدول لتقييم الأعضاء، وفقًا للتفاصيل التالية:'},
       {t:'ol', items:[
         'العمود الأول: أسماء الطلاب (Student Names).',
         'العمود الثاني: تقييم كل طالب من 10 خلال الشهر الأول (Month 1).',
         'العمود الثالث: تقييم كل طالب من 10 خلال الشهر الثاني (Month 2).',
         'العمود الرابع: تقييم كل طالب من 10 خلال الشهر الثالث (Month 3).'
       ].concat(MEMBERSHIP_EXCEL_COL5 ? [MEMBERSHIP_EXCEL_COL5] : [])},
-      {t:'img', src:MEMBERSHIP_SAMPLE_IMG, alt:'نموذج توضيحي لجدول Excel المطلوب', caption:'نموذج توضيحي للجدول المطلوب (للاسترشاد فقط).'}
-    ], fields:[ driveField('excel','رابط ملف Excel (Google Drive)') ]}
+      {t:'img', src:MEMBERSHIP_SAMPLE_IMG, alt:'نموذج توضيحي لجدول Excel أو Google Sheets المطلوب', caption:'نموذج توضيحي للجدول المطلوب (للاسترشاد فقط).'}
+    ], fields:[ driveField('excel','رابط ملف Excel أو Google Sheets', 'يمكنك رفع ملف Excel إلى Google Drive، أو إنشاء الجدول مباشرة في Google Sheets، ثم ألصق رابطه هنا.') ]}
   ]},
 
   logistics:{ label:'اللوجستيات', sections:[{ blocks:[
@@ -196,17 +196,16 @@ const SOCIAL_ROLES = {
         'Include the venue: Horus University.',
         'Include the official IEEE Logo and IEEE Day Logo in their original colors without modifications.',
         "Reflect IEEE's spirit of innovation, technology, engineering, and global collaboration.",
-        'Follow the IEEE Horus Student Branch visual identity.',
         'Make the announcement visually exciting and easy to understand at first glance.',
         'Use the same identity and colors as IEEE Day (check Instagram).']},
       {t:'h', text:'Output:'},
       {t:'ul', items:['One social media post (1080 × 1350 px), JPG format.']},
       {t:'links', items:[
         {kind:'instagram', label:'IEEE Day on Instagram', url:IEEE_DAY_INSTAGRAM},
-        {kind:'drive', label:'Resources', url:GRAPHIC_RESOURCES_URL}]}
+        {kind:'drive', label:'Resources', url:RESOURCES_URL}]}
     ], fields:[
       driveField('gd_post','رابط التصميم النهائي بصيغة JPG ومقاس 1080 × 1350', 'ارفع الصورة إلى Google Drive، ثم ألصق رابطها هنا.'),
-      textField('gd_tools','الأدوات والبرامج التي استخدمتها في التصميم', {rows:3, hint:'اذكرها في سطر أو أكثر، ولا يوجد حدّ أدنى للطول.'}),
+      textField('gd_tools','الأدوات والبرامج التي استخدمتها في التصميم', {rows:3, hint:'اذكرها في سطر أو أكثر.'}),
       {id:'gd_portfolio', type:'link', hosts:'portfolio', required:false, label:'رابط أعمال سابقة (Portfolio)', hint:'اختياري: رابط Google Drive أو Behance.'} ]}]},
 
   video:{ label:'مونتاج الفيديو', desc:'مقاطع ريلز وفيديوهات قصيرة', sections:[{ blocks:[
@@ -370,10 +369,22 @@ const ICONS = {
   drive:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>'
 };
 
-function blockHtml(b){
-  if(b.t === 'h') return `<h3>${esc(b.text)}</h3>`;
-  if(b.t === 'p') return `<p>${esc(b.text)}</p>`;
-  if(b.t === 'ul' || b.t === 'ol') return `<${b.t}>` + b.items.map(i => `<li>${esc(i)}</li>`).join('') + `</${b.t}>`;
+// يعزل المقاطع اللاتينية داخل النص العربي كي لا تختلّ بنية الجملة (مثل: «(Fundraising – FR)»)
+function rich(text, rtl){
+  if(!rtl) return esc(text);
+  const re = /\([A-Za-z][^()]*\)|[A-Za-z][A-Za-z0-9.\-]*(?: [A-Za-z0-9.\-]+)*/g;
+  let out = '', last = 0, m;
+  while((m = re.exec(text))){
+    out += esc(text.slice(last, m.index)) + '<bdi class="en">' + esc(m[0]) + '</bdi>';
+    last = m.index + m[0].length;
+  }
+  return out + esc(text.slice(last));
+}
+
+function blockHtml(b, rtl){
+  if(b.t === 'h') return `<h3>${rich(b.text, rtl)}</h3>`;
+  if(b.t === 'p') return `<p>${rich(b.text, rtl)}</p>`;
+  if(b.t === 'ul' || b.t === 'ol') return `<${b.t}>` + b.items.map(i => `<li>${rich(i, rtl)}</li>`).join('') + `</${b.t}>`;
   if(b.t === 'img') return `<figure><img src="${esc(b.src)}" alt="${esc(b.alt || '')}" loading="lazy">${b.caption ? `<figcaption>${esc(b.caption)}</figcaption>` : ''}</figure>`;
   if(b.t === 'links') return '<div class="iconlinks">' + b.items.map(l => l.url
       ? `<a class="iconlink" href="${esc(l.url)}" target="_blank" rel="noopener noreferrer">${ICONS[l.kind] || ''}<span>${esc(l.label)}</span></a>`
@@ -383,8 +394,12 @@ function blockHtml(b){
 
 function fieldHtml(f){
   const opt = f.required ? '' : ' <span class="hint" style="display:inline">(اختياري)</span>';
-  let h = `<label class="q" for="f_${f.id}">${esc(f.label)}${opt}</label>`;
-  if(f.hint) h += `<p class="hint">${esc(f.hint)}</p>`;
+  let h = `<label class="q" for="f_${f.id}">${rich(f.label, true)}${opt}</label>`;
+  if(f.hint) h += `<p class="hint">${rich(f.hint, true)}</p>`;
+  if(f.logo){
+    h += `<p class="hint"><b>مهم:</b> ${rich('أضف شعار IEEE Horus SB وحده في أعلى المستند.', true)}</p>`;
+    if(RESOURCES_URL) h += `<div class="iconlinks" style="margin:0 0 10px"><a class="iconlink" href="${esc(RESOURCES_URL)}" target="_blank" rel="noopener noreferrer">${ICONS.drive}<span>شعار IEEE Horus SB (مجلد المصادر)</span></a></div>`;
+  }
   if(f.type === 'text'){
     h += `<textarea id="f_${f.id}" rows="${f.rows || 4}" maxlength="3000"></textarea>`;
     if(f.min) h += `<div class="count" id="c_${f.id}">0 / ${f.min} حرفًا على الأقل</div>`;
@@ -407,7 +422,7 @@ function renderForm(){
   const back = social ? '<p><button type="button" class="link" id="back">← تغيير التخصص</button></p>' : '';
   const roleBadge = social ? ` — ${esc(SOCIAL_ROLES[state.role].label)}` : '';
   const body = sections.map(s =>
-    (s.blocks && s.blocks.length ? `<div class="brief" dir="${s.dir || 'rtl'}">${s.blocks.map(blockHtml).join('')}</div>` : '') +
+    (s.blocks && s.blocks.length ? `<div class="brief" dir="${s.dir || 'rtl'}">${s.blocks.map(b => blockHtml(b, (s.dir || 'rtl') !== 'ltr')).join('')}</div>` : '') +
     s.fields.map(fieldHtml).join('')).join('');
   show(intro() + `<form class="card" id="form" novalidate>${back}
     <h2>المهمة${roleBadge}</h2>${body}
